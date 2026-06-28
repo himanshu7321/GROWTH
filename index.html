@@ -266,7 +266,7 @@ textarea{resize:vertical;min-height:68px}
       <div style="position:relative;width:100%;height:180px"><canvas id="hourlyChart"></canvas></div>
     </div>
 
-    <div class="chart-card" style="margin-bottom:12px">
+    <div class="chart-card" id="driverCard" style="margin-bottom:12px">
       <div class="chart-title">Driver performance</div>
       <div style="overflow-x:auto">
         <table class="driver-table">
@@ -275,9 +275,7 @@ textarea{resize:vertical;min-height:68px}
         </table>
       </div>
     </div>
-    <div class="chart-card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-        <div class="chart-title" style="margin:0">Top pickup locations</div>
+    <div class="chart-card" id="zoneCard">
         <div style="font-size:11px;color:var(--hint)">by completed rides</div>
       </div>
       <div id="zoneList"></div>
@@ -774,104 +772,162 @@ function renderZones(rides){
 async function exportDashPDF(){
   const content = document.getElementById('dashContent');
   if(!content || content.style.display==='none'){alert('Load data first.');return;}
+  if(!window.jspdf || !window.jspdf.jsPDF){alert('jsPDF not loaded. Reload the page.');return;}
+
   const btn = document.getElementById('pdfBtn');
   btn.innerHTML = 'Generating PDF…';
   btn.disabled = true;
+
   try {
-    // Temporarily make hourly card visible for capture even if hidden
-    const hourlyCard = document.getElementById('hourlyCard');
-    const hourlyWasHidden = hourlyCard && hourlyCard.style.display === 'none';
-
-    const canvas = await html2canvas(content, {
-      scale: 1.2,          // lower scale to avoid canvas memory limit
-      useCORS: true,
-      backgroundColor: '#F7F6F3',
-      logging: false,
-      windowWidth: 1000,
-      removeContainer: true,
-      ignoreElements: el => false
-    });
-
-    // Guard: very large canvases can silently fail toDataURL
-    if(canvas.width === 0 || canvas.height === 0){
-      throw new Error('Canvas capture returned empty — try a smaller date range.');
-    }
-
-    let imgData;
-    try {
-      imgData = canvas.toDataURL('image/jpeg', 0.92); // JPEG is smaller than PNG
-    } catch(e) {
-      throw new Error('Canvas too large to export. Try filtering to a single city first.');
-    }
-
-    if(!window.jspdf || !window.jspdf.jsPDF){
-      throw new Error('jsPDF library not loaded. Check your internet connection and reload.');
-    }
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-    const pdfW = pdf.internal.pageSize.getWidth();
-    const pdfH = pdf.internal.pageSize.getHeight();
-    const imgW = canvas.width;
-    const imgH = canvas.height;
-    const ratio = pdfW / imgW;
-    const scaledH = imgH * ratio;
+    const pdfW = pdf.internal.pageSize.getWidth();  // 297mm
+    const pdfH = pdf.internal.pageSize.getHeight(); // 210mm
+    const HEADER_H = 12;   // mm — green title bar
+    const MARGIN = 8;      // mm — left/right padding
+    const FOOTER_H = 6;    // mm — footer area
+    const CONTENT_W = pdfW - MARGIN * 2;
+    const PAGE_CONTENT_H = pdfH - HEADER_H - FOOTER_H; // usable height per page
 
-    // Green header bar
-    pdf.setFillColor(29, 92, 62);
-    pdf.rect(0, 0, pdfW, 11, 'F');
-    pdf.setTextColor(255,255,255);
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica','bold');
-    pdf.text('Jugnoo CSM — KPI Dashboard', 8, 7.5);
-    const dateStr = document.getElementById('dateRange').textContent;
     const clientEl = document.querySelector('.op-btn.active');
-    const clientName = clientEl ? clientEl.textContent.trim() : '';
-    if(clientName && clientName !== 'All') pdf.text(clientName, pdfW/2, 7.5, {align:'center'});
-    pdf.setFontSize(7.5);
-    pdf.setFont('helvetica','normal');
-    if(dateStr) pdf.text(dateStr, pdfW - 8, 7.5, {align:'right'});
+    const clientName = clientEl ? clientEl.textContent.trim() : 'All';
+    const dateStr = document.getElementById('dateRange').textContent;
 
-    // Paginate content
-    let yOffset = 13;
-    let remaining = scaledH;
-    let srcY = 0;
-    const pageContentH = pdfH - 13;
+    // ── Helper: draw the green header on current page ──
+    function drawHeader(isFirst){
+      pdf.setFillColor(29, 92, 62);
+      pdf.rect(0, 0, pdfW, HEADER_H, 'F');
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(10);
+      pdf.text('Jugnoo CSM — KPI Dashboard' + (isFirst ? '' : ' (continued)'), MARGIN, 8);
+      if(clientName && clientName !== 'All'){
+        pdf.setFontSize(9); pdf.setFont('helvetica','normal');
+        pdf.text(clientName, pdfW/2, 8, {align:'center'});
+      }
+      pdf.setFontSize(7.5); pdf.setFont('helvetica','normal');
+      if(dateStr) pdf.text(dateStr, pdfW - MARGIN, 8, {align:'right'});
+    }
 
-    while(remaining > 0.5) {
-      const sliceH = Math.min(remaining, pageContentH);
-      const srcSliceH = Math.round(sliceH / ratio);
-      const sliceCanvas = document.createElement('canvas');
-      sliceCanvas.width = imgW;
-      sliceCanvas.height = srcSliceH;
-      const ctx2 = sliceCanvas.getContext('2d');
-      ctx2.fillStyle = '#F7F6F3';
-      ctx2.fillRect(0, 0, imgW, srcSliceH);
-      ctx2.drawImage(canvas, 0, srcY, imgW, srcSliceH, 0, 0, imgW, srcSliceH);
-      const sliceData = sliceCanvas.toDataURL('image/jpeg', 0.92);
-      pdf.addImage(sliceData, 'JPEG', 0, yOffset, pdfW, sliceH);
-      remaining -= sliceH;
-      srcY += srcSliceH;
-      if(remaining > 0.5){
+    // ── Helper: draw footer on current page ──
+    function drawFooter(){
+      pdf.setTextColor(170,170,170);
+      pdf.setFontSize(6.5);
+      pdf.setFont('helvetica','normal');
+      pdf.text('Generated by Jugnoo CSM Tool — jugnoocsm.netlify.app  •  ' + new Date().toLocaleDateString('en-IN'), pdfW/2, pdfH - 2, {align:'center'});
+    }
+
+    // ── Helper: capture one DOM element as high-res image ──
+    async function captureEl(el, scale=2.2){
+      const c = await html2canvas(el, {
+        scale,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+        windowWidth: 980
+      });
+      return c;  // returns canvas
+    }
+
+    // ── Helper: add a canvas image to PDF, auto page-break if needed ──
+    // yPos is current Y cursor in mm from top. Returns new yPos.
+    let yPos = HEADER_H + 3;
+    let pageNum = 1;
+    drawHeader(true);
+
+    async function addSection(el, opts={}){
+      if(!el || el.style.display==='none') return;
+      const scale = opts.scale || 2.2;
+      const gap = opts.gap !== undefined ? opts.gap : 4; // mm gap after section
+
+      const c = await captureEl(el, scale);
+      const imgH_mm = (c.height / c.width) * CONTENT_W;
+
+      // If this section won't fit on remaining page space, start new page
+      // (but always allow if it's taller than a full page — just let it flow)
+      const remainingOnPage = pdfH - FOOTER_H - yPos;
+      if(yPos > HEADER_H + 3 && imgH_mm > remainingOnPage + 2){
+        drawFooter();
         pdf.addPage();
-        pdf.setFillColor(29,92,62);
-        pdf.rect(0,0,pdfW,11,'F');
-        pdf.setTextColor(255,255,255);
-        pdf.setFontSize(9);
-        pdf.setFont('helvetica','bold');
-        pdf.text('Jugnoo CSM — KPI Dashboard (continued)', 8, 7.5);
-        yOffset = 13;
+        pageNum++;
+        drawHeader(false);
+        yPos = HEADER_H + 3;
+      }
+
+      // If section is taller than a full page, scale it down to fit
+      let drawW = CONTENT_W;
+      let drawH = imgH_mm;
+      if(drawH > PAGE_CONTENT_H){
+        const shrink = PAGE_CONTENT_H / drawH;
+        drawH = PAGE_CONTENT_H;
+        drawW = CONTENT_W * shrink;
+      }
+
+      const imgData = c.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', MARGIN, yPos, drawW, drawH, undefined, 'FAST');
+      yPos += drawH + gap;
+    }
+
+    // ── Define sections in order ──
+    // KPI grid
+    await addSection(document.getElementById('kpiGrid'), {gap:5});
+
+    // Insights panel (if visible)
+    const insPanel = document.getElementById('insightsPanel');
+    if(insPanel && insPanel.style.display !== 'none'){
+      await addSection(insPanel, {gap:5});
+    }
+
+    // Collect chart cards from the charts-grid only
+    const visibleCards = Array.from(content.querySelectorAll('.charts-grid .chart-card')).filter(el=>el.offsetParent!==null);
+
+    // First card is always full-width trend
+    if(visibleCards.length > 0){
+      await addSection(visibleCards[0], {gap:4});
+    }
+
+    // Remaining cards: pair them side by side
+    const rest = visibleCards.slice(1);
+    for(let i=0; i < rest.length; i += 2){
+      const left = rest[i], right = rest[i+1];
+      if(!right){
+        await addSection(left, {gap:4});
+      } else {
+        const [cl, cr] = await Promise.all([captureEl(left, 2.2), captureEl(right, 2.2)]);
+        const halfW = (CONTENT_W - 3) / 2;
+        const lH = (cl.height/cl.width)*halfW;
+        const rH = (cr.height/cr.width)*halfW;
+        const rowH = Math.max(lH, rH);
+        const remainingOnPage = pdfH - FOOTER_H - yPos;
+        if(yPos > HEADER_H + 3 && rowH > remainingOnPage + 2){
+          drawFooter(); pdf.addPage(); pageNum++; drawHeader(false); yPos = HEADER_H + 3;
+        }
+        pdf.addImage(cl.toDataURL('image/png'),'PNG', MARGIN, yPos, halfW, lH, undefined,'FAST');
+        pdf.addImage(cr.toDataURL('image/png'),'PNG', MARGIN+halfW+3, yPos, halfW, rH, undefined,'FAST');
+        yPos += rowH + 4;
       }
     }
 
-    // Footer on last page
-    pdf.setTextColor(160,160,160);
-    pdf.setFontSize(7);
-    pdf.text('Generated by Jugnoo CSM Tool — jugnoocsm.netlify.app', pdfW/2, pdfH - 3, {align:'center'});
-    const fname = 'jugnoo-kpi-' + (clientName||'all').replace(/\s+/g,'-').toLowerCase() + '-' + new Date().toISOString().slice(0,10) + '.pdf';
+    // Hourly heatmap (standalone card outside charts-grid)
+    const hourlyCard = document.getElementById('hourlyCard');
+    if(hourlyCard && hourlyCard.style.display !== 'none'){
+      await addSection(hourlyCard, {gap:4});
+    }
+
+    // Driver table
+    await addSection(document.getElementById('driverCard'), {gap:4, scale:1.8});
+
+    // Pickup zones
+    await addSection(document.getElementById('zoneCard'), {gap:4, scale:1.8});
+
+    drawFooter();
+
+    const fname = 'jugnoo-kpi-' + clientName.replace(/\s+/g,'-').toLowerCase() + '-' + new Date().toISOString().slice(0,10) + '.pdf';
     pdf.save(fname);
 
-  } catch(e) {
-    alert('PDF export failed: ' + e.message);
+  } catch(e){
+    alert('PDF export failed: ' + e.message + '\n\nTip: Try filtering to a single city first.');
+    console.error(e);
   } finally {
     btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF report';
     btn.disabled = false;

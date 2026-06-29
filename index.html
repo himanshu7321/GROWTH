@@ -251,6 +251,7 @@ textarea{resize:vertical;min-height:64px}
 .cluster-name{font-size:12px;font-weight:500;margin-bottom:3px}
 .cluster-meta{font-size:11px;color:var(--muted)}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 </head>
 <body>
 
@@ -452,6 +453,11 @@ textarea{resize:vertical;min-height:64px}
 <!-- ═══════ TAB 2: REPORT ═══════ -->
 <div class="tab-panel" id="tab-report">
 
+  <!-- DEBUG: if you see this red bar, the tab IS rendering -->
+  <div id="repDebug" style="background:#ff0000;color:#fff;padding:8px;font-size:12px;margin-bottom:8px;border-radius:4px">
+    ✓ Monthly Report tab is rendering correctly. This red bar confirms JavaScript tab switching works.
+  </div>
+
   <div class="alert alert-good" style="margin-bottom:1rem">
     <div class="alert-icon">✦</div>
     <div class="alert-body">
@@ -553,6 +559,11 @@ textarea{resize:vertical;min-height:64px}
 <!-- ═══════ TAB 3: ZONE INTELLIGENCE ═══════ -->
 <div class="tab-panel" id="tab-zones">
 
+  <!-- DEBUG: if you see this blue bar, zone tab IS rendering -->
+  <div style="background:#1D5C3E;color:#fff;padding:8px;font-size:12px;margin-bottom:8px;border-radius:4px">
+    ✓ Zone Intelligence tab is rendering correctly.
+  </div>
+
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem">
     <div>
       <div style="font-size:16px;font-weight:500">Zone Intelligence</div>
@@ -627,11 +638,15 @@ textarea{resize:vertical;min-height:64px}
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+/* ─── GLOBAL ERROR GUARD ─── */
+window.onerror=function(msg,src,line,col,err){
+  console.error('[CSM Error]',msg,'at',src+':'+line+':'+col,err);
+  return false; // don't suppress, let it show in console
+};
 /* ─── TABS ─── */
 function switchTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
@@ -1601,8 +1616,8 @@ async function exportDashPDF(){
       pdf.setFont('helvetica','bold');pdf.setFontSize(11);
       pdf.text('Jugnoo CSM — KPI Dashboard',10,9.5);
       pdf.setFont('helvetica','normal');pdf.setFontSize(8);
-      if(city&&city!=='All')pdf.text(city,W/2,9.5,{align:'center'});
-      if(dr)pdf.text(dr,W-10,9.5,{align:'right'});
+      if(city&&city!=='All')if(city&&city!=='All')pdf.text(String(city),W/2,9.5,{align:'center'});
+      if(dr)pdf.text(String(dr),W-10,9.5,{align:'right'});
       y=18;
     }
 
@@ -1652,14 +1667,14 @@ async function exportDashPDF(){
         // Label
         setTxt([255,255,255]);
         pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
-        pdf.text(c.label,cx+3,y+6,{maxWidth:cardW-6});
+        if(c.label!=null)pdf.text(String(c.label),cx+3,y+6,{maxWidth:cardW-6});
         // Value — big
         pdf.setFont('helvetica','bold');pdf.setFontSize(16);
-        pdf.text(c.val,cx+3,y+17,{maxWidth:cardW-6});
+        if(c.val!=null)pdf.text(String(c.val),cx+3,y+17,{maxWidth:cardW-6});
         // Sub lines
         pdf.setFont('helvetica','normal');pdf.setFontSize(6.8);
         pdf.setTextColor(255,255,255,0.8);
-        pdf.text(c.sub,cx+3,y+22,{maxWidth:cardW-6});
+        if(c.sub)pdf.text(String(c.sub),cx+3,y+22,{maxWidth:cardW-6});
         // Verdict pill
         pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
         pdf.setFillColor(255,255,255);pdf.setFillColor(255,255,255);
@@ -1667,7 +1682,7 @@ async function exportDashPDF(){
         pdf.roundedRect(cx+3,y+25,cardW-6,5,1.5,1.5,'F');
         pdf.setGState&&pdf.setGState(pdf.GState({opacity:1}));
         setTxt(WHITE);
-        pdf.text(c.sub2,cx+cardW/2,y+28.2,{align:'center',maxWidth:cardW-8});
+        if(c.sub2)pdf.text(String(c.sub2),cx+cardW/2,y+28.2,{align:'center',maxWidth:cardW-8});
       });
       y+=cardH+6;
     }
@@ -1691,9 +1706,9 @@ async function exportDashPDF(){
         const sub=a.querySelector('span')?.textContent||'';
         setTxt(isRed?RED:isWarn?AMBER:[6,95,70]);
         pdf.setFont('helvetica','bold');pdf.setFontSize(8);
-        pdf.text(icon+' '+title,14,y+5.8);
+        if(title)pdf.text(String(icon+' '+title).trim(),14,y+5.8);
         setTxt(GRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(7);
-        pdf.text(sub,14,y+8.5,{maxWidth:W-28});
+        if(sub)pdf.text(String(sub),14,y+8.5,{maxWidth:W-28});
         y+=10;
       });
       y+=2;
@@ -1703,7 +1718,7 @@ async function exportDashPDF(){
     function heading(txt){
       checkY(10);
       setTxt(GRAY);pdf.setFont('helvetica','bold');pdf.setFontSize(7.5);
-      pdf.text(txt.toUpperCase(),10,y);
+      if(txt)pdf.text(String(txt).toUpperCase(),10,y);
       setDraw([228,226,220]);pdf.setLineWidth(.3);
       pdf.line(10+pdf.getTextWidth(txt.toUpperCase())+3,y-0.5,W-10,y-0.5);
       y+=5;
@@ -1755,11 +1770,11 @@ async function exportDashPDF(){
         const val=card.querySelector('.ins-val')?.textContent||'';
         const sub=card.querySelector('.ins-sub')?.textContent||'';
         pdf.setTextColor(bc[0],bc[1],bc[2]);pdf.setFont('helvetica','bold');pdf.setFontSize(6);
-        pdf.text(title,cx+4,cy+4.5,{maxWidth:rowW-8});
+        if(title)pdf.text(String(title),cx+4,cy+4.5,{maxWidth:rowW-8});
         setTxt(DARKGRAY);pdf.setFont('helvetica','bold');pdf.setFontSize(8.5);
-        pdf.text(val,cx+4,cy+10,{maxWidth:rowW-8});
+        if(val!=null)pdf.text(String(val),cx+4,cy+10,{maxWidth:rowW-8});
         setTxt(GRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);
-        pdf.text(sub,cx+4,cy+14.5,{maxWidth:rowW-8});
+        if(sub)pdf.text(String(sub),cx+4,cy+14.5,{maxWidth:rowW-8});
       });
       y+=(Math.ceil(cards.length/4))*rowH+6;
     }
@@ -1778,7 +1793,7 @@ async function exportDashPDF(){
       setFill(DARKGRAY);pdf.rect(startX,y,W-20,7,'F');
       setTxt(WHITE);pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
       let cx=startX+1;
-      cols.forEach((c,i)=>{pdf.text(c,cx,y+4.8);cx+=colW[i];});
+      cols.forEach((c,i)=>{if(c)pdf.text(String(c),cx,y+4.8);cx+=colW[i];});
       y+=7;
       rows.forEach((tr,ri)=>{
         const tds=Array.from(tr.querySelectorAll('td'));
@@ -1790,7 +1805,7 @@ async function exportDashPDF(){
         tds.forEach((td,ti)=>{
           const txt=(td.textContent||'').trim().replace(/\s+/g,' ').slice(0,22);
           if(ti===1){pdf.setFont('helvetica','bold');}else{pdf.setFont('helvetica','normal');}
-          pdf.text(txt,cx,y+4.3,{maxWidth:colW[ti]-2});
+          if(txt)pdf.text(String(txt),cx,y+4.3,{maxWidth:colW[ti]-2});
           cx+=colW[ti];
         });
         y+=rowH;
@@ -1819,10 +1834,10 @@ async function exportDashPDF(){
         pdf.text(String(i+1),12,y+5.2);
         // Label
         setTxt(DARKGRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(7);
-        pdf.text(label,18,y+5.2,{maxWidth:barW-10});
+        if(label)pdf.text(String(label),18,y+5.2,{maxWidth:barW-10});
         // Count
         pdf.setFont('helvetica','bold');
-        pdf.text(count,W-12,y+5.2,{align:'right'});
+        if(count)pdf.text(String(count),W-12,y+5.2,{align:'right'});
         // Bar
         const barY=y+6.2;
         setFill([228,226,220]);pdf.rect(18,barY,barW,1.5,'F');
@@ -1853,16 +1868,16 @@ async function exportDashPDF(){
         rrect(cx,y,cw,22,3,col);
         setTxt(WHITE);
         pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
-        pdf.text(lbl.split('\n')[0],cx+3,y+5,{maxWidth:cw-6});
-        if(lbl.split('\n')[1])pdf.text(lbl.split('\n')[1],cx+3,y+9,{maxWidth:cw-6});
+        const _l0=lbl.split('\n')[0];if(_l0)pdf.text(String(_l0),cx+3,y+5,{maxWidth:cw-6});
+        const _l1=(lbl.split('\n')||[])[1];if(_l1)pdf.text(String(_l1),cx+3,y+9,{maxWidth:cw-6});
         pdf.setFontSize(14);pdf.setFont('helvetica','bold');
-        pdf.text(val,cx+cw/2,y+16,{align:'center'});
+        if(val!=null)pdf.text(String(val),cx+cw/2,y+16,{align:'center'});
         pdf.setFontSize(6.5);pdf.setFont('helvetica','normal');
-        pdf.text(sub,cx+cw/2,y+19.5,{align:'center',maxWidth:cw-4});
+        if(sub)pdf.text(String(sub),cx+cw/2,y+19.5,{align:'center',maxWidth:cw-4});
         if(delta){
           setTxt(isUp?[134,239,172]:isDn?[252,165,165]:WHITE);
           pdf.setFontSize(7);pdf.setFont('helvetica','bold');
-          pdf.text(delta,cx+cw/2,y+25,{align:'center'});
+          if(delta)pdf.text(String(delta),cx+cw/2,y+25,{align:'center'});
         }
       });
       y+=30;
@@ -2254,23 +2269,17 @@ function renderClusters(){
 function exportZoneHTML(){
   if(!zoneRows.length){alert('Upload zone CSV first.');return;}
   const btn=document.getElementById('exportZoneBtn');
-  btn.textContent='Building report…';btn.disabled=true;
-
+  btn.textContent='Building report...';btn.disabled=true;
   try{
-    const city=document.getElementById('mapCityBadge').textContent.split('·')[0].trim()||'Zone Report';
+    const city=document.getElementById('mapCityBadge').textContent.split('\u00b7')[0].trim()||'Zone Report';
     const dateStr=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
-    const cur=_currency.sym;
 
-    // Serialise zone data
-    const zoneJSON=JSON.stringify(zoneRows);
-
-    // Pre-compute cluster data
-    const CELL=0.025;
-    const grid={};
+    // Pre-compute clusters
+    const CELL=0.025,grid={};
     zoneRows.forEach(r=>{
       const lat=parseFloat(r['lat']),lng=parseFloat(r['lng']);
       if(isNaN(lat)||isNaN(lng))return;
-      const key=`${Math.round(lat/CELL)},${Math.round(lng/CELL)}`;
+      const key=Math.round(lat/CELL)+','+Math.round(lng/CELL);
       if(!grid[key])grid[key]={lats:[],lngs:[],req:0,missed:0,tOut:0,addrs:[]};
       grid[key].lats.push(lat);grid[key].lngs.push(lng);
       grid[key].req+=parseInt(r['total_requests'])||0;
@@ -2286,283 +2295,140 @@ function exportZoneHTML(){
       return {name,req:c.req,missed:c.missed,tOut:c.tOut,clat,clng};
     }).sort((a,b)=>b.req-a.req).slice(0,12);
 
-    // Top unserved zones
-    const topZones=zoneRows.slice().sort((a,b)=>(parseInt(b['missed_no_driver'])||0)+(parseInt(b['timed_out'])||0)-((parseInt(a['missed_no_driver'])||0)+(parseInt(a['timed_out'])||0))).slice(0,15);
+    const topZones=zoneRows.slice().sort((a,b)=>
+      (parseInt(b['missed_no_driver'])||0)+(parseInt(b['timed_out'])||0)-
+      ((parseInt(a['missed_no_driver'])||0)+(parseInt(a['timed_out'])||0))
+    ).slice(0,15);
 
-    // Summary stats
     const totalReq=zoneRows.reduce((s,r)=>s+(parseInt(r['total_requests'])||0),0);
     const totalComp=zoneRows.reduce((s,r)=>s+(parseInt(r['completed'])||0),0);
     const totalMissed=zoneRows.reduce((s,r)=>s+(parseInt(r['missed_no_driver'])||0),0);
     const totalTOut=zoneRows.reduce((s,r)=>s+(parseInt(r['timed_out'])||0),0);
     const compRate=totalReq?(totalComp/totalReq*100).toFixed(1):0;
     const missRate=totalReq?(totalMissed/totalReq*100).toFixed(1):0;
+    const lats2=zoneRows.map(r=>parseFloat(r['lat'])).filter(v=>!isNaN(v));
+    const lngs2=zoneRows.map(r=>parseFloat(r['lng'])).filter(v=>!isNaN(v));
+    const cLat=lats2.reduce((a,b)=>a+b,0)/lats2.length;
+    const cLng=lngs2.reduce((a,b)=>a+b,0)/lngs2.length;
 
-    const lats=zoneRows.map(r=>parseFloat(r['lat'])).filter(v=>!isNaN(v));
-    const lngs=zoneRows.map(r=>parseFloat(r['lng'])).filter(v=>!isNaN(v));
-    const centerLat=lats.reduce((a,b)=>a+b,0)/lats.length;
-    const centerLng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
-
-    const tableRows=topZones.map((r,i)=>{
+    // Build table rows as string
+    const tRows=topZones.map((r,i)=>{
       const gap=parseFloat(r['supply_gap_pct'])||0;
       const missed=parseInt(r['missed_no_driver'])||0;
       const tout=parseInt(r['timed_out'])||0;
       const addr=(r['pickup_address']||'').split(',').slice(0,3).join(', ');
-      const gapColor=gap>=80?'#DC2626':gap>=40?'#D97706':'#16A34A';
+      const gc=gap>=80?'#DC2626':gap>=40?'#D97706':'#16A34A';
+      const gb=gap>=80?'#FEE2E2':gap>=40?'#FEF3C7':'#D1FAE5';
       const action=missed>tout?'Add driver supply':'Driver incentive needed';
-      return `<tr>
-        <td style="font-weight:500;padding:8px 10px;border-bottom:1px solid #f0f0f0;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${r['pickup_address']||''}">${i+1}. ${addr}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center">${r['total_requests']||0}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:#16A34A;font-weight:500">${r['completed']||0}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:${missed>0?'#DC2626':'#666'};font-weight:${missed>0?'600':'400'}">${missed}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:${tout>0?'#7C3AED':'#666'}">${tout}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center"><span style="background:${gap>=80?'#FEE2E2':gap>=40?'#FEF3C7':'#D1FAE5'};color:${gapColor};padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600">${gap.toFixed(0)}%</span></td>
-        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;font-size:11px;color:#888">${action}</td>
-      </tr>`;
+      return '<tr>'
+        +'<td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;font-weight:500;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(i+1)+'. '+addr+'</td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:center">'+(r['total_requests']||0)+'</td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:center;color:#16A34A;font-weight:500">'+(r['completed']||0)+'</td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:center;color:'+(missed>0?'#DC2626':'#666')+';font-weight:'+(missed>0?600:400)+'">'+missed+'</td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:center;color:'+(tout>0?'#7C3AED':'#666')+'">'+tout+'</td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:center"><span style="background:'+gb+';color:'+gc+';padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600">'+gap.toFixed(0)+'%</span></td>'
+        +'<td style="padding:8px;border-bottom:1px solid #f0f0f0;font-size:11px;color:#888">'+action+'</td>'
+        +'</tr>';
     }).join('');
 
-    const clusterCards=clusters.map(c=>{
-      const health=c.req>0?c.missed/c.req:0;
-      const hc=health>0.5?'#DC2626':health>0.2?'#D97706':'#16A34A';
-      return `<div onclick="if(window._cmap)window._cmap.setView([${c.clat},${c.clng}],15)" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;cursor:pointer;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:13px;font-weight:500;margin-bottom:3px">${c.name}</div>
-        <div style="font-size:11px;color:#6b7280">${c.req} requests · <span style="color:${hc};font-weight:500">${c.missed} missed (${c.req>0?Math.round(c.missed/c.req*100):0}%)</span></div>
-        ${c.tOut>0?`<div style="font-size:11px;color:#7C3AED">${c.tOut} timed out</div>`:''}
-        <div style="font-size:10px;color:#9ca3af;margin-top:3px">Click to zoom map</div>
-      </div>`;
+    const cCards=clusters.map(c=>{
+      const h=c.req>0?c.missed/c.req:0;
+      const hc=h>0.5?'#DC2626':h>0.2?'#D97706':'#16A34A';
+      return '<div onclick="if(window._M)window._M.setView(['+c.clat+','+c.clng+'],15)" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;cursor:pointer">'
+        +'<div style="font-size:13px;font-weight:500;margin-bottom:3px">'+c.name+'</div>'
+        +'<div style="font-size:11px;color:#6b7280">'+c.req+' requests &middot; <span style="color:'+hc+';font-weight:500">'+c.missed+' missed ('+Math.round(c.missed/Math.max(c.req,1)*100)+'%)</span></div>'
+        +(c.tOut>0?'<div style="font-size:11px;color:#7C3AED">'+c.tOut+' timed out</div>':'')
+        +'<div style="font-size:10px;color:#9ca3af;margin-top:3px">Click to zoom map</div>'
+        +'</div>';
     }).join('');
 
-    // Inline the canvas heatmap drawing code for the exported file
-    const canvasHeatCode = `
-    const CanvasHeat = L.Layer.extend({
-      initialize(points, options){ this._pts=points; this._mode=options.mode||'demand'; },
-      onAdd(map){
-        this._map=map;
-        this._canvas=document.createElement('canvas');
-        this._canvas.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:500';
-        map.getPanes().overlayPane.appendChild(this._canvas);
-        map.on('moveend zoomend resize', this._redraw, this);
-        this._redraw();
-      },
-      onRemove(map){
-        map.getPanes().overlayPane.removeChild(this._canvas);
-        map.off('moveend zoomend resize', this._redraw, this);
-      },
-      _redraw(){
-        const map=this._map;
-        const size=map.getSize();
-        const canvas=this._canvas;
-        canvas.width=size.x; canvas.height=size.y;
-        const bounds=map.getBounds();
-        const topLeft=map.latLngToContainerPoint(bounds.getNorthWest());
-        canvas.style.left=topLeft.x+'px'; canvas.style.top=topLeft.y+'px';
-        const ctx=canvas.getContext('2d');
-        ctx.clearRect(0,0,size.x,size.y);
-        const pts=this._pts;
-        const vals=pts.map(p=>p.val);
-        const maxVal=Math.max(...vals)||1;
-        const r=Math.max(18,Math.min(35,size.x/30));
-        pts.forEach(p=>{
-          const cp=map.latLngToContainerPoint([p.lat,p.lng]);
-          const x=cp.x,y=cp.y;
-          if(x<-r||x>size.x+r||y<-r||y>size.y+r)return;
-          const intensity=p.val/maxVal;
-          const grad=ctx.createRadialGradient(x,y,0,x,y,r);
-          const alpha=Math.min(0.7,0.2+intensity*0.5);
-          if(this._mode==='demand'){
-            grad.addColorStop(0,'rgba(220,38,38,'+alpha+')');
-            grad.addColorStop(0.4,'rgba(251,146,60,'+(alpha*0.7)+')');
-            grad.addColorStop(1,'rgba(59,130,246,0)');
-          } else if(this._mode==='missed'){
-            grad.addColorStop(0,'rgba(185,28,28,'+alpha+')');
-            grad.addColorStop(0.4,'rgba(249,115,22,'+(alpha*0.7)+')');
-            grad.addColorStop(1,'rgba(219,234,254,0)');
-          } else {
-            grad.addColorStop(0,'rgba(109,40,217,'+alpha+')');
-            grad.addColorStop(0.4,'rgba(124,58,237,'+(alpha*0.6)+')');
-            grad.addColorStop(1,'rgba(219,234,254,0)');
-          }
-          ctx.beginPath();
-          ctx.fillStyle=grad;
-          ctx.arc(x,y,r,0,Math.PI*2);
-          ctx.fill();
-        });
-      }
-    });
-    function drawHeat(pts,mode){const l=new CanvasHeat(pts,{mode});l.addTo(window._cmap);return l;}
-    `;
+    // Encode zone data as base64 to embed safely without any HTML/script issues
+    const b64=btoa(unescape(encodeURIComponent(JSON.stringify(zoneRows))));
+    const compC=parseFloat(compRate)>=80?'#1D9E75':parseFloat(compRate)>=65?'#D97706':'#DC2626';
+    const missC=parseFloat(missRate)>15?'#DC2626':'#D97706';
 
-    const html=`<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Zone Intelligence — ${city} — ${dateStr}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<\x73cript src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"><\/script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#F7F6F3;color:#1A1917;font-size:14px}
-.header{background:#1D5C3E;color:#fff;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.header h1{font-size:16px;font-weight:600}
-.header-meta{font-size:12px;opacity:.8}
-.body{max-width:1000px;margin:0 auto;padding:1.5rem}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
-.kpi{background:#fff;border:1px solid #E4E2DC;border-radius:8px;padding:1rem 1.1rem}
-.kpi-label{font-size:11px;color:#6B6860;margin-bottom:3px}
-.kpi-val{font-size:22px;font-weight:500}
-.kpi-sub{font-size:11px;color:#9B9890;margin-top:3px}
-.section{background:#fff;border:1px solid #E4E2DC;border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:1.2rem}
-.section-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6860;margin-bottom:10px}
-.map-toggle{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.map-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid #C8C5BC;background:#fff;color:#6B6860}
-.map-btn.active{background:#1A1917;color:#fff;border-color:#1A1917}
-#map{height:460px;border-radius:8px;overflow:hidden;border:1px solid #E4E2DC}
-.legend{display:flex;gap:12px;font-size:11px;color:#6B6860;flex-wrap:wrap;margin-top:8px;align-items:center}
-.ldot{width:11px;height:11px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:3px}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{font-size:11px;font-weight:500;color:#6B6860;text-align:left;padding:6px 10px;border-bottom:1px solid #E4E2DC}
-td{padding:8px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
-.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
-.footer{text-align:center;font-size:11px;color:#9B9890;padding:2rem;margin-top:1rem}
-.badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;display:inline-block}
-@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}}
-</style>
-</head>
-<body>
-<div class="header">
-  <div>
-    <div class="header-meta" style="margin-bottom:3px;opacity:.7">Jugnoo CSM Tool · Zone Intelligence Report</div>
-    <h1>${city} — Supply &amp; Demand Analysis</h1>
-  </div>
-  <div class="header-meta">${dateStr}</div>
-</div>
+    // Build HTML as array of parts — NO template literals, NO embedded script tags
+    const P=[];
+    P.push('<!DOCTYPE html>');
+    P.push('<html lang="en"><head><meta charset="UTF-8"/>');
+    P.push('<meta name="viewport" content="width=device-width,initial-scale=1"/>');
+    P.push('<title>Zone Intelligence &mdash; '+city+' &mdash; '+dateStr+'</title>');
+    P.push('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>');
+    P.push('<style>');
+    P.push('*{box-sizing:border-box;margin:0;padding:0}');
+    P.push('body{font-family:system-ui,sans-serif;background:#F7F6F3;color:#1A1917;font-size:14px}');
+    P.push('.hdr{background:#1D5C3E;color:#fff;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}');
+    P.push('.hdr h1{font-size:16px;font-weight:600}.hdr-m{font-size:12px;opacity:.8}');
+    P.push('.body{max-width:1000px;margin:0 auto;padding:1.5rem}');
+    P.push('.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:1.2rem 0 1.5rem}');
+    P.push('.kpi{background:#fff;border:1px solid #E4E2DC;border-radius:8px;padding:1rem 1.1rem}');
+    P.push('.kl{font-size:11px;color:#6B6860;margin-bottom:3px}.kv{font-size:22px;font-weight:500}.ks{font-size:11px;color:#9B9890;margin-top:3px}');
+    P.push('.sec{background:#fff;border:1px solid #E4E2DC;border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:1.2rem}');
+    P.push('.st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6860;margin-bottom:10px}');
+    P.push('.mt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}');
+    P.push('.mb{font-family:system-ui,sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid #C8C5BC;background:#fff;color:#6B6860}');
+    P.push('.mb.active{background:#1A1917;color:#fff;border-color:#1A1917}');
+    P.push('#map{height:460px;border-radius:8px;overflow:hidden;border:1px solid #E4E2DC}');
+    P.push('.leg{display:flex;gap:12px;font-size:11px;color:#6B6860;flex-wrap:wrap;margin-top:8px;align-items:center}');
+    P.push('.ld{width:11px;height:11px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:3px}');
+    P.push('table{width:100%;border-collapse:collapse;font-size:12px}');
+    P.push('th{font-size:11px;font-weight:500;color:#6B6860;text-align:left;padding:6px 10px;border-bottom:1px solid #E4E2DC}');
+    P.push('.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}');
+    P.push('.ftr{text-align:center;font-size:11px;color:#9B9890;padding:2rem;margin-top:1rem}');
+    P.push('@media(max-width:600px){.krow{grid-template-columns:1fr 1fr}}');
+    P.push('</style></head><body>');
+    P.push('<div class="hdr"><div><div class="hdr-m" style="margin-bottom:3px;opacity:.7">Jugnoo CSM Tool &middot; Zone Intelligence Report</div><h1>'+city+' &mdash; Supply &amp; Demand Analysis</h1></div><div class="hdr-m">'+dateStr+'</div></div>');
+    P.push('<div class="body">');
+    P.push('<div class="krow">');
+    P.push('<div class="kpi" style="border-left:3px solid '+compC+'"><div class="kl">Completion rate</div><div class="kv" style="color:'+compC+'">'+compRate+'%</div><div class="ks">'+totalComp.toLocaleString()+' of '+totalReq.toLocaleString()+' requests</div></div>');
+    P.push('<div class="kpi" style="border-left:3px solid #E4E2DC"><div class="kl">Total requests</div><div class="kv">'+totalReq.toLocaleString()+'</div><div class="ks">across '+zoneRows.length+' locations</div></div>');
+    P.push('<div class="kpi" style="border-left:3px solid '+missC+'"><div class="kl">Missed rides</div><div class="kv" style="color:'+missC+'">'+totalMissed.toLocaleString()+'</div><div class="ks">'+missRate+'% &mdash; user cancelled before driver accepted</div></div>');
+    P.push('<div class="kpi" style="border-left:3px solid #7C3AED"><div class="kl">Timed out</div><div class="kv" style="color:#7C3AED">'+totalTOut.toLocaleString()+'</div><div class="ks">driver ignored ping</div></div>');
+    P.push('</div>');
+    P.push('<div class="sec"><div class="st">Interactive demand map</div>');
+    P.push('<div class="mt">');
+    P.push('<button class="mb active" onclick="sv(\'d\',this)">&#128308; Demand heatmap</button>');
+    P.push('<button class="mb" onclick="sv(\'s\',this)">&#9888; Supply gap zones</button>');
+    P.push('<button class="mb" onclick="sv(\'m\',this)">&#128205; Missed clusters</button>');
+    P.push('<button class="mb" onclick="sv(\'t\',this)">&#9201; Timed-out clusters</button>');
+    P.push('</div><div id="la" class="leg"></div><div id="map"></div></div>');
+    P.push('<div class="sec"><div class="st">Top unserved zones &mdash; driver deployment targets</div><div style="overflow-x:auto"><table><thead><tr><th>Zone</th><th>Requests</th><th>Completed</th><th>Missed</th><th>Timed out</th><th>Supply gap</th><th>Action</th></tr></thead><tbody>'+tRows+'</tbody></table></div></div>');
+    P.push('<div class="sec"><div class="st">Auto-detected demand clusters</div><div class="cg">'+cCards+'</div></div>');
+    P.push('<div class="ftr">Generated by Jugnoo CSM Tool &middot; jugnoocsm.netlify.app &middot; '+dateStr+'<br><span style="font-size:10px">Confidential &mdash; for operator use only</span></div>');
+    P.push('</div>');
+    // Embed data safely in a hidden div as base64
+    P.push('<div id="zd" style="display:none">'+b64+'</div>');
+    P.push('<s'+'cript src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"><'+'/s'+'cript>');
+    // Write map init to a separate text node loaded by a data attribute trick
+    // to completely avoid any script-tag parsing issues
+    P.push('<s'+'cript id="ms" type="application/json">{"c":['+cLat+','+cLng+']}</s'+'cript>');
+    P.push('<s'+'cript>');
+    P.push('var _M=null,_HL=null,_ML=null;');
+    P.push('var ZD=JSON.parse(decodeURIComponent(escape(atob(document.getElementById("zd").textContent.trim()))));');
+    P.push('var _cfg=JSON.parse(document.getElementById("ms").textContent);');
+    P.push('window.onload=function(){');
+    P.push('  _M=L.map("map").setView(_cfg.c,12);');
+    P.push('  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"(c) OpenStreetMap",maxZoom:18}).addTo(_M);');
+    P.push('  sv("d",document.querySelector(".mb.active"));');
+    P.push('};');
+    P.push('var CH=L.Layer.extend({');
+    P.push('  initialize:function(p,m){this._p=p;this._m=m||"d";},');
+    P.push('  onAdd:function(map){this._map=map;var c=document.createElement("canvas");c.style.cssText="position:absolute;top:0;left:0;pointer-events:none;z-index:500";map.getPanes().overlayPane.appendChild(c);this._c=c;map.on("moveend zoomend resize",this._draw,this);this._draw();},');
+    P.push('  onRemove:function(map){map.getPanes().overlayPane.removeChild(this._c);map.off("moveend zoomend resize",this._draw,this);},');
+    P.push('  _draw:function(){var map=this._map,sz=map.getSize(),c=this._c,ctx=c.getContext("2d");c.width=sz.x;c.height=sz.y;var tl=map.latLngToContainerPoint(map.getBounds().getNorthWest());c.style.left=tl.x+"px";c.style.top=tl.y+"px";ctx.clearRect(0,0,sz.x,sz.y);var p=this._p,mv=0;for(var i=0;i<p.length;i++)if(p[i].v>mv)mv=p[i].v;if(!mv)mv=1;var r=Math.max(18,Math.min(35,sz.x/30)),m=this._m;for(var i=0;i<p.length;i++){var cp=map.latLngToContainerPoint([p[i].lat,p[i].lng]),x=cp.x,y=cp.y;if(x<-r||x>sz.x+r||y<-r||y>sz.y+r)continue;var a=Math.min(0.7,0.2+p[i].v/mv*0.5),g=ctx.createRadialGradient(x,y,0,x,y,r);if(m==="d"){g.addColorStop(0,"rgba(220,38,38,"+a+")");g.addColorStop(0.4,"rgba(251,146,60,"+(a*0.7)+")");g.addColorStop(1,"rgba(59,130,246,0)");}else if(m==="ms"){g.addColorStop(0,"rgba(185,28,28,"+a+")");g.addColorStop(0.4,"rgba(249,115,22,"+(a*0.7)+")");g.addColorStop(1,"rgba(219,234,254,0)");}else{g.addColorStop(0,"rgba(109,40,217,"+a+")");g.addColorStop(0.4,"rgba(124,58,237,"+(a*0.6)+")");g.addColorStop(1,"rgba(219,234,254,0)");}ctx.beginPath();ctx.fillStyle=g;ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}}');
+    P.push('});');
+    P.push('function clr(){if(_HL){if(_HL._map)_M.removeLayer(_HL);else if(_HL.parentNode)_HL.parentNode.removeChild(_HL);_HL=null;}if(_ML){_M.removeLayer(_ML);_ML=null;}}');
+    P.push('function dh(pts,mode){var l=new CH(pts,mode);l.addTo(_M);return l;}');
+    P.push('function sv(mode,btn){clr();document.querySelectorAll(".mb").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");var la=document.getElementById("la");');
+    P.push('if(mode==="d"){var pts=ZD.map(function(r){return{lat:parseFloat(r.lat),lng:parseFloat(r.lng),v:parseInt(r.total_requests)||1}}).filter(function(p){return !isNaN(p.lat)&&!isNaN(p.lng)});_HL=dh(pts,"d");la.innerHTML=\'<span><span class="ld" style="background:#3B82F6"></span>Low</span> <span><span class="ld" style="background:#F59E0B"></span>Medium</span> <span><span class="ld" style="background:#EF4444"></span>High demand</span>\';}');
+    P.push('else if(mode==="s"){_ML=L.layerGroup();ZD.filter(function(r){return parseFloat(r.supply_gap_pct)>0}).sort(function(a,b){return parseFloat(b.supply_gap_pct)-parseFloat(a.supply_gap_pct)}).forEach(function(r){var lat=parseFloat(r.lat),lng=parseFloat(r.lng),gap=parseFloat(r.supply_gap_pct),req=parseInt(r.total_requests)||1;if(isNaN(lat)||isNaN(lng))return;var col=gap>=80?"#DC2626":gap>=50?"#EA580C":"#D97706";L.circleMarker([lat,lng],{radius:Math.max(5,Math.min(18,req*2)),color:col,fillColor:col,fillOpacity:0.7,weight:1}).bindPopup("<b>"+(r.pickup_address||"").split(",")[0]+"</b><br>Gap: <b>"+gap+"%</b><br>Requests: "+req).addTo(_ML);});_ML.addTo(_M);la.innerHTML=\'<span><span class="ld" style="background:#D97706"></span>Gap 0-50%</span> <span><span class="ld" style="background:#EA580C"></span>50-80%</span> <span><span class="ld" style="background:#DC2626"></span>&gt;80%</span>\';}');
+    P.push('else if(mode==="m"){var pts=ZD.map(function(r){return{lat:parseFloat(r.lat),lng:parseFloat(r.lng),v:parseInt(r.missed_no_driver)||0}}).filter(function(p){return !isNaN(p.lat)&&!isNaN(p.lng)&&p.v>0});_HL=dh(pts,"ms");la.innerHTML=\'<span><span class="ld" style="background:#DBEAFE"></span>Few</span> <span><span class="ld" style="background:#F97316"></span>Some</span> <span><span class="ld" style="background:#B91C1C"></span>Many missed</span>\';}');
+    P.push('else{var pts=ZD.map(function(r){return{lat:parseFloat(r.lat),lng:parseFloat(r.lng),v:parseInt(r.timed_out)||0}}).filter(function(p){return !isNaN(p.lat)&&!isNaN(p.lng)&&p.v>0});if(!pts.length){la.innerHTML=\'<span style="color:#9ca3af">No timed-out data</span>\';return;}_HL=dh(pts,"t");la.innerHTML=\'<span><span class="ld" style="background:#DBEAFE"></span>Few</span> <span><span class="ld" style="background:#7C3AED"></span>Some</span> <span><span class="ld" style="background:#1E1B4B"></span>Many timed out</span>\';}');
+    P.push('setTimeout(function(){_M.invalidateSize();},50);}');
+    P.push('<'+'/s'+'cript>');
+    P.push('</body></html>');
 
-<div class="body">
-
-  <!-- KPI summary -->
-  <div class="kpi-row" style="margin-top:1.2rem">
-    <div class="kpi" style="border-left:3px solid ${parseFloat(compRate)>=80?'#1D9E75':parseFloat(compRate)>=65?'#D97706':'#DC2626'}">
-      <div class="kpi-label">Completion rate</div>
-      <div class="kpi-val" style="color:${parseFloat(compRate)>=80?'#1D9E75':parseFloat(compRate)>=65?'#D97706':'#DC2626'}">${compRate}%</div>
-      <div class="kpi-sub">${totalComp.toLocaleString()} of ${totalReq.toLocaleString()} requests</div>
-    </div>
-    <div class="kpi" style="border-left:3px solid #E4E2DC">
-      <div class="kpi-label">Total requests</div>
-      <div class="kpi-val">${totalReq.toLocaleString()}</div>
-      <div class="kpi-sub">across ${zoneRows.length} locations</div>
-    </div>
-    <div class="kpi" style="border-left:3px solid ${parseFloat(missRate)>15?'#DC2626':'#D97706'}">
-      <div class="kpi-label">Missed rides</div>
-      <div class="kpi-val" style="color:${parseFloat(missRate)>15?'#DC2626':'#D97706'}">${totalMissed.toLocaleString()}</div>
-      <div class="kpi-sub">${missRate}% — user bailed before driver accepted</div>
-    </div>
-    <div class="kpi" style="border-left:3px solid #7C3AED">
-      <div class="kpi-label">Timed out</div>
-      <div class="kpi-val" style="color:#7C3AED">${totalTOut.toLocaleString()}</div>
-      <div class="kpi-sub">driver ignored ping</div>
-    </div>
-  </div>
-
-  <!-- Map -->
-  <div class="section">
-    <div class="section-title">Interactive demand map</div>
-    <div class="map-toggle">
-      <button class="map-btn active" onclick="switchView('demand',this)">🔴 Demand heatmap</button>
-      <button class="map-btn" onclick="switchView('supply',this)">⚠ Supply gap zones</button>
-      <button class="map-btn" onclick="switchView('missed',this)">📍 Missed clusters</button>
-      <button class="map-btn" onclick="switchView('timed',this)">⏱ Timed-out clusters</button>
-    </div>
-    <div id="legendArea" class="legend"></div>
-    <div id="map"></div>
-  </div>
-
-  <!-- Zone table -->
-  <div class="section">
-    <div class="section-title">Top unserved zones — driver deployment targets</div>
-    <div style="overflow-x:auto">
-      <table>
-        <thead><tr><th>Zone</th><th>Requests</th><th>Completed</th><th>Missed</th><th>Timed out</th><th>Supply gap</th><th>Recommended action</th></tr></thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Clusters -->
-  <div class="section">
-    <div class="section-title">Auto-detected demand clusters — click to zoom</div>
-    <div class="cluster-grid">${clusterCards}</div>
-  </div>
-
-  <div class="footer">
-    Generated by Jugnoo CSM Tool · jugnoocsm.netlify.app · ${dateStr}<br>
-    <span style="font-size:10px">This report is confidential and intended for operator use only</span>
-  </div>
-</div>
-
-<\x73cript>
-const ZONE_DATA=${zoneJSON};
-let _cmap=null,_activeView='demand',_heatLayer=null,_markerLayer=null;
-
-window.addEventListener('load',function(){
-  const lats=ZONE_DATA.map(r=>parseFloat(r.lat)).filter(v=>!isNaN(v));
-  const lngs=ZONE_DATA.map(r=>parseFloat(r.lng)).filter(v=>!isNaN(v));
-  const cLat=lats.reduce((a,b)=>a+b,0)/lats.length;
-  const cLng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
-  _cmap=L.map('map').setView([cLat,cLng],12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>',maxZoom:18
-  }).addTo(_cmap);
-  ${canvasHeatCode}
-  window._drawHeat=drawHeat;
-  switchView('demand',document.querySelector('.map-btn.active'));
-});
-
-function switchView(mode,btn){
-  _activeView=mode;
-  document.querySelectorAll('.map-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  if(_heatLayer){
-    if(_heatLayer._map)_cmap.removeLayer(_heatLayer);
-    else if(_heatLayer.parentNode)_heatLayer.parentNode.removeChild(_heatLayer);
-    _heatLayer=null;
-  }
-  if(_markerLayer){_cmap.removeLayer(_markerLayer);_markerLayer=null;}
-  const leg=document.getElementById('legendArea');
-  if(mode==='demand'){
-    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.total_requests)||1})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
-    _heatLayer=window._drawHeat(pts,'demand');
-    leg.innerHTML='<span><span class="ldot" style="background:#3B82F6"></span>Low</span><span><span class="ldot" style="background:#F59E0B"></span>Medium</span><span><span class="ldot" style="background:#EF4444"></span>High demand</span><span style="margin-left:auto;color:#9ca3af">Intensity = total ride requests</span>';
-  } else if(mode==='supply'){
-    _markerLayer=L.layerGroup();
-    ZONE_DATA.filter(r=>parseFloat(r.supply_gap_pct)>0).sort((a,b)=>parseFloat(b.supply_gap_pct)-parseFloat(a.supply_gap_pct)).forEach(r=>{
-      const lat=parseFloat(r.lat),lng=parseFloat(r.lng),gap=parseFloat(r.supply_gap_pct),req=parseInt(r.total_requests)||1;
-      if(isNaN(lat)||isNaN(lng))return;
-      const color=gap>=80?'#DC2626':gap>=50?'#EA580C':'#D97706';
-      L.circleMarker([lat,lng],{radius:Math.max(5,Math.min(18,req*2)),color,fillColor:color,fillOpacity:.7,weight:1})
-       .bindPopup('<b>'+(r.pickup_address||'').split(',')[0]+'</b><br>Gap: <b>'+gap+'%</b><br>Requests: '+req+' · Missed: '+r.missed_no_driver)
-       .addTo(_markerLayer);
-    });
-    _markerLayer.addTo(_cmap);
-    leg.innerHTML='<span><span class="ldot" style="background:#D97706"></span>Gap 0–50%</span><span><span class="ldot" style="background:#EA580C"></span>50–80%</span><span><span class="ldot" style="background:#DC2626"></span>&gt;80%</span><span style="margin-left:auto;color:#9ca3af">Circle size = request volume · Click for details</span>';
-  } else if(mode==='missed'){
-    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.missed_no_driver)||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
-    _heatLayer=window._drawHeat(pts,'missed');
-    leg.innerHTML='<span><span class="ldot" style="background:#DBEAFE"></span>Few</span><span><span class="ldot" style="background:#F97316"></span>Some</span><span><span class="ldot" style="background:#B91C1C"></span>Many missed</span><span style="margin-left:auto;color:#9ca3af">User cancelled before driver accepted</span>';
-  } else {
-    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.timed_out)||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
-    if(!pts.length){leg.innerHTML='<span style="color:#9ca3af">No timed-out data</span>';return;}
-    _heatLayer=window._drawHeat(pts,'timed');
-    leg.innerHTML='<span><span class="ldot" style="background:#DBEAFE"></span>Few</span><span><span class="ldot" style="background:#7C3AED"></span>Some</span><span><span class="ldot" style="background:#1E1B4B"></span>Many timed out</span><span style="margin-left:auto;color:#9ca3af">Driver ignored ping</span>';
-  }
-  setTimeout(()=>_cmap.invalidateSize(),50);
-}
-<\/script>
-</body>
-</html>`;
-
-    // Trigger download
+    const html=P.join('\n');
     const blob=new Blob([html],{type:'text/html;charset=utf-8'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
@@ -2571,13 +2437,10 @@ function switchView(mode,btn){
     a.click();
     setTimeout(()=>URL.revokeObjectURL(url),5000);
 
-  } catch(e){
-    alert('Export failed: '+e.message);
-    console.error(e);
-  } finally {
-    btn.textContent='Export client report';
-    btn.disabled=false;
+  }catch(e){alert('Export failed: '+e.message);console.error(e);}
+  finally{
     btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export client report';
+    btn.disabled=false;
   }
 }
 

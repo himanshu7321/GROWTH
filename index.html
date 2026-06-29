@@ -16,190 +16,264 @@
   --warn:#854F0B;--warn-light:#FAEEDA;
   --danger:#A32D2D;--danger-light:#FCEBEB;
   --info:#185FA5;--info-light:#E6F1FB;
-  --success-text:#0F6E56;--success-bg:#E1F5EE;--success-border:#9FE1CB;
+  --success-border:#9FE1CB;
   --radius:10px;--radius-sm:6px;
 }
 body{background:var(--bg);font-family:'Inter',sans-serif;color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
-
-/* ── Header ── */
 header{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-mark{width:30px;height:30px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center}
 .logo-mark svg{width:16px;height:16px;fill:#fff}
-.logo-text{font-size:15px;font-weight:600}
-.logo-sub{font-size:11px;color:var(--muted)}
-.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.logo-text{font-size:15px;font-weight:600}.logo-sub{font-size:11px;color:var(--muted)}
+.header-right{display:flex;align-items:center;gap:10px}
 .badge-pill{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
 .badge-green{background:var(--accent-light);color:var(--accent-text);border:1px solid var(--success-border)}
 .badge-blue{background:var(--info-light);color:var(--info);border:1px solid #B5D4F4}
-
-/* ── Tabs ── */
-.tab-bar{background:var(--surface);border-bottom:1px solid var(--border);display:flex;padding:0 2rem;gap:0}
+.tab-bar{background:var(--surface);border-bottom:1px solid var(--border);display:flex;padding:0 2rem}
 .tab-btn{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:.75rem 1.25rem;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-btn:hover:not(.active){color:var(--text)}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
-
-/* ── Layout ── */
-main{max-width:980px;margin:0 auto;padding:1.75rem 1.5rem 5rem}
-.section-title{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
-.section-title span{width:18px;height:18px;background:var(--bg);border:1px solid var(--border);border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+main{max-width:1000px;margin:0 auto;padding:1.5rem 1.5rem 5rem}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;padding-bottom:6px;border-bottom:2px solid var(--border)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1rem}
-.divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
-.optional{font-weight:400;color:var(--hint);font-size:11px;text-transform:none;letter-spacing:0}
+.divider{border:none;border-top:1px solid var(--border);margin:.85rem 0}
 
-/* ── Forms ── */
-.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+/* Forms */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .full{grid-column:1/-1}
-.field{display:flex;flex-direction:column;gap:4px}
+.field{display:flex;flex-direction:column;gap:3px}
 label{font-size:12px;font-weight:500;color:var(--muted)}
+.field-note{font-size:10px;color:var(--hint)}
 input,select,textarea{font-family:'Inter',sans-serif;font-size:13px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);outline:none;transition:border-color .15s;width:100%}
 input:focus,select:focus,textarea:focus{border-color:var(--accent);background:#fff}
-textarea{resize:vertical;min-height:68px}
+input.autofilled{background:#F0FAF5;border-color:#9FE1CB;color:#085041}
+textarea{resize:vertical;min-height:64px}
 
-/* ── SWOT ── */
-.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .swot-cell{border-radius:var(--radius-sm);padding:10px 12px}
-.swot-cell label{display:block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.swot-cell label{display:block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px}
 .swot-s{background:#E1F5EE}.swot-s label{color:#085041}.swot-s textarea{background:#F0FAF5;border-color:#9FE1CB}
 .swot-w{background:var(--warn-light)}.swot-w label{color:var(--warn)}.swot-w textarea{background:#FEF7ED;border-color:#FAC775}
 .swot-o{background:var(--info-light)}.swot-o label{color:var(--info)}.swot-o textarea{background:#F3F8FE;border-color:#B5D4F4}
 .swot-t{background:var(--danger-light)}.swot-t label{color:var(--danger)}.swot-t textarea{background:#FEF5F5;border-color:#F7C1C1}
 
-/* ── Buttons ── */
+/* Buttons */
 .btn{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:8px 18px;border-radius:var(--radius-sm);cursor:pointer;border:none;transition:opacity .15s,transform .1s;display:inline-flex;align-items:center;gap:6px}
-.btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:active{transform:scale(.98)}.btn:disabled{opacity:.4;cursor:not-allowed}
 .btn-primary{background:var(--accent);color:#fff}
-.btn-outline{background:var(--surface);color:var(--text);border:1px solid var(--border-strong);display:none}
-.btn-outline.show{display:inline-flex}
+.btn-sm{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:4px}
+.btn-ghost{background:var(--bg);color:var(--muted);border:1px solid var(--border-strong)}
+.btn-ghost:hover{color:var(--text)}
 
-/* ── Upload ── */
-.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-.upload-area{border:1.5px dashed var(--border-strong);border-radius:var(--radius);padding:1.1rem;text-align:center;cursor:pointer;transition:border-color .15s}
+/* Upload */
+.upload-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1rem}
+.upload-area{border:1.5px dashed var(--border-strong);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color .15s}
 .upload-area:hover{border-color:var(--accent)}
-.upload-area.loaded{border-style:solid;border-color:var(--success-border);background:var(--success-bg)}
-.upload-label{font-size:13px;color:var(--muted)}
-.upload-label b{color:var(--text);font-weight:500}
-.upload-label b.ok{color:var(--accent-text)}
+.upload-area.loaded{border-style:solid;border-color:var(--success-border);background:var(--accent-light)}
+.upload-label{font-size:12px;color:var(--muted)}.upload-label b{color:var(--text)}.upload-label b.ok{color:var(--accent-text)}
 
-/* ── Operator bar ── */
-.op-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1.25rem}
-.op-label{font-size:12px;color:var(--muted);white-space:nowrap}
-.op-btn{font-size:12px;padding:4px 12px;border:0.5px solid var(--border-strong);border-radius:20px;background:var(--surface);color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:background .1s}
-.op-btn.active{background:var(--text);color:var(--surface);border-color:var(--text)}
+/* Op bar */
+.op-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.op-label{font-size:12px;color:var(--muted)}
+.op-btn{font-size:12px;padding:4px 12px;border:.5px solid var(--border-strong);border-radius:20px;background:var(--surface);color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:background .1s}
+.op-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
 
-/* ── KPI cards ── */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-bottom:1.25rem}
-.kpi{background:var(--bg);border-radius:var(--radius-sm);padding:.85rem 1rem}
-.kpi-label{font-size:11px;color:var(--muted);margin-bottom:3px}
-.kpi-val{font-size:21px;font-weight:500;color:var(--text)}
-.kpi-sub{font-size:11px;color:var(--hint);margin-top:1px}
-.kpi-val.green{color:#1D9E75}.kpi-val.amber{color:#BA7517}.kpi-val.red{color:#E24B4A}
+/* Alert banners */
+.alert{border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.alert-danger{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;border-left:4px solid #dc2626;color:#991b1b}
+.alert-warn{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fcd34d;border-left:4px solid #d97706;color:#92400e}
+.alert-good{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-left:4px solid #059669;color:#065f46}
+.alert-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.alert-body strong{font-weight:600;display:block;margin-bottom:1px}
+.alert-body span{font-size:11px;opacity:.85}
 
-/* ── Charts ── */
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:1.5rem}
+.kpi{border-radius:12px;padding:1.25rem 1.4rem;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-icon{position:absolute;top:12px;right:14px;font-size:22px;opacity:.18}
+.kpi-label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;opacity:.75}
+.kpi-val{font-size:28px;font-weight:600;line-height:1.15;letter-spacing:-.02em}
+.kpi-sub{font-size:11px;margin-top:6px;line-height:1.45;opacity:.8}
+.kpi-verdict{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-top:7px;background:rgba(255,255,255,.3)}
+/* Completion — deep green */
+.kpi.g{background:linear-gradient(135deg,#1D5C3E 0%,#1D9E75 100%);color:#fff}
+/* Rides & Revenue — indigo */
+.kpi.rev{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:#fff}
+/* Wait time green */
+.kpi.wg{background:linear-gradient(135deg,#065f46 0%,#059669 100%);color:#fff}
+/* Wait time amber */
+.kpi.wa{background:linear-gradient(135deg,#78350f 0%,#d97706 100%);color:#fff}
+/* Wait time red */
+.kpi.wr{background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);color:#fff}
+/* Rating green */
+.kpi.rg{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff}
+/* Rating amber */
+.kpi.ra{background:linear-gradient(135deg,#713f12 0%,#ca8a04 100%);color:#fff}
+/* Rating red */
+.kpi.rr{background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);color:#fff}
+/* Cancel green */
+.kpi.cg{background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);color:#fff}
+/* Cancel amber */
+.kpi.ca{background:linear-gradient(135deg,#78350f 0%,#ea580c 100%);color:#fff}
+/* Cancel red */
+.kpi.cr{background:linear-gradient(135deg,#7f1d1d 0%,#e11d48 100%);color:#fff}
+/* Neutral */
+.kpi.n{background:linear-gradient(135deg,#374151 0%,#4b5563 100%);color:#fff}
+
+/* Trend summary bar */
+.trend-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
+.trend-cell{background:var(--surface);padding:8px 10px;text-align:center}
+.trend-cell-label{font-size:10px;color:var(--muted)}
+.trend-cell-val{font-size:14px;font-weight:500}
+
+/* Charts */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
-.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .chart-card.full{grid-column:1/-1}
-.chart-title{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:10px}
-.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:11px;color:var(--muted)}
+.chart-header{padding:10px 14px 8px;border-bottom:1px solid var(--border)}
+.chart-title{font-size:12px;font-weight:600;color:var(--text);margin:0}
+.chart-subtitle{font-size:10px;color:var(--muted);margin-top:1px}
+.chart-body{padding:12px 14px 14px}
+.chart-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted)}
 .legend span{display:flex;align-items:center;gap:4px}
-.legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+/* Colored top border per chart type */
+.chart-card.c-green .chart-header{border-top:3px solid #059669}
+.chart-card.c-blue .chart-header{border-top:3px solid #3b82f6}
+.chart-card.c-purple .chart-header{border-top:3px solid #7c3aed}
+.chart-card.c-red .chart-header{border-top:3px solid #dc2626}
+.chart-card.c-teal .chart-header{border-top:3px solid #0d9488}
+.chart-card.c-amber .chart-header{border-top:3px solid #d97706}
 
-/* ── Driver table ── */
-.driver-table{width:100%;border-collapse:collapse;font-size:12px}
-.driver-table th{font-size:11px;font-weight:500;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
-.driver-table td{padding:7px 8px;border-bottom:0.5px solid var(--border);color:var(--text)}
-.driver-table tr:last-child td{border-bottom:none}
-.rating-bar{height:4px;border-radius:2px;background:var(--border);display:inline-block;width:44px;vertical-align:middle;margin-right:5px;overflow:hidden}
-.rating-fill{height:100%;border-radius:2px;background:#EF9F27}
+/* Heatmap */
+.heatmap-grid{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin-top:6px}
+.hm-cell{height:26px;border-radius:2px;position:relative;cursor:default}
+.hm-cell:hover::after{content:attr(title);position:absolute;bottom:30px;left:50%;transform:translateX(-50%);background:#1A1917;color:#fff;font-size:10px;padding:3px 7px;border-radius:4px;white-space:nowrap;z-index:10}
+.hm-labels{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin-top:2px}
+.hm-labels span{font-size:8px;color:var(--hint);text-align:center}
 
-/* ── Zone bars ── */
-.zone-row{margin-bottom:10px}
-.zone-meta{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;margin-bottom:4px;gap:8px}
+/* Tables */
+.data-table{width:100%;border-collapse:collapse;font-size:12px}
+.data-table th{font-size:11px;font-weight:500;color:var(--muted);text-align:left;padding:5px 8px;border-bottom:1px solid var(--border);white-space:nowrap}
+.data-table td{padding:6px 8px;border-bottom:.5px solid var(--border);color:var(--text)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:var(--bg)}
+.rbar{height:4px;border-radius:2px;background:var(--border);display:inline-block;width:40px;vertical-align:middle;margin-right:4px;overflow:hidden}
+.rfill{height:100%;border-radius:2px}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;display:inline-block;white-space:nowrap}
+.badge-r{background:var(--danger-light);color:var(--danger)}
+.badge-a{background:var(--warn-light);color:var(--warn)}
+.badge-g{background:var(--accent-light);color:var(--accent-text)}
+.badge-n{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+
+/* Zone bars */
+.zone-row{margin-bottom:8px}
+.zone-meta{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;margin-bottom:3px;gap:6px}
 .zone-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.zone-fill{height:100%;background:#378ADD;border-radius:2px}
+.zone-fill{height:100%;border-radius:2px}
 
-/* ── Report output ── */
-.output-card{display:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:1.25rem}
-.output-card.show{display:block}
-.output-header{background:var(--bg);border-bottom:1px solid var(--border);padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
-.output-label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
-.gemini-tag{font-size:10px;background:var(--info-light);color:var(--info);border:1px solid #B5D4F4;padding:2px 8px;border-radius:10px;font-weight:500;letter-spacing:0;text-transform:none}
-.output-body{padding:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.85;color:var(--text);white-space:pre-wrap;word-break:break-word}
-.copy-small{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:4px 12px;border-radius:var(--radius-sm);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-strong)}
+/* Insight cards */
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;margin-bottom:1.25rem}
+.ins{border-radius:10px;padding:14px 16px;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);transition:transform .15s,box-shadow .15s}
+.ins:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.ins-icon{position:absolute;bottom:10px;right:12px;font-size:28px;opacity:.12;line-height:1}
+.ins-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;opacity:.75}
+.ins-val{font-size:18px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.ins-sub{font-size:11px;margin-top:5px;line-height:1.45;opacity:.82}
+/* green — good news */
+.ins.g{background:linear-gradient(135deg,#064e3b 0%,#059669 100%);color:#fff}
+/* amber — warning */
+.ins.a{background:linear-gradient(135deg,#78350f 0%,#d97706 100%);color:#fff}
+/* red — critical */
+.ins.r{background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);color:#fff}
+/* blue — informational */
+.ins.b{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:#fff}
+/* purple — special */
+.ins.p{background:linear-gradient(135deg,#4c1d95 0%,#7c3aed 100%);color:#fff}
+/* teal — neutral positive */
+.ins.t{background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);color:#fff}
 
-/* ── Insight cards ── */
-.insight-card{border-radius:var(--radius-sm);padding:10px 13px;border-left:3px solid transparent}
-.insight-card.warn{background:var(--warn-light);border-color:#BA7517}
-.insight-card.good{background:var(--accent-light);border-color:var(--accent)}
-.insight-card.info{background:var(--info-light);border-color:var(--info)}
-.insight-card.danger{background:var(--danger-light);border-color:var(--danger)}
-.insight-title{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
-.insight-val{font-size:13px;font-weight:500;color:var(--text)}
-.insight-sub{font-size:11px;color:var(--muted);margin-top:1px}
+/* Weekly cohort */
+.week-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.week-cell{border-radius:10px;padding:14px 12px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.week-cell.w-base{background:linear-gradient(135deg,#374151,#4b5563);color:#fff}
+.week-cell.w-up{background:linear-gradient(135deg,#064e3b,#059669);color:#fff}
+.week-cell.w-dn{background:linear-gradient(135deg,#7f1d1d,#dc2626);color:#fff}
+.week-cell.w-flat{background:linear-gradient(135deg,#1e3a8a,#3b82f6);color:#fff}
+.week-lbl{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+.week-val{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.week-sub{font-size:11px;opacity:.75;margin-top:2px}
+.week-delta{font-size:12px;font-weight:600;margin-top:6px;background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;display:inline-block}
 
-
-.api-notice{background:var(--accent-light);border:1px solid var(--success-border);border-radius:var(--radius-sm);padding:12px 16px;font-size:13px;color:var(--accent-text);margin-bottom:1rem}
-.api-notice strong{font-weight:600;color:var(--accent)}
-.api-notice a{color:var(--accent)}
-.key-row{display:flex;gap:8px;align-items:center;margin-top:6px}
-.key-row input{flex:1;font-family:'IBM Plex Mono',monospace;font-size:12px}
-.save-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:7px 14px;border-radius:var(--radius-sm);cursor:pointer;background:var(--accent);color:#fff;border:none;white-space:nowrap;flex-shrink:0}
-.key-ok{font-size:12px;color:var(--accent-text);display:none;align-items:center;gap:5px}
-.key-ok.show{display:flex}
-.loading{display:none;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+/* Report output */
+.out-card{display:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:1rem}
+.out-card.show{display:block}
+.out-hdr{background:var(--bg);border-bottom:1px solid var(--border);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.out-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.out-body{padding:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+.copy-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:4px 12px;border-radius:var(--radius-sm);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-strong)}
+.loading{display:none;align-items:center;gap:8px;color:var(--muted);font-size:13px}
 .loading.show{display:flex}
-.spinner{width:15px;height:15px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.spin{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.error-box{background:var(--danger-light);border:1px solid #F7C1C1;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--danger);margin-top:.75rem;display:none}
-.error-box.show{display:block}
-.compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end}
-.growth-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;margin-top:2px}
-.badge-up{background:var(--accent-light);color:var(--accent-text)}
-.badge-down{background:var(--danger-light);color:var(--danger)}
-.badge-flat{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
-.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:1.25rem}
-.empty-dash{text-align:center;padding:3rem 1rem;color:var(--hint);font-size:13px}
-.empty-dash svg{display:block;margin:0 auto 10px;opacity:.3}
-
-@media(max-width:600px){
-  .charts-grid,.upload-grid,.compare-row,.swot-grid{grid-template-columns:1fr}
-  header{padding:.75rem 1rem}
+.err{background:var(--danger-light);border:1px solid #F7C1C1;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--danger);display:none;margin-top:.75rem}
+.err.show{display:block}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:1rem}
+.growth-badge{font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
+.gb-up{background:var(--accent-light);color:var(--accent-text)}
+.gb-dn{background:var(--danger-light);color:var(--danger)}
+.gb-flat{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.empty{text-align:center;padding:3rem 1rem;color:var(--hint);font-size:13px}
+.empty svg{display:block;margin:0 auto 10px;opacity:.3}
+.gemini-tag{font-size:10px;background:var(--info-light);color:var(--info);border:1px solid #B5D4F4;padding:2px 8px;border-radius:10px;font-weight:500}
+.compare-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+@media(max-width:620px){
+  .charts-grid,.upload-grid,.swot-grid,.week-grid,.compare-row,.kpi-grid{grid-template-columns:1fr 1fr}
+  header,main{padding:1rem}
   .tab-bar{padding:0 1rem}
-  main{padding:1.25rem 1rem 3rem}
 }
+
+/* ── Zone Intelligence ── */
+#mapContainer{height:500px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.map-toggle{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.map-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);transition:all .15s}
+.map-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
+.zone-upload{border:1.5px dashed var(--border-strong);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color .15s;margin-bottom:1rem}
+.zone-upload:hover{border-color:var(--accent)}
+.zone-upload.loaded{border-style:solid;border-color:var(--success-border);background:var(--accent-light)}
+.map-legend{display:flex;gap:12px;font-size:11px;color:var(--muted);flex-wrap:wrap;margin-top:8px;align-items:center}
+.map-legend-dot{width:12px;height:12px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:3px}
+.cluster-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:12px}
+.cluster-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px}
+.cluster-name{font-size:12px;font-weight:500;margin-bottom:3px}
+.cluster-meta{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-    </div>
-    <div>
-      <div class="logo-text">Jugnoo CSM Tool</div>
-      <div class="logo-sub">KPI Dashboard + Monthly Report Generator</div>
-    </div>
+    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+    <div><div class="logo-text">Jugnoo CSM Tool</div><div class="logo-sub">KPI Dashboard · Monthly Report Generator</div></div>
   </div>
   <div class="header-right">
-    <span class="badge-pill badge-green">Free</span>
+    <span class="badge-pill badge-green">Free · No limits</span>
     <span class="badge-pill badge-blue">Gemini AI</span>
   </div>
 </header>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('dashboard',this)">&#9632; KPI Dashboard</button>
-  <button class="tab-btn" onclick="switchTab('report',this)">&#9654; Monthly Report</button>
+  <button class="tab-btn active" onclick="switchTab('dashboard',this)">KPI Dashboard</button>
+  <button class="tab-btn" onclick="switchTab('report',this)">Monthly Report</button>
+  <button class="tab-btn" onclick="switchTab('zones',this)">Zone Intelligence</button>
 </div>
 
 <main>
 
-<!-- ═══════════════════════════════════════════
-     TAB 1 — KPI DASHBOARD
-════════════════════════════════════════════ -->
+<!-- ═══════ TAB 1: DASHBOARD ═══════ -->
 <div class="tab-panel active" id="tab-dashboard">
 
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem">
@@ -210,249 +284,432 @@ textarea{resize:vertical;min-height:68px}
   <div class="upload-grid">
     <div class="upload-area" id="dropRides" onclick="document.getElementById('fileRides').click()">
       <input type="file" id="fileRides" accept=".csv" style="display:none" onchange="loadRideCSV(this)"/>
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 6px;color:var(--muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
-      <div class="upload-label"><b>Ride details CSV</b><br>Historical completed rides export</div>
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 5px;color:var(--muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+      <div class="upload-label"><b>Ride details CSV</b><br>Completed rides export from ClickHouse</div>
     </div>
     <div class="upload-area" id="dropBucket" onclick="document.getElementById('fileBucket').click()">
       <input type="file" id="fileBucket" accept=".csv" style="display:none" onchange="loadBucketCSV(this)"/>
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 6px;color:var(--muted)"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-      <div class="upload-label"><b>Bucket summary CSV</b><br>Daily completed / cancelled / missed</div>
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 5px;color:var(--muted)"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+      <div class="upload-label"><b>Bucket summary CSV</b><br>Daily requests / outcomes from ClickHouse</div>
+    </div>
+    <div class="upload-area" id="dropDriver" onclick="document.getElementById('fileDriver').click()">
+      <input type="file" id="fileDriver" accept=".csv" style="display:none" onchange="loadDriverCSV(this)"/>
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 5px;color:var(--muted)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <div class="upload-label"><b>Driver performance CSV</b><br>Monthly driver stats · <span style="color:var(--accent-text)">optional</span></div>
     </div>
   </div>
 
-  <div class="op-bar" id="opBar" style="display:none">
-    <span class="op-label">City / operator:</span>
-  </div>
+  <div class="op-bar" id="opBar" style="display:none"><span class="op-label">City:</span></div>
+
+  <!-- Alert banners (dynamic) -->
+  <div id="alertArea"></div>
 
   <div id="dashContent" style="display:none">
+
+    <!-- KPI cards -->
     <div class="kpi-grid" id="kpiGrid"></div>
 
-    <!-- Operational Insights -->
-    <div id="insightsPanel" style="display:none;margin-bottom:1.25rem">
-      <div class="section-title"><span>!</span> Operational insights</div>
-      <div id="insightsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px"></div>
+    <!-- Day-level trend table (bucket data) -->
+    <div class="chart-card" id="dayTrendCard" style="margin-bottom:1rem;display:none">
+      <div class="chart-row">
+        <div class="chart-title" style="margin:0">Day-by-day performance</div>
+        <div class="legend" id="trendLegend"></div>
+      </div>
+      <div style="position:relative;height:200px"><canvas id="trendChart"></canvas></div>
     </div>
 
+    <!-- Outcome breakdown + supply analysis -->
+    <!-- Row 1: Outcomes + Supply -->
     <div class="charts-grid">
-      <div class="chart-card full">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px">
-          <div class="chart-title" style="margin:0">Daily rides — completed vs cancellations</div>
-          <div class="legend" id="trendLegend" style="margin:0"></div>
+      <div class="chart-card c-blue">
+        <div class="chart-header"><div class="chart-title">Request outcomes</div><div class="chart-subtitle">Breakdown of all requests by result</div></div>
+        <div class="chart-body">
+          <div class="legend" id="pieLegend" style="margin-bottom:8px"></div>
+          <div style="position:relative;height:160px"><canvas id="pieChart"></canvas></div>
         </div>
-        <div style="position:relative;width:100%;height:220px"><canvas id="trendChart"></canvas></div>
       </div>
-      <div class="chart-card">
-        <div class="chart-title">Ride outcome breakdown</div>
-        <div class="legend" id="pieLegend"></div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="pieChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Revenue by day (₹)</div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="revChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Cancellation rate % by day</div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="canRateChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Avg fare per ride by day (₹)</div>
-        <div style="position:relative;width:100%;height:200px"><canvas id="avgFareChart"></canvas></div>
+      <div class="chart-card c-teal" id="supplyCard">
+        <div class="chart-header"><div class="chart-title">Demand vs supply pressure</div><div class="chart-subtitle">Completion % vs missed % by day</div></div>
+        <div class="chart-body"><div style="position:relative;height:160px"><canvas id="supplyChart"></canvas></div></div>
       </div>
     </div>
 
-    <!-- Hourly demand -->
-    <div class="chart-card" id="hourlyCard" style="margin-bottom:12px;display:none">
-      <div class="chart-title">Hourly demand — rides by hour of day</div>
-      <div style="position:relative;width:100%;height:180px"><canvas id="hourlyChart"></canvas></div>
+    <!-- Row 2: Revenue + Cancellation rate -->
+    <div class="charts-grid">
+      <div class="chart-card c-amber">
+        <div class="chart-header"><div class="chart-title">Revenue by day</div><div class="chart-subtitle">Daily earnings trend</div></div>
+        <div class="chart-body"><div style="position:relative;height:160px"><canvas id="revChart"></canvas></div></div>
+      </div>
+      <div class="chart-card c-red" id="canRateCard">
+        <div class="chart-header"><div class="chart-title">Cancellation rate % by day</div><div class="chart-subtitle">20% line = action threshold</div></div>
+        <div class="chart-body"><div style="position:relative;height:160px"><canvas id="canRateChart"></canvas></div></div>
+      </div>
     </div>
 
-    <div class="chart-card" id="driverCard" style="margin-bottom:12px">
-      <div class="chart-title">Driver performance</div>
+    <!-- Row 3: Avg fare + dual -->
+    <div class="charts-grid">
+      <div class="chart-card c-purple">
+        <div class="chart-header"><div class="chart-title">Avg fare per ride</div><div class="chart-subtitle">Daily average fare trend</div></div>
+        <div class="chart-body"><div style="position:relative;height:160px"><canvas id="avgFareChart"></canvas></div></div>
+      </div>
+      <div class="chart-card c-red" style="opacity:.92">
+        <div class="chart-header"><div class="chart-title">Fare vs cancellation rate</div><div class="chart-subtitle">Avg fare (left) · cancel % (right axis)</div></div>
+        <div class="chart-body"><div style="position:relative;height:160px"><canvas id="dualChart"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- Hourly heatmap -->
+    <div class="chart-card c-blue" id="hourlyCard" style="margin-bottom:1rem;display:none">
+      <div class="chart-header">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div><div class="chart-title">Hourly demand heatmap</div><div class="chart-subtitle">Hover cells for ride count</div></div>
+          <div style="font-size:11px;color:var(--muted)">darker = more demand</div>
+        </div>
+      </div>
+      <div class="chart-body">
+      <div class="heatmap-grid" id="hmGrid"></div>
+      <div class="hm-labels" id="hmLabels"></div>
+      <div style="display:flex;gap:10px;margin-top:8px;font-size:11px;color:var(--muted);align-items:center">
+        <span>Low</span>
+        <span style="display:flex;gap:2px">
+          <span style="width:12px;height:8px;border-radius:1px;background:#DCE9F5;display:inline-block"></span>
+          <span style="width:12px;height:8px;border-radius:1px;background:#9DC6E8;display:inline-block"></span>
+          <span style="width:12px;height:8px;border-radius:1px;background:#378ADD;display:inline-block"></span>
+          <span style="width:12px;height:8px;border-radius:1px;background:#1D9E75;display:inline-block"></span>
+          <span style="width:12px;height:8px;border-radius:1px;background:#1D5C3E;display:inline-block"></span>
+        </span>
+        <span>High</span>
+        <span id="peakHourLabel" style="margin-left:auto;font-weight:500;color:var(--accent-text)"></span>
+      </div>
+    </div>
+
+    <!-- Weekly cohort -->
+    <div class="chart-card" id="weeklyCard" style="margin-bottom:1rem;display:none;background:linear-gradient(135deg,#f8fafc,#f1f5f9)">
+      <div class="chart-header" style="background:transparent;border-bottom:1px solid var(--border)">
+        <div class="chart-title">Week-over-week performance</div>
+        <div class="chart-subtitle">Was each week better or worse than the last?</div>
+      </div>
+      <div class="chart-body">
+      <div class="week-grid" id="weekGrid"></div>
+      </div>
+    </div>
+
+    <!-- Operational insights -->
+    <div id="insightArea" style="display:none;margin-bottom:1rem">
+      <div class="section-label">Operational insights</div>
+      <div class="insight-grid" id="insightGrid"></div>
+    </div>
+
+    <!-- Driver performance -->
+    <div class="chart-card" id="driverCard" style="margin-bottom:1rem">
+      <div class="chart-row">
+        <div class="chart-title" style="margin:0">Driver performance</div>
+        <div style="font-size:11px;color:var(--hint)" id="driverMeta"></div>
+      </div>
       <div style="overflow-x:auto">
-        <table class="driver-table">
-          <thead><tr><th>Driver</th><th>Vehicle</th><th>Rides</th><th>Distance (km)</th><th>Revenue (₹)</th><th>Avg fare (₹)</th><th>Avg rating</th></tr></thead>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Driver</th><th>Rides done</th><th>Online hrs</th>
+              <th title="Completed rides ÷ online hours">Rides/hr</th>
+              <th>Revenue ₹</th>
+              <th title="Revenue ÷ online hours">Rev/hr ₹</th>
+
+              <th title="Pings deliberately rejected by driver">Reject % <span style="font-size:9px;color:var(--hint)">(ping)</span></th>
+              <th title="Rides accepted but then cancelled by driver after starting">D-cancel</th>
+              <th>Avg wait</th><th>Rating</th><th>Flag</th>
+            </tr>
+          </thead>
           <tbody id="driverBody"></tbody>
         </table>
+
       </div>
     </div>
-    <div class="chart-card" id="zoneCard">
-        <div style="font-size:11px;color:var(--hint)">by completed rides</div>
+
+    <!-- Top pickup zones -->
+    <div class="chart-card" id="zoneCard" style="margin-bottom:1rem">
+      <div class="chart-row">
+        <div class="chart-title" style="margin:0">Top pickup zones</div>
+        <div style="font-size:11px;color:var(--hint)">full address · by ride volume</div>
       </div>
       <div id="zoneList"></div>
     </div>
-    <div style="margin-top:1rem;text-align:right">
-      <button class="btn btn-outline show" onclick="exportDashPDF()" style="display:inline-flex" id="pdfBtn">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF report
+
+    <div style="text-align:right">
+      <button class="btn btn-primary" onclick="exportDashPDF()" id="pdfBtn">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
       </button>
     </div>
   </div>
 
-  <div class="empty-dash" id="emptyDash">
+  <div class="empty" id="emptyDash">
     <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Upload at least the ride details CSV to load the dashboard
+    Upload ride details CSV to load dashboard
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════
-     TAB 2 — MONTHLY REPORT
-════════════════════════════════════════════ -->
+<!-- ═══════ TAB 2: REPORT ═══════ -->
 <div class="tab-panel" id="tab-report">
 
-  <div class="api-notice">
-    <strong>AI-powered report generator</strong> — powered by Gemini 2.0 Flash via a secure server proxy. No API key needed here.
+  <div class="alert alert-good" style="margin-bottom:1rem">
+    <div class="alert-icon">✦</div>
+    <div class="alert-body">
+      <strong>Auto-fills from your uploaded CSVs</strong>
+      <span>Upload data in Dashboard tab first. Fields marked with a green border are auto-computed — edit freely before generating.</span>
+    </div>
   </div>
 
   <div class="card">
-    <div class="section-title"><span>1</span> Client & CSM details</div>
+    <div class="section-label">Client &amp; CSM</div>
     <div class="form-grid">
-      <div class="field"><label>Client name</label><input type="text" id="clientName" placeholder="e.g. RideZim Zimbabwe"/></div>
-      <div class="field"><label>Report month</label><input type="month" id="month"/></div>
-      <div class="field"><label>Your name (CSM)</label><input type="text" id="csm" placeholder="e.g. Himanshu"/></div>
+      <div class="field"><label>Client / operator name</label><input type="text" id="rClientName" placeholder="e.g. Cabinda Taxis"/></div>
+      <div class="field"><label>Report month</label><input type="month" id="rMonth"/></div>
+      <div class="field"><label>Your name (CSM)</label><input type="text" id="rCsm" placeholder="e.g. Himanshu"/></div>
       <div class="field"><label>Email tone</label>
-        <select id="tone">
-          <option value="professional">Professional</option>
-          <option value="friendly">Friendly & warm</option>
-          <option value="concise">Concise / executive</option>
-        </select>
+        <select id="rTone"><option value="professional">Professional</option><option value="friendly">Friendly &amp; warm</option><option value="concise">Concise / executive</option></select>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="section-title"><span>2</span> Ride performance — month-on-month</div>
-    <div class="compare-row">
-      <div class="field"><label>Last month rides</label><input type="number" id="prevRides" placeholder="e.g. 4200" min="0" oninput="updateBadge()"/></div>
-      <div class="field"><label>This month rides</label><input type="number" id="rides" placeholder="e.g. 4820" min="0" oninput="updateBadge()"/></div>
-      <div><label>Growth</label><div id="growthBadge" class="growth-badge badge-flat">— enter both months</div></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem">
+      <div class="section-label" style="margin:0">Performance metrics</div>
+      <div style="font-size:11px;color:var(--hint)" id="autoFillNote"></div>
     </div>
-    <hr class="divider"/>
+    <div class="compare-row" style="margin-bottom:10px">
+      <div class="field"><label>Last month rides</label><input type="number" id="rPrevRides" placeholder="e.g. 4200" oninput="updateBadge()"/></div>
+      <div class="field"><label>This month rides</label><input type="number" id="rRides" placeholder="auto-filled" oninput="updateBadge()"/></div>
+      <div><label>MoM</label><div id="growthBadge" class="growth-badge gb-flat">—</div></div>
+    </div>
     <div class="form-grid">
-      <div class="field"><label>Active drivers <span class="optional">(optional)</span></label><input type="number" id="activeDrivers" placeholder="e.g. 210" min="0"/></div>
-      <div class="field"><label>Cancellation rate % <span class="optional">(optional)</span></label><input type="number" id="cancelRate" placeholder="e.g. 8.2" step="0.1" min="0"/></div>
-      <div class="field"><label>Avg driver rating <span class="optional">(optional)</span></label><input type="number" id="avgRating" placeholder="e.g. 4.3" step="0.1" min="0" max="5"/></div>
-      <div class="field"><label>Completion rate % <span class="optional">(optional)</span></label><input type="number" id="completionRate" placeholder="e.g. 85.2" step="0.1" min="0"/></div>
-      <div class="field"><label>Total revenue (₹) <span class="optional">(optional)</span></label><input type="number" id="totalRevenue" placeholder="e.g. 180000" min="0"/></div>
-      <div class="field"><label>Avg fare per ride (₹) <span class="optional">(optional)</span></label><input type="number" id="avgFare" placeholder="e.g. 210" min="0"/></div>
-      <div class="field"><label>Open issues</label><input type="number" id="openIssues" placeholder="e.g. 3" min="0" value="0"/></div>
-      <div class="field"><label>Resolved issues</label><input type="number" id="resolvedIssues" placeholder="e.g. 7" min="0" value="0"/></div>
+      <div class="field"><label>Total requests</label><input type="number" id="rRequests" placeholder="auto-filled"/></div>
+      <div class="field"><label>Completion rate %</label><input type="number" id="rCompRate" placeholder="auto-filled" step=".1"/></div>
+      <div class="field"><label>Cancellation rate %</label><input type="number" id="rCanRate" placeholder="auto-filled" step=".1"/></div>
+      <div class="field"><label>Missed rides</label><input type="number" id="rMissed" placeholder="auto-filled"/></div>
+      <div class="field"><label>Timed out</label><input type="number" id="rTimedOut" placeholder="auto-filled"/></div>
+      <div class="field"><label>Avg user wait (min)</label><input type="number" id="rWait" placeholder="auto-filled" step=".1"/></div>
+      <div class="field"><label>Avg fare (₹)</label><input type="number" id="rAvgFare" placeholder="auto-filled"/></div>
+      <div class="field"><label>Total revenue (₹)</label><input type="number" id="rRevenue" placeholder="auto-filled"/></div>
+      <div class="field"><label>Active drivers</label><input type="number" id="rDrivers" placeholder="auto-filled"/></div>
+      <div class="field"><label>Avg driver rating</label><input type="number" id="rRating" placeholder="auto-filled" step=".01"/></div>
+      <div class="field"><label>Repeat rider rate %</label><input type="number" id="rRepeat" placeholder="auto-filled" step=".1"/></div>
+      <div class="field"><label>Peak demand hour</label><input type="text" id="rPeakHour" placeholder="auto-filled"/></div>
+      <div class="field"><label>Open issues</label><input type="number" id="rOpenIssues" value="0"/></div>
+      <div class="field"><label>Resolved issues</label><input type="number" id="rResolvedIssues" value="0"/></div>
     </div>
   </div>
 
   <div class="card">
-    <div class="section-title"><span>3</span> Monthly SWOT analysis</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;flex-wrap:wrap;gap:8px">
+      <div class="section-label" style="margin:0">SWOT analysis</div>
+      <button class="btn-sm btn-ghost" onclick="autoFillSWOT()">✦ Auto-generate from data</button>
+    </div>
+    <div id="swotNote" style="font-size:11px;color:var(--hint);margin-bottom:8px;display:none">Auto-generated from your CSV data — edit before sending</div>
     <div class="swot-grid">
-      <div class="swot-cell swot-s"><label>Strengths</label><textarea id="swotS" placeholder="What went well? e.g. High driver retention, strong zone performance"></textarea></div>
-      <div class="swot-cell swot-w"><label>Weaknesses</label><textarea id="swotW" placeholder="What underperformed? e.g. High cancellation in CBD, app complaints"></textarea></div>
-      <div class="swot-cell swot-o"><label>Opportunities</label><textarea id="swotO" placeholder="Growth areas? e.g. Corporate accounts, expand zone"></textarea></div>
-      <div class="swot-cell swot-t"><label>Threats</label><textarea id="swotT" placeholder="Risks? e.g. Competitor expansion, driver churn"></textarea></div>
+      <div class="swot-cell swot-s"><label>Strengths</label><textarea id="rSwotS" rows="4"></textarea></div>
+      <div class="swot-cell swot-w"><label>Weaknesses</label><textarea id="rSwotW" rows="4"></textarea></div>
+      <div class="swot-cell swot-o"><label>Opportunities</label><textarea id="rSwotO" rows="4"></textarea></div>
+      <div class="swot-cell swot-t"><label>Threats</label><textarea id="rSwotT" rows="4"></textarea></div>
     </div>
   </div>
 
   <div class="card">
-    <div class="section-title"><span>4</span> Additional context <span class="optional">(optional)</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;flex-wrap:wrap;gap:8px">
+      <div class="section-label" style="margin:0">Additional context</div>
+      <div style="font-size:11px;color:var(--hint)" id="ctxAutoNote"></div>
+    </div>
     <div class="form-grid">
-      <div class="field full"><label>Key highlights / wins this month</label><textarea id="highlights" placeholder="e.g. Launched new zone, driver bonus campaign completed, 98% uptime"></textarea></div>
-      <div class="field full"><label>Planned next steps</label><textarea id="nextSteps" placeholder="e.g. Onboard 50 more drivers, fix payment gateway, review pricing"></textarea></div>
+      <div class="field full">
+        <label>Key wins / highlights <span style="font-weight:400;color:var(--hint);font-size:10px">— auto-filled from data, edit freely</span></label>
+        <textarea id="rHighlights" rows="4" placeholder="Auto-fills after uploading CSVs in Dashboard tab..."></textarea>
+      </div>
+      <div class="field full">
+        <label>Planned next steps <span style="font-weight:400;color:var(--hint);font-size:10px">— auto-suggested based on weak spots</span></label>
+        <textarea id="rNextSteps" rows="5" placeholder="Auto-fills based on data gaps found in your CSVs..."></textarea>
+      </div>
     </div>
   </div>
 
   <div class="actions">
     <button class="btn btn-primary" id="genBtn" onclick="generateReport()">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      Generate email report
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Generate email
     </button>
-    <button class="btn btn-outline" id="copyBtn" onclick="copyReport()">
-      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      Copy email
-    </button>
-    <div class="loading" id="loading"><div class="spinner"></div>Gemini is writing your report...</div>
+    <button class="btn-sm btn-ghost" id="copyBtn" onclick="copyReport()" style="display:none;padding:8px 14px;border-radius:var(--radius-sm)">Copy email</button>
+    <div class="loading" id="loading"><div class="spin"></div>Gemini writing…</div>
   </div>
-
-  <div class="error-box" id="errorBox"></div>
-
-  <div class="output-card" id="outputCard">
-    <div class="output-header">
-      <div class="output-label">Generated email <span class="gemini-tag">Gemini 2.5 Flash</span></div>
-      <button class="copy-small" onclick="copyReport()">Copy</button>
+  <div class="err" id="errBox"></div>
+  <div class="out-card" id="outCard">
+    <div class="out-hdr">
+      <span class="out-lbl">Generated email <span class="gemini-tag">Gemini 2.5 Flash</span></span>
+      <button class="copy-btn" onclick="copyReport()">Copy</button>
     </div>
-    <div class="output-body" id="outputBody"></div>
+    <div class="out-body" id="outBody"></div>
+  </div>
+</div>
+
+
+<!-- ═══════ TAB 3: ZONE INTELLIGENCE ═══════ -->
+<div class="tab-panel" id="tab-zones">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem">
+    <div>
+      <div style="font-size:16px;font-weight:500">Zone Intelligence</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">Geographic view of demand, supply gaps, and unserved zones</div>
+    </div>
+    <div id="mapCityBadge" style="font-size:12px;color:var(--muted)"></div>
   </div>
 
-</div><!-- /tab-report -->
+  <div class="zone-upload" id="dropZone" onclick="document.getElementById('fileZone').click()">
+    <input type="file" id="fileZone" accept=".csv" style="display:none" onchange="loadZoneCSV(this)"/>
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto 5px;color:var(--muted)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="upload-label"><b>Missed / Timed-out rides CSV</b><br>Upload location-level data with lat, lng, supply_gap_pct columns</div>
+  </div>
+
+  <div id="zoneContent" style="display:none">
+
+    <div class="map-toggle" id="mapToggle">
+      <button class="map-btn active" onclick="switchMap('pickup',this)">🔴 Demand heatmap</button>
+      <button class="map-btn" onclick="switchMap('supply',this)">⚠ Supply gap zones</button>
+      <button class="map-btn" onclick="switchMap('missed',this)">📍 Missed ride clusters</button>
+      <button class="map-btn" onclick="switchMap('timed',this)">⏱ Timed-out clusters</button>
+    </div>
+
+    <div id="mapLegendArea" class="map-legend"></div>
+    <div id="mapContainer"></div>
+
+    <!-- Zone summary table -->
+    <div style="margin-top:1.25rem">
+      <div class="section-label">Top unserved zones — actionable driver deployment targets</div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="zoneTable">
+          <thead><tr>
+            <th>Zone / Address</th>
+            <th>Total requests</th>
+            <th>Completed</th>
+            <th>Missed</th>
+            <th>Timed out</th>
+            <th>Supply gap</th>
+            <th>Action</th>
+          </tr></thead>
+          <tbody id="zoneTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Cluster summary -->
+    <div style="margin-top:1.25rem" id="clusterArea">
+      <div class="section-label">Auto-detected demand clusters</div>
+      <div class="cluster-list" id="clusterList"></div>
+    </div>
+
+    <!-- Export -->
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:13px;font-weight:500">Share with client</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Generates a self-contained HTML file — client opens it in any browser, full interactive map included</div>
+      </div>
+      <button class="btn btn-primary" id="exportZoneBtn" onclick="exportZoneHTML()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export client report
+      </button>
+    </div>
+
+  </div>
+
+  <div class="empty" id="emptyZone">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Upload the Missed / Timed-out rides CSV to see zone intelligence maps
+  </div>
+</div>
+
 </main>
 
-<!-- Chart.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-/* ─── TAB SWITCHING ─── */
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+/* ─── TABS ─── */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ─── DASHBOARD STATE ─── */
-let rideRows = [], bucketRows = [], activeOp = 'all';
-let trendObj, pieObj, revObj, canRateObj, avgFareObj, hourlyObj;
+/* ─── STATE ─── */
+let rideRows=[],bucketRows=[],driverPerfRows=[],activeOp='all',_S={};
+let charts={};
 
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].replace(/"/g,'').split(',').map(h=>h.trim());
-  return lines.slice(1).map(line => {
-    const vals=[]; let cur='',inQ=false;
-    for(let ch of line){
-      if(ch==='"'){inQ=!inQ;}
-      else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}
-      else{cur+=ch;}
+/* ─── CSV PARSE ─── */
+function parseCSV(text){
+  const lines=text.trim().split('\n');
+  const headers=lines[0].replace(/"/g,'').split(',').map(h=>h.trim());
+  return lines.slice(1).filter(l=>l.trim()).map(line=>{
+    const vals=[];let cur='',inQ=false;
+    for(const ch of line){
+      if(ch==='"'){inQ=!inQ;}else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=ch;}
     }
     vals.push(cur.trim());
-    const obj={};
-    headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,''));
+    const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,''));
     return obj;
   });
 }
 
-function loadRideCSV(input) {
-  const file=input.files[0]; if(!file)return;
+function loadRideCSV(input){
+  const file=input.files[0];if(!file)return;
   const r=new FileReader();
   r.onload=e=>{
     rideRows=parseCSV(e.target.result);
     const el=document.getElementById('dropRides');
     el.classList.add('loaded');
-    el.querySelector('.upload-label').innerHTML=`<b class="ok">&#10003; ${rideRows.length} rides loaded</b><br>${file.name}`;
-    buildOpBar(); renderDash();
+    el.querySelector('.upload-label').innerHTML=`<b class="ok">✓ ${rideRows.length} rides loaded</b><br><span style="font-size:11px">${file.name}</span>`;
+    buildOpBar();renderDash();
   };
   r.readAsText(file);
 }
 
-function loadBucketCSV(input) {
-  const file=input.files[0]; if(!file)return;
+function loadBucketCSV(input){
+  const file=input.files[0];if(!file)return;
   const r=new FileReader();
   r.onload=e=>{
     bucketRows=parseCSV(e.target.result);
     const el=document.getElementById('dropBucket');
     el.classList.add('loaded');
-    el.querySelector('.upload-label').innerHTML=`<b class="ok">&#10003; ${bucketRows.length} days loaded</b><br>${file.name}`;
+    el.querySelector('.upload-label').innerHTML=`<b class="ok">✓ ${bucketRows.length} days loaded</b><br><span style="font-size:11px">${file.name}</span>`;
     renderDash();
   };
   r.readAsText(file);
 }
 
-function buildOpBar() {
+function loadDriverCSV(input){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    driverPerfRows=parseCSV(e.target.result);
+    const el=document.getElementById('dropDriver');
+    el.classList.add('loaded');
+    el.querySelector('.upload-label').innerHTML=`<b class="ok">✓ ${driverPerfRows.length} drivers loaded</b><br><span style="font-size:11px">${file.name}</span>`;
+    renderDash();
+  };
+  r.readAsText(file);
+}
+
+
+function buildOpBar(){
   const ops=[...new Set(rideRows.map(r=>r['city_name']).filter(Boolean))].sort();
+  if(!ops.length)return;
   const bar=document.getElementById('opBar');
   bar.style.display='flex';
-  bar.innerHTML=`<span class="op-label">City / operator:</span>
+  bar.innerHTML=`<span class="op-label">City:</span>
     <button class="op-btn active" onclick="setOp('all',this)">All</button>
     ${ops.map(op=>`<button class="op-btn" onclick="setOp('${op.replace(/'/g,"\\'")}',this)">${op}</button>`).join('')}`;
 }
 
-function setOp(op,btn) {
+function setOp(op,btn){
   activeOp=op;
   document.querySelectorAll('.op-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -461,600 +718,1874 @@ function setOp(op,btn) {
 
 function filteredRides(){return activeOp==='all'?rideRows:rideRows.filter(r=>r['city_name']===activeOp);}
 
-function renderDash() {
+/* ─── HELPERS ─── */
+function tdiffMin(a,b){
+  if(!a||!b)return null;
+  try{return(new Date(b.replace(' ','T'))-new Date(a.replace(' ','T')))/60000;}catch{return null;}
+}
+function num(v){return parseFloat(v)||0;}
+function fmt(n){return Math.round(n).toLocaleString();}
+function fmtMin(m){return m===null?'—':m.toFixed(1)+' min';}
+function destroyChart(key){if(charts[key]){charts[key].destroy();delete charts[key];}}
+
+/* ─── MAIN RENDER ─── */
+function renderDash(){
   if(!rideRows.length)return;
   document.getElementById('emptyDash').style.display='none';
   document.getElementById('dashContent').style.display='block';
   const rides=filteredRides();
-  renderKPIs(rides); renderTrend(rides); renderPie(rides); renderRevenue(rides);
-  renderCanRate(rides); renderAvgFare(rides); renderHourly(rides);
-  renderDrivers(rides); renderZones(rides); renderDateRange(rides);
+  computeStats(rides);
+  renderAlerts();
+  renderKPIs(rides);
+  renderTrend(rides);
+  renderPie();
+  renderSupply();
+  renderRevAndFare(rides);
+  renderCanRate();
+  renderAvgFare(rides);
+  renderHourly(rides);
+  renderWeekly(rides);
   renderInsights(rides);
+  renderDrivers(rides);
+  renderZones(rides);
+  renderDateRange(rides);
+  autoFillReportFields();
 }
 
-function renderDateRange(rides){
-  const dates=rides.map(r=>r['request_made_at']?.slice(0,10)).filter(Boolean).sort();
-  if(dates.length) document.getElementById('dateRange').textContent=dates[0]+' → '+dates[dates.length-1];
+/* ─── COMPUTE STATS ─── */
+/* ─── CURRENCY DETECTION ─── */
+function detectCurrency(rides){
+  // Detect from city_name or pickup_address country
+  const cities=[...new Set(rides.map(r=>r['city_name']).filter(Boolean))].map(c=>c.toLowerCase());
+  const addrs=(rides[0]?.pickup_address||'').toLowerCase();
+  // Africa
+  if(cities.some(c=>['cabinda','luanda','angola'].some(k=>c.includes(k)))||addrs.includes('angola')) return {sym:'Kz',code:'AOA',name:'Angolan Kwanza'};
+  if(cities.some(c=>c.includes('nairobi'))||addrs.includes('kenya')) return {sym:'KSh',code:'KES',name:'Kenyan Shilling'};
+  if(cities.some(c=>c.includes('lagos')||c.includes('abuja'))||addrs.includes('nigeria')) return {sym:'₦',code:'NGN',name:'Nigerian Naira'};
+  if(cities.some(c=>c.includes('accra'))||addrs.includes('ghana')) return {sym:'GH₵',code:'GHS',name:'Ghanaian Cedi'};
+  if(cities.some(c=>c.includes('dar es salaam'))||addrs.includes('tanzania')) return {sym:'TSh',code:'TZS',name:'Tanzanian Shilling'};
+  if(addrs.includes('ethiopia')||cities.some(c=>c.includes('addis'))) return {sym:'Br',code:'ETB',name:'Ethiopian Birr'};
+  if(addrs.includes('rwanda')||cities.some(c=>c.includes('kigali'))) return {sym:'FRw',code:'RWF',name:'Rwandan Franc'};
+  if(addrs.includes('zimbabwe')) return {sym:'US$',code:'USD',name:'US Dollar'};
+  if(addrs.includes('zambia')||cities.some(c=>c.includes('lusaka'))) return {sym:'ZK',code:'ZMW',name:'Zambian Kwacha'};
+  if(addrs.includes('uganda')||cities.some(c=>c.includes('kampala'))) return {sym:'USh',code:'UGX',name:'Ugandan Shilling'};
+  // Asia
+  if(addrs.includes('india')||addrs.includes('punjab')||addrs.includes('ludhiana')||cities.some(c=>['delhi','mumbai','bangalore','hyderabad','ludhiana','chandigarh','gurugram','gurgaon','noida','pune','cabinda'].every(k=>!c.includes(k))&&!addrs.includes('angola'))) return {sym:'₹',code:'INR',name:'Indian Rupee'};
+  if(addrs.includes('pakistan')) return {sym:'Rs',code:'PKR',name:'Pakistani Rupee'};
+  if(addrs.includes('bangladesh')) return {sym:'৳',code:'BDT',name:'Bangladeshi Taka'};
+  if(addrs.includes('sri lanka')) return {sym:'Rs',code:'LKR',name:'Sri Lankan Rupee'};
+  // Default
+  return {sym:'₹',code:'INR',name:'Indian Rupee'};
 }
+let _currency={sym:'₹',code:'INR',name:'Indian Rupee'};
 
-function renderKPIs(rides){
-  const totalRev=rides.reduce((s,r)=>s+(parseFloat(r['user_fare'])||0),0);
-  const totalDist=rides.reduce((s,r)=>s+(parseFloat(r['distance_covered'])||0),0);
-  const ratings=rides.map(r=>parseFloat(r['rating_given_to_driver'])).filter(v=>v>0);
+function computeStats(rides){
+  _currency=detectCurrency(rides);
+  const totalRev=rides.reduce((s,r)=>s+num(r['user_fare']),0);
+  const totalDist=rides.reduce((s,r)=>s+num(r['distance_covered']),0);
+  const ratings=rides.map(r=>r['rating_given_to_driver']).filter(v=>v&&v!=='-'&&v!=='').map(Number);
   const avgR=ratings.length?ratings.reduce((a,b)=>a+b,0)/ratings.length:0;
-  const drivers=new Set(rides.map(r=>r['e.driver_id'])).size;
-  const avgFare=rides.length?totalRev/rides.length:0;
-  let compRate=100,canRate=0,totalReq=rides.length;
-  if(bucketRows.length){
-    const tR=bucketRows.reduce((s,r)=>s+(parseInt(r['requests'])||0),0);
-    const tC=bucketRows.reduce((s,r)=>s+(parseInt(r['completed'])||0),0);
-    const tX=bucketRows.reduce((s,r)=>s+(parseInt(r['driver_cancelled_ride'])||0)+(parseInt(r['user_cancelled_ride'])||0),0);
-    compRate=tR?(tC/tR*100):100; canRate=tR?(tX/tR*100):0; totalReq=tR;
-  }
-  document.getElementById('kpiGrid').innerHTML=`
-    <div class="kpi"><div class="kpi-label">Completed rides</div><div class="kpi-val">${rides.length.toLocaleString()}</div><div class="kpi-sub">${totalReq!==rides.length?'of '+totalReq.toLocaleString()+' requests':''}</div></div>
-    <div class="kpi"><div class="kpi-label">Completion rate</div><div class="kpi-val ${compRate>=85?'green':compRate>=70?'amber':'red'}">${compRate.toFixed(1)}%</div><div class="kpi-sub">${bucketRows.length?'from bucket data':'completed rides only'}</div></div>
-    <div class="kpi"><div class="kpi-label">Cancellation rate</div><div class="kpi-val ${canRate<=10?'green':canRate<=20?'amber':'red'}">${canRate.toFixed(1)}%</div><div class="kpi-sub">driver + user combined</div></div>
-    <div class="kpi"><div class="kpi-label">Total revenue</div><div class="kpi-val">₹${Math.round(totalRev).toLocaleString()}</div><div class="kpi-sub">avg ₹${Math.round(avgFare)} / ride</div></div>
-    <div class="kpi"><div class="kpi-label">Total distance</div><div class="kpi-val">${Math.round(totalDist).toLocaleString()} km</div><div class="kpi-sub">&nbsp;</div></div>
-    <div class="kpi"><div class="kpi-label">Avg driver rating</div><div class="kpi-val ${avgR>=4.5?'green':avgR>=4?'amber':'red'}">${avgR?avgR.toFixed(2):'—'}</div><div class="kpi-sub">${ratings.length} rated rides</div></div>
-    <div class="kpi"><div class="kpi-label">Active drivers</div><div class="kpi-val">${drivers}</div><div class="kpi-sub">${drivers?+(rides.length/drivers).toFixed(1):0} rides / driver</div></div>
-  `;
-}
+  const driverSet=new Set(rides.map(r=>r['e.driver_id']).filter(Boolean));
 
-function byDate(rides){
-  const m={};
-  rides.forEach(r=>{const d=r['request_made_at']?.slice(0,10);if(!d)return;if(!m[d])m[d]={rev:0,n:0};m[d].n++;m[d].rev+=parseFloat(r['user_fare'])||0;});
-  return m;
-}
+  // Wait time: request_made_at → pickup_time
+  const waits=rides.map(r=>tdiffMin(r['request_made_at'],r['pickup_time'])).filter(v=>v!==null&&v>=0&&v<=60);
+  const avgWait=waits.length?waits.reduce((a,b)=>a+b,0)/waits.length:null;
 
-function renderTrend(rides){
-  const bd=byDate(rides);
-  let labels=Object.keys(bd).sort();
-  let comp=labels.map(d=>bd[d].n), canc=null, miss=null;
-  if(bucketRows.length){
-    const bm={};bucketRows.forEach(r=>bm[r['timing']]=r);
-    labels=[...new Set([...labels,...Object.keys(bm)])].sort();
-    comp=labels.map(d=>parseInt(bm[d]?.completed||bd[d]?.n||0));
-    canc=labels.map(d=>(parseInt(bm[d]?.driver_cancelled_ride||0)+parseInt(bm[d]?.user_cancelled_ride||0)));
-    miss=labels.map(d=>parseInt(bm[d]?.missed||0));
-  }
-  const ds=[{label:'Completed',data:comp,borderColor:'#1D9E75',backgroundColor:'#1D9E7518',fill:true,tension:.3,pointRadius:3}];
-  if(canc)ds.push({label:'Cancelled (driver + user)',data:canc,borderColor:'#E24B4A',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:2});
-  if(miss)ds.push({label:'Missed (customer cancelled before driver)',data:miss,borderColor:'#BA7517',backgroundColor:'transparent',borderDash:[2,4],tension:.3,pointRadius:2});
-  document.getElementById('trendLegend').innerHTML=ds.map(d=>`<span><span class="legend-dot" style="background:${d.borderColor}"></span>${d.label}</span>`).join('');
-  if(trendObj)trendObj.destroy();
-  trendObj=new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:labels.map(d=>d.slice(5)),datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{autoSkip:true,maxTicksLimit:14,color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'}},y:{ticks:{color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'},beginAtZero:true}}}});
-}
+  // Acceptance time: request_made_at → request_accepted_at (seconds)
+  const accepts=rides.map(r=>tdiffMin(r['request_made_at'],r['request_accepted_at'])*60).filter(v=>v!==null&&v>=0&&v<=300);
+  const avgAccept=accepts.length?accepts.reduce((a,b)=>a+b,0)/accepts.length:null;
 
-function renderPie(rides){
-  let data,labels,colors;
-  if(bucketRows.length){
-    const s=k=>bucketRows.reduce((a,r)=>a+(parseInt(r[k])||0),0);
-    data=[s('completed'),s('driver_cancelled_ride'),s('user_cancelled_ride'),s('missed'),s('timed_out'),s('driver_cancelled_request')];
-    labels=['Completed','Driver cancelled ride','User cancelled ride','Missed (user cancelled pre-accept)','Timed out (driver ignored)','Driver cancelled request'];
-    colors=['#1D9E75','#E24B4A','#EF9F27','#888780','#378ADD','#7F77DD'];
-  } else {
-    data=[rides.length];labels=['Completed'];colors=['#1D9E75'];
-  }
-  const nz=data.map((v,i)=>({v,l:labels[i],c:colors[i]})).filter(x=>x.v>0);
-  const tot=nz.reduce((a,x)=>a+x.v,0);
-  document.getElementById('pieLegend').innerHTML=nz.map(x=>`<span><span class="legend-dot" style="background:${x.c}"></span>${x.l} ${tot?Math.round(x.v/tot*100)+'%':''}</span>`).join('');
-  if(pieObj)pieObj.destroy();
-  pieObj=new Chart(document.getElementById('pieChart'),{type:'doughnut',data:{labels:nz.map(x=>x.l),datasets:[{data:nz.map(x=>x.v),backgroundColor:nz.map(x=>x.c),borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},cutout:'60%'}});
-}
+  // Ride duration
+  const durations=rides.map(r=>tdiffMin(r['pickup_time'],r['ride_end_at'])).filter(v=>v!==null&&v>0&&v<120);
+  const avgDuration=durations.length?durations.reduce((a,b)=>a+b,0)/durations.length:null;
 
-function renderRevenue(rides){
-  const bd=byDate(rides);
-  const dates=Object.keys(bd).sort();
-  if(revObj)revObj.destroy();
-  revObj=new Chart(document.getElementById('revChart'),{type:'bar',data:{labels:dates.map(d=>d.slice(5)),datasets:[{label:'Revenue (₹)',data:dates.map(d=>Math.round(bd[d].rev)),backgroundColor:'#378ADD70',borderColor:'#378ADD',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y.toLocaleString()}}},scales:{x:{ticks:{autoSkip:true,maxTicksLimit:14,color:'#888780',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#888780',font:{size:10},callback:v=>'₹'+v.toLocaleString()},grid:{color:'#E4E2DC40'},beginAtZero:true}}}});
-}
+  // Repeat riders
+  const userCount={};
+  rides.forEach(r=>{const u=r['user_id']||r['user_phone'];if(u)userCount[u]=(userCount[u]||0)+1;});
+  const totalUsers=Object.keys(userCount).length;
+  const repeatUsers=Object.values(userCount).filter(v=>v>1).length;
+  const repeatRate=totalUsers?repeatUsers/totalUsers*100:0;
 
-function renderCanRate(rides){
-  // Per-day cancellation rate from bucket data if available, else N/A
-  if(!bucketRows.length){document.getElementById('canRateChart').parentElement.parentElement.style.display='none';return;}
-  const dates=bucketRows.map(r=>r['timing']).sort();
-  const rates=dates.map(d=>{
-    const row=bucketRows.find(r=>r['timing']===d);
-    const req=parseInt(row?.requests||0);
-    const canc=(parseInt(row?.driver_cancelled_ride||0)+parseInt(row?.user_cancelled_ride||0));
-    return req>0?+(canc/req*100).toFixed(1):0;
-  });
-  if(canRateObj)canRateObj.destroy();
-  canRateObj=new Chart(document.getElementById('canRateChart'),{
-    type:'line',
-    data:{labels:dates.map(d=>d.slice(5)),datasets:[
-      {
-        label:'Cancel rate %',data:rates,
-        borderColor:'#E24B4A',backgroundColor:'#E24B4A18',
-        fill:true,tension:.3,pointRadius:3,
-        segment:{borderColor:ctx=>ctx.p1.parsed.y>20?'#A32D2D':'#E24B4A'}
-      },
-      {
-        label:'20% line',data:dates.map(()=>20),
-        borderColor:'#A32D2D55',borderWidth:1,borderDash:[4,3],
-        pointRadius:0,fill:false,tension:0
-      }
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{filter:i=>i.dataset.label!=='20% line',callbacks:{label:c=>c.parsed.y.toFixed(1)+'%'}}},
-      scales:{
-        x:{ticks:{autoSkip:true,maxTicksLimit:14,color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'}},
-        y:{ticks:{color:'#888780',font:{size:10},callback:v=>v+'%'},grid:{color:'#E4E2DC40'},beginAtZero:true,suggestedMax:30}
-      },
-      // no annotation plugin needed
-    }
-  });
-}
+  // Commission
+  const totalComm=rides.reduce((s,r)=>s+num(r['commission']),0);
 
-function renderAvgFare(rides){
-  const bd=byDate(rides);
-  const dates=Object.keys(bd).sort();
-  const fares=dates.map(d=>bd[d].n>0?Math.round(bd[d].rev/bd[d].n):0);
-  if(avgFareObj)avgFareObj.destroy();
-  avgFareObj=new Chart(document.getElementById('avgFareChart'),{
-    type:'line',
-    data:{labels:dates.map(d=>d.slice(5)),datasets:[{
-      label:'Avg fare (₹)',data:fares,
-      borderColor:'#7F77DD',backgroundColor:'#7F77DD18',
-      fill:true,tension:.3,pointRadius:3
-    }]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y}}},
-      scales:{
-        x:{ticks:{autoSkip:true,maxTicksLimit:14,color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'}},
-        y:{ticks:{color:'#888780',font:{size:10},callback:v=>'₹'+v},grid:{color:'#E4E2DC40'},beginAtZero:false}
-      }
-    }
-  });
-}
+  // Payment split
+  const cashTotal=rides.reduce((s,r)=>s+num(r['paid_cash']),0);
+  const cardTotal=rides.reduce((s,r)=>s+num(r['paid_using_card']),0);
+  const walletTotal=rides.reduce((s,r)=>s+num(r['paid_using_wallet']),0);
 
-function renderHourly(rides){
-  const hourCard=document.getElementById('hourlyCard');
-  // need request_made_at with time component
-  const hasTime=rides.some(r=>(r['request_made_at']||'').includes(':'));
-  if(!hasTime){hourCard.style.display='none';return;}
-  hourCard.style.display='block';
-  const hm=Array(24).fill(0);
-  rides.forEach(r=>{
-    const t=r['request_made_at']||'';
-    const match=t.match(/T?(\d{2}):/);
-    if(match)hm[parseInt(match[1])]++;
-  });
-  const labels=Array.from({length:24},(_,i)=>{const h=i%12||12;return (i<12?h+'am':h+'pm');});
-  // Color bars by intensity
-  const max=Math.max(...hm)||1;
-  const bg=hm.map(v=>{const ratio=v/max;return ratio>0.75?'#1D5C3E':ratio>0.5?'#1D9E75':ratio>0.25?'#378ADD':'#B5D4F4';});
-  if(hourlyObj)hourlyObj.destroy();
-  hourlyObj=new Chart(document.getElementById('hourlyChart'),{
-    type:'bar',
-    data:{labels,datasets:[{label:'Rides',data:hm,backgroundColor:bg,borderRadius:2}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' rides'}}},
-      scales:{
-        x:{ticks:{color:'#888780',font:{size:9}},grid:{display:false}},
-        y:{ticks:{color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'},beginAtZero:true}
-      }
-    }
-  });
-}
-
-function renderInsights(rides){
-  const panel=document.getElementById('insightsPanel');
-  const list=document.getElementById('insightsList');
-  const insights=[];
-
-  // Best and worst revenue day
-  const bd=byDate(rides);
-  const dates=Object.keys(bd).sort();
-  if(dates.length>1){
-    const sorted=dates.slice().sort((a,b)=>bd[b].rev-bd[a].rev);
-    const best=sorted[0],worst=sorted[sorted.length-1];
-    insights.push({type:'good',title:'Best revenue day',val:'₹'+Math.round(bd[best].rev).toLocaleString(),sub:best+' — '+bd[best].n+' rides'});
-    insights.push({type:'info',title:'Lowest revenue day',val:'₹'+Math.round(bd[worst].rev).toLocaleString(),sub:worst+' — '+bd[worst].n+' rides'});
-  }
-
-  // Worst cancel day from bucket
-  if(bucketRows.length){
-    let worstDay=null,worstRate=0;
-    bucketRows.forEach(r=>{
-      const req=parseInt(r.requests||0);
-      const canc=(parseInt(r.driver_cancelled_ride||0)+parseInt(r.user_cancelled_ride||0));
-      const rate=req>0?(canc/req*100):0;
-      if(rate>worstRate){worstRate=rate;worstDay=r.timing;}
-    });
-    if(worstDay){
-      const cls=worstRate>25?'danger':worstRate>15?'warn':'info';
-      insights.push({type:cls,title:'Highest cancel rate day',val:worstRate.toFixed(1)+'%',sub:worstDay});
-    }
-
-    // Driver cancel vs user cancel split
-    const dc=bucketRows.reduce((s,r)=>s+(parseInt(r.driver_cancelled_ride||0)),0);
-    const uc=bucketRows.reduce((s,r)=>s+(parseInt(r.user_cancelled_ride||0)),0);
-    if(dc+uc>0){
-      const dcp=Math.round(dc/(dc+uc)*100);
-      const cls=dcp>60?'warn':'info';
-      insights.push({type:cls,title:'Driver vs user cancels',val:dcp+'% driver / '+(100-dcp)+'% user',sub:dc+' driver, '+uc+' user cancellations'});
-    }
-
-    // Missed rides (user cancelled before driver could accept)
-    const missed=bucketRows.reduce((s,r)=>s+(parseInt(r.missed||0)),0);
-    const timedOut=bucketRows.reduce((s,r)=>s+(parseInt(r.timed_out||0)),0);
-    const totalReq=bucketRows.reduce((s,r)=>s+(parseInt(r.requests||0)),0);
-    if(missed>0&&totalReq>0){
-      const missRate=(missed/totalReq*100).toFixed(1);
-      const cls=parseFloat(missRate)>5?'warn':'info';
-      insights.push({type:cls,title:'Missed rides',val:missed.toLocaleString()+' rides',sub:missRate+'% of requests — user cancelled before driver accepted'});
-    }
-    if(timedOut>0&&totalReq>0){
-      const toRate=(timedOut/totalReq*100).toFixed(1);
-      const cls=parseFloat(toRate)>5?'warn':'info';
-      insights.push({type:cls,title:'Timed out (driver ignored)',val:timedOut.toLocaleString()+' rides',sub:toRate+'% of requests rang on driver screen but were not accepted'});
-    }
-  }
-
-  // Low-rated drivers alert
-  const dm={};
-  rides.forEach(r=>{
-    const id=r['e.driver_id'];if(!id)return;
-    if(!dm[id])dm[id]={name:r['driver_name'],rat:[],n:0};
-    dm[id].n++;
-    const rt=parseFloat(r['rating_given_to_driver']);if(rt>0)dm[id].rat.push(rt);
-  });
-  const lowRated=Object.values(dm).filter(d=>d.rat.length>=5&&(d.rat.reduce((a,b)=>a+b,0)/d.rat.length)<3.5);
-  if(lowRated.length){
-    insights.push({type:'danger',title:'Low-rated drivers (< 3.5⭐)',val:lowRated.length+' driver'+(lowRated.length>1?'s':''),sub:lowRated.slice(0,2).map(d=>d.name).join(', ')+(lowRated.length>2?'…':'')});
-  }
-
-  // Peak hour
+  // Hourly
   const hm=Array(24).fill(0);
   let hasTime=false;
-  rides.forEach(r=>{const t=r['request_made_at']||'';const m=t.match(/T?(\d{2}):/);if(m){hm[parseInt(m[1])]++;hasTime=true;}});
-  if(hasTime){
-    const peakH=hm.indexOf(Math.max(...hm));
-    const lbl=h=>{const h12=h%12||12;return h12+(h<12?'am':'pm');};
-    insights.push({type:'info',title:'Peak demand hour',val:lbl(peakH)+' ('+hm[peakH]+' rides)',sub:'Deploy extra drivers at this hour'});
+  rides.forEach(r=>{const t=r['request_made_at']||'';const m=t.match(/[T ](\d{2}):/);if(m){hm[parseInt(m[1])]++;hasTime=true;}});
+  const peakH=hasTime?hm.indexOf(Math.max(...hm)):null;
+  const peakLbl=h=>{if(h===null)return null;const h12=h%12||12;return h12+(h<12?'am':'pm');};
+
+  // Bucket totals
+  let totalReq=0,totalComp=0,totalDCan=0,totalUCan=0,totalMissed=0,totalTimedOut=0,totalUCanReq=0;
+  bucketRows.forEach(r=>{
+    totalReq+=parseInt(r['requests'])||0;
+    totalComp+=parseInt(r['completed'])||0;
+    totalDCan+=parseInt(r['driver_cancelled_ride'])||0;
+    totalUCan+=parseInt(r['user_cancelled_ride'])||0;
+    totalMissed+=parseInt(r['missed'])||0;
+    totalTimedOut+=parseInt(r['timed_out'])||0;
+    totalUCanReq+=parseInt(r['user_cancelled_request'])||0;
+  });
+  const compRate=totalReq?totalComp/totalReq*100:null;
+  const canRate=totalReq?(totalDCan+totalUCan)/totalReq*100:null;
+
+  // Short vs long rides
+  const shortRides=rides.filter(r=>num(r['distance_covered'])<3).length;
+  const longRides=rides.filter(r=>num(r['distance_covered'])>10).length;
+
+  // Top zone
+  const zm={};
+  rides.forEach(r=>{const a=(r['pickup_address']||'').split(',')[0].trim();if(a&&a.length>2)zm[a]=(zm[a]||0)+1;});
+  const topZone=Object.entries(zm).sort((a,b)=>b[1]-a[1])[0]?.[0]||'';
+
+  _S={
+    rides:rides.length,totalRev,totalDist,avgR,drivers:driverSet.size,
+    avgWait,avgAccept,avgDuration,repeatRate,repeatUsers,totalUsers,
+    totalComm,cashTotal,cardTotal,walletTotal,
+    hm,hasTime,peakH,peakLbl:peakLbl(peakH),
+    totalReq,totalComp,totalDCan,totalUCan,totalMissed,totalTimedOut,totalUCanReq,
+    compRate,canRate,
+    shortRides,longRides,topZone,
+    avgFare:rides.length?totalRev/rides.length:0,
+    ratings,unratedCount:rides.length-ratings.length
+  };
+}
+
+/* ─── ALERTS ─── */
+function renderAlerts(){
+  const alerts=[];
+  const S=_S;
+
+  // Critical: completion rate
+  if(S.compRate!==null){
+    if(S.compRate<50){
+      alerts.push({type:'danger',icon:'🚨',title:`Critical: ${S.compRate.toFixed(1)}% completion rate`,sub:`Only ${fmt(S.totalComp)} of ${fmt(S.totalReq)} requests completed. Over half your demand is going unserved.`});
+    }else if(S.compRate<75){
+      alerts.push({type:'danger',icon:'⚠️',title:`Low completion rate: ${S.compRate.toFixed(1)}%`,sub:`${fmt(S.totalReq-S.totalComp)} requests failed to complete. Likely a driver supply gap during peak hours.`});
+    }
   }
 
-  if(!insights.length){panel.style.display='none';return;}
-  panel.style.display='block';
-  list.innerHTML=insights.map(i=>`
-    <div class="insight-card ${i.type}">
-      <div class="insight-title">${i.title}</div>
-      <div class="insight-val">${i.val}</div>
-      <div class="insight-sub">${i.sub}</div>
+  // Missed rides spike
+  if(S.totalReq>0&&S.totalMissed/S.totalReq>0.15){
+    alerts.push({type:'warn',icon:'📉',title:`${(S.totalMissed/S.totalReq*100).toFixed(1)}% missed rides`,sub:`${fmt(S.totalMissed)} users cancelled before a driver accepted — ETA too long or no drivers nearby.`});
+  }
+
+  // Timed out spike
+  if(S.totalReq>0&&S.totalTimedOut/S.totalReq>0.05){
+    alerts.push({type:'warn',icon:'⏱',title:`${fmt(S.totalTimedOut)} timed-out requests`,sub:`Drivers are online but not accepting pings. Check driver app UX or motivation.`});
+  }
+
+  // User-cancelled requests (bailed before reaching driver)
+  if(S.totalUCanReq>0&&S.totalReq>0&&S.totalUCanReq/S.totalReq>0.1){
+    alerts.push({type:'warn',icon:'👤',title:`${(S.totalUCanReq/S.totalReq*100).toFixed(1)}% user-cancelled requests`,sub:`${fmt(S.totalUCanReq)} users cancelled before the request even reached a driver — usually high ETA estimate.`});
+  }
+
+  // Good: high completion
+  if(S.compRate!==null&&S.compRate>=85){
+    alerts.push({type:'good',icon:'✓',title:`Strong completion rate: ${S.compRate.toFixed(1)}%`,sub:`Supply and demand are well matched.`});
+  }
+
+  // Long wait time
+  if(S.avgWait!==null&&S.avgWait>12){
+    alerts.push({type:'warn',icon:'⏳',title:`High avg user wait: ${S.avgWait.toFixed(1)} min`,sub:`Users waiting over 12 min on average. This is likely driving missed rides and cancellations.`});
+  }
+
+  const area=document.getElementById('alertArea');
+  area.innerHTML=alerts.map(a=>`
+    <div class="alert alert-${a.type}">
+      <div class="alert-icon">${a.icon}</div>
+      <div class="alert-body"><strong>${a.title}</strong><span>${a.sub}</span></div>
     </div>`).join('');
 }
 
+/* ─── KPIs ─── */
+function renderKPIs(rides){
+  const S=_S;
+  const cur=_currency.sym;
+
+  // Classify each metric
+  const compCls=S.compRate===null?'n':S.compRate>=85?'g':S.compRate>=70?'a':'r';
+  const waitCls=S.avgWait===null?'n':S.avgWait<=8?'wg':S.avgWait<=12?'wa':'wr';
+  const ratCls=S.avgR>=4.5?'rg':S.avgR>=4?'ra':S.avgR>0?'rr':'n';
+  const canCls=S.canRate===null?'n':S.canRate<=10?'cg':S.canRate<=20?'ca':'cr';
+
+  const unserved=S.totalReq>0?S.totalReq-S.totalComp:null;
+  const unservedPct=unserved&&S.totalReq?(unserved/S.totalReq*100).toFixed(0)+'%':'';
+
+  // Wait verdict
+  const waitV=S.avgWait===null?'—':S.avgWait<=8?'✓ On target':S.avgWait<=12?'⚠ Acceptable':'✗ Driving missed rides';
+  // Rating verdict
+  const ratV=S.avgR>=4.5?'✓ Excellent':S.avgR>=4?'⚠ Monitor low drivers':S.avgR>0?'✗ Needs intervention':'No ratings yet';
+  // Cancel verdict
+  const canV=S.canRate===null?'—':S.canRate<=10?'✓ Well controlled':S.canRate<=20?'⚠ Monitor closely':'✗ Investigate cause';
+
+  document.getElementById('kpiGrid').innerHTML=`
+    <div class="kpi ${compCls}">
+      <div class="kpi-icon">✓</div>
+      <div class="kpi-label">Completion rate</div>
+      <div class="kpi-val">${S.compRate!==null?S.compRate.toFixed(1)+'%':'—'}</div>
+      <div class="kpi-sub">
+        ${S.totalReq?fmt(S.totalComp)+' of '+fmt(S.totalReq)+' requests':'rides CSV only'}
+        ${unserved&&unserved>0?'<br>'+fmt(unserved)+' unserved ('+unservedPct+')':''}
+      </div>
+      ${S.compRate!==null?`<div class="kpi-verdict">${S.compRate>=85?'✓ Healthy':S.compRate>=70?'⚠ Needs work':'✗ Critical'}</div>`:''}
+    </div>
+    <div class="kpi rev">
+      <div class="kpi-icon">₹</div>
+      <div class="kpi-label">Rides &amp; revenue</div>
+      <div class="kpi-val">${fmt(rides.length)}</div>
+      <div class="kpi-sub">
+        ${cur}${fmt(S.totalRev)} total revenue<br>
+        ${cur}${fmt(S.avgFare)} avg per ride
+      </div>
+      <div class="kpi-verdict">${S.drivers?rides.length+' rides · '+S.drivers+' drivers':rides.length+' rides'}</div>
+    </div>
+    <div class="kpi ${waitCls}">
+      <div class="kpi-icon">⏱</div>
+      <div class="kpi-label">Avg user wait</div>
+      <div class="kpi-val">${S.avgWait!==null?S.avgWait.toFixed(1)+' min':'—'}</div>
+      <div class="kpi-sub">Request → driver at door<br>Target: ≤8 min</div>
+      <div class="kpi-verdict">${waitV}</div>
+    </div>
+    <div class="kpi ${ratCls}">
+      <div class="kpi-icon">★</div>
+      <div class="kpi-label">Avg driver rating</div>
+      <div class="kpi-val">${S.avgR?S.avgR.toFixed(2):'—'}</div>
+      <div class="kpi-sub">${S.rides-S.unratedCount} rated · ${S.unratedCount} unrated<br>out of ${S.rides} rides</div>
+      <div class="kpi-verdict">${ratV}</div>
+    </div>
+    <div class="kpi ${canCls}">
+      <div class="kpi-icon">✕</div>
+      <div class="kpi-label">Cancellation rate</div>
+      <div class="kpi-val">${S.canRate!==null?S.canRate.toFixed(1)+'%':'—'}</div>
+      <div class="kpi-sub">
+        ${S.totalDCan||S.totalUCan?fmt(S.totalDCan)+' driver · '+fmt(S.totalUCan)+' user':'driver + user'}
+      </div>
+      <div class="kpi-verdict">${canV}</div>
+    </div>
+  `;
+}
+
+
+/* ─── TREND ─── */
+function renderTrend(rides){
+  const card=document.getElementById('dayTrendCard');
+  if(!bucketRows.length){card.style.display='none';return;}
+  card.style.display='block';
+
+  const bd={};rides.forEach(r=>{const d=r['request_made_at']?.slice(0,10);if(d){if(!bd[d])bd[d]=0;bd[d]++;}});
+  const bm={};bucketRows.forEach(r=>bm[r['timing']]=r);
+  const labels=[...new Set([...Object.keys(bd),...Object.keys(bm)])].sort();
+
+  const comp=labels.map(d=>parseInt(bm[d]?.completed||0));
+  const canc=labels.map(d=>(parseInt(bm[d]?.driver_cancelled_ride||0)+parseInt(bm[d]?.user_cancelled_ride||0)));
+  const miss=labels.map(d=>parseInt(bm[d]?.missed||0));
+  const req=labels.map(d=>parseInt(bm[d]?.requests||0));
+
+  document.getElementById('trendLegend').innerHTML=`
+    <span><span class="dot" style="background:#059669"></span>Completed</span>
+    <span><span class="dot" style="background:#dc2626"></span>Cancelled</span>
+    <span><span class="dot" style="background:#f59e0b"></span>Missed</span>`;
+
+  destroyChart('trend');
+  charts['trend']=new Chart(document.getElementById('trendChart'),{
+    type:'bar',
+    data:{labels:labels.map(d=>d.slice(5)),datasets:[
+      {label:'Completed',data:comp,backgroundColor:'rgba(5,150,105,.85)',borderRadius:3,stack:'s'},
+      {label:'Cancelled',data:canc,backgroundColor:'rgba(220,38,38,.85)',borderRadius:3,stack:'s'},
+      {label:'Missed',data:miss,backgroundColor:'rgba(245,158,11,.85)',borderRadius:3,stack:'s'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{
+        afterBody:items=>{const i=items[0]?.dataIndex;const r=req[i]||0;return r?['','Total requests: '+r,'Completion: '+(r?Math.round(comp[i]/r*100):0)+'%']:[];}
+      }}},
+      scales:{
+        x:{ticks:{color:'#888780',font:{size:10}},grid:{display:false},stacked:true},
+        y:{ticks:{color:'#888780',font:{size:10}},grid:{color:'#E4E2DC40'},stacked:true,beginAtZero:true}
+      }
+    }
+  });
+}
+
+/* ─── PIE ─── */
+function renderPie(){
+  if(!bucketRows.length)return;
+  const S=_S;
+  const data=[S.totalComp,S.totalDCan,S.totalUCan,S.totalMissed,S.totalTimedOut,S.totalUCanReq];
+  const labels=['Completed','Driver cancelled','User cancelled','Missed (pre-accept)','Timed out','User cancelled request'];
+  const colors=['#1D9E75','#E24B4A','#EF9F27','#888780','#378ADD','#C77DD0'];
+  const nz=data.map((v,i)=>({v,l:labels[i],c:colors[i]})).filter(x=>x.v>0);
+  const tot=nz.reduce((a,x)=>a+x.v,0);
+  document.getElementById('pieLegend').innerHTML=nz.map(x=>`<span><span class="dot" style="background:${x.c}"></span>${x.l} ${tot?Math.round(x.v/tot*100)+'%':''}</span>`).join('');
+  destroyChart('pie');
+  charts['pie']=new Chart(document.getElementById('pieChart'),{
+    type:'doughnut',
+    data:{labels:nz.map(x=>x.l),datasets:[{data:nz.map(x=>x.v),backgroundColor:nz.map(x=>x.c),borderWidth:1,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${fmt(c.parsed)} (${Math.round(c.parsed/tot*100)}%)`}}}}
+  });
+}
+
+/* ─── SUPPLY PRESSURE ─── */
+function renderSupply(){
+  const card=document.getElementById('supplyCard');
+  if(!bucketRows.length){card.style.display='none';return;}
+  card.style.display='block';
+  const bm=bucketRows.slice().sort((a,b)=>a.timing.localeCompare(b.timing));
+  const labels=bm.map(r=>r.timing.slice(5));
+  const compRates=bm.map(r=>{const req=parseInt(r.requests||0);return req?+(parseInt(r.completed||0)/req*100).toFixed(1):0;});
+  const missRates=bm.map(r=>{const req=parseInt(r.requests||0);return req?+(parseInt(r.missed||0)/req*100).toFixed(1):0;});
+  destroyChart('supply');
+  charts['supply']=new Chart(document.getElementById('supplyChart'),{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Completion %',data:compRates,borderColor:'#059669',backgroundColor:'rgba(5,150,105,.1)',fill:true,tension:.4,pointRadius:4,borderWidth:2.5,pointBackgroundColor:'#059669',yAxisID:'y'},
+      {label:'Missed %',data:missRates,borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,.08)',fill:true,borderDash:[5,3],tension:.4,pointRadius:4,borderWidth:2,pointBackgroundColor:'#f59e0b',yAxisID:'y'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{size:10},color:'#888780',boxWidth:10}},
+        tooltip:{mode:'index',intersect:false}},
+      scales:{
+        x:{ticks:{color:'#888780',font:{size:10}},grid:{display:false}},
+        y:{ticks:{color:'#888780',font:{size:10},callback:v=>v+'%'},grid:{color:'#E4E2DC40'},beginAtZero:true,max:100}
+      }
+    }
+  });
+}
+
+/* ─── REVENUE + DUAL (avg fare + cancel rate) ─── */
+function renderRevAndFare(rides){
+  const bd={};
+  rides.forEach(r=>{const d=r['request_made_at']?.slice(0,10);if(!d)return;if(!bd[d])bd[d]={rev:0,n:0};bd[d].n++;bd[d].rev+=num(r['user_fare']);});
+  const dates=Object.keys(bd).sort();
+
+  destroyChart('rev');
+  charts['rev']=new Chart(document.getElementById('revChart'),{
+    type:'bar',
+    data:{labels:dates.map(d=>d.slice(5)),datasets:[{label:'Revenue',data:dates.map(d=>Math.round(bd[d].rev)),backgroundColor:'rgba(245,158,11,.8)',borderColor:'#d97706',borderWidth:0,borderRadius:4,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>_currency.sym+fmt(c.parsed.y)}}},scales:{x:{ticks:{color:'#888780',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#888780',font:{size:10},callback:v=>'₹'+v.toLocaleString()},grid:{color:'#E4E2DC40'},beginAtZero:true}}}
+  });
+
+  // Dual chart: avg fare line + cancel rate line (if bucket data available)
+  const fares=dates.map(d=>bd[d].n?Math.round(bd[d].rev/bd[d].n):0);
+  const ds=[{label:'Avg fare',data:fares,borderColor:'#8b5cf6',backgroundColor:'rgba(139,92,246,.1)',fill:true,tension:.4,pointRadius:4,borderWidth:2.5,pointBackgroundColor:'#8b5cf6',yAxisID:'y'}];
+  if(bucketRows.length){
+    const bm={};bucketRows.forEach(r=>bm[r.timing]=r);
+    const canRates=dates.map(d=>{const row=bm[d];if(!row)return null;const req=parseInt(row.requests||0);return req?+((parseInt(row.driver_cancelled_ride||0)+parseInt(row.user_cancelled_ride||0))/req*100).toFixed(1):0;});
+    ds.push({label:'Cancel %',data:canRates,borderColor:'#dc2626',borderDash:[5,3],tension:.4,pointRadius:4,borderWidth:2,fill:false,pointBackgroundColor:'#dc2626',yAxisID:'y2'});
+    // 20% threshold
+    ds.push({label:'20% limit',data:dates.map(()=>20),borderColor:'rgba(220,38,38,.25)',borderWidth:1.5,borderDash:[4,3],pointRadius:0,fill:false,yAxisID:'y2'});
+  }
+  destroyChart('dual');
+  charts['dual']=new Chart(document.getElementById('dualChart'),{
+    type:'line',data:{labels:dates.map(d=>d.slice(5)),datasets:ds},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{size:10},color:'#888780',boxWidth:10,filter:i=>i.text!=='20% limit'}},tooltip:{mode:'index',intersect:false,filter:i=>i.dataset.label!=='20% limit'}},
+      scales:{
+        x:{ticks:{color:'#888780',font:{size:10}},grid:{display:false}},
+        y:{ticks:{color:'#888780',font:{size:10},callback:v=>_currency.sym+v},position:'left',grid:{color:'#E4E2DC40'}},
+        y2:{ticks:{color:'#E24B4A',font:{size:10},callback:v=>v+'%'},position:'right',grid:{display:false},beginAtZero:true,max:60,display:!!bucketRows.length}
+      }
+    }
+  });
+}
+
+/* ─── CANCEL RATE CHART ─── */
+function renderCanRate(){
+  if(!bucketRows.length){
+    const card=document.getElementById('canRateCard');
+    if(card)card.style.display='none';
+    return;
+  }
+  const bm={};bucketRows.forEach(r=>bm[r['timing']]=r);
+  const dates=bucketRows.map(r=>r['timing']).sort();
+  const rates=dates.map(d=>{
+    const row=bm[d];const req=parseInt(row?.requests||0);
+    const canc=(parseInt(row?.driver_cancelled_ride||0)+parseInt(row?.user_cancelled_ride||0));
+    return req>0?+(canc/req*100).toFixed(1):0;
+  });
+  destroyChart('canRate');
+  charts['canRate']=new Chart(document.getElementById('canRateChart'),{
+    type:'line',
+    data:{labels:dates.map(d=>d.slice(5)),datasets:[
+      {label:'Cancel %',data:rates,borderColor:'#dc2626',backgroundColor:'rgba(220,38,38,.1)',
+       fill:true,tension:.4,pointRadius:4,borderWidth:2.5,
+       pointBackgroundColor:ctx=>ctx.parsed.y>20?'#7f1d1d':'#dc2626',
+       segment:{borderColor:ctx=>ctx.p1.parsed.y>20?'#7f1d1d':'#dc2626'}},
+      {label:'20% threshold',data:dates.map(()=>20),
+       borderColor:'rgba(127,29,29,.35)',borderWidth:1.5,borderDash:[6,4],
+       pointRadius:0,fill:false,tension:0}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{
+        filter:i=>i.dataset.label!=='20% threshold',
+        callbacks:{label:c=>c.parsed.y.toFixed(1)+'%'}
+      }},
+      scales:{
+        x:{ticks:{color:'#9ca3af',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},
+        y:{ticks:{color:'#9ca3af',font:{size:10},callback:v=>v+'%'},
+           grid:{color:'rgba(0,0,0,.04)'},beginAtZero:true,suggestedMax:30}
+      }
+    }
+  });
+}
+
+/* ─── AVG FARE CHART ─── */
+function renderAvgFare(rides){
+  const bd={};
+  rides.forEach(r=>{const d=r['request_made_at']?.slice(0,10);if(!d)return;
+    if(!bd[d])bd[d]={rev:0,n:0};bd[d].n++;bd[d].rev+=num(r['user_fare']);});
+  const dates=Object.keys(bd).sort();
+  const fares=dates.map(d=>bd[d].n?Math.round(bd[d].rev/bd[d].n):0);
+  destroyChart('avgFare');
+  charts['avgFare']=new Chart(document.getElementById('avgFareChart'),{
+    type:'line',
+    data:{labels:dates.map(d=>d.slice(5)),datasets:[{
+      label:'Avg fare',data:fares,
+      borderColor:'#8b5cf6',backgroundColor:'rgba(139,92,246,.1)',
+      fill:true,tension:.4,pointRadius:4,borderWidth:2.5,
+      pointBackgroundColor:'#8b5cf6'
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>_currency.sym+c.parsed.y}}},
+      scales:{
+        x:{ticks:{color:'#9ca3af',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},
+        y:{ticks:{color:'#9ca3af',font:{size:10},callback:v=>_currency.sym+v},
+           grid:{color:'rgba(0,0,0,.04)'},beginAtZero:false}
+      }
+    }
+  });
+}
+
+
+/* ─── HOURLY HEATMAP ─── */
+function renderHourly(rides){
+  const card=document.getElementById('hourlyCard');
+  if(!_S.hasTime){card.style.display='none';return;}
+  card.style.display='block';
+  const hm=_S.hm;
+  const max=Math.max(...hm)||1;
+  const clrs=['#DCE9F5','#9DC6E8','#5BA8D8','#378ADD','#1D9E75','#1D5C3E'];
+  function col(v){const r=v/max;return r>0.85?clrs[5]:r>0.65?clrs[4]:r>0.45?clrs[3]:r>0.25?clrs[2]:r>0.08?clrs[1]:clrs[0];}
+  document.getElementById('hmGrid').innerHTML=hm.map((v,i)=>{
+    const h=i%12||12;const ap=i<12?'am':'pm';
+    return `<div class="hm-cell" style="background:${col(v)}" title="${h}${ap}: ${v} rides"></div>`;
+  }).join('');
+  document.getElementById('hmLabels').innerHTML=Array.from({length:24},(_,i)=>{const h=i%12||12;return `<span>${h}${i<12?'a':'p'}</span>`;}).join('');
+  if(_S.peakH!==null){
+    const h=_S.peakH;const h12=h%12||12;const ap=h<12?'am':'pm';
+    document.getElementById('peakHourLabel').textContent=`Peak: ${h12}${ap} (${hm[h]} rides) — push driver incentives here`;
+  }
+}
+
+/* ─── WEEKLY COHORT ─── */
+function renderWeekly(rides){
+  const card=document.getElementById('weeklyCard');
+  const src=bucketRows.length?bucketRows:null;
+  if(!src||src.length<3){card.style.display='none';return;}
+  card.style.display='block';
+
+  const sorted=src.slice().sort((a,b)=>a.timing.localeCompare(b.timing));
+  const n=sorted.length;
+  const wSize=Math.ceil(n/4);
+  const weeks=[];
+  for(let i=0;i<4;i++){
+    const slice=sorted.slice(i*wSize,Math.min((i+1)*wSize,n));
+    if(!slice.length)break;
+    const req=slice.reduce((s,r)=>s+(parseInt(r.requests)||0),0);
+    const comp=slice.reduce((s,r)=>s+(parseInt(r.completed)||0),0);
+    weeks.push({lbl:`Wk ${i+1}\n${slice[0].timing.slice(5)}–${slice[slice.length-1].timing.slice(5)}`,req,comp,rate:req?comp/req*100:0});
+  }
+  document.getElementById('weekGrid').innerHTML=weeks.map((w,i)=>{
+    let delta='',dc='flat';
+    if(i>0){const p=weeks[i-1];const pct=p.rate?((w.rate-p.rate)/p.rate*100):0;
+      delta=pct>0?'▲ +'+pct.toFixed(1)+'%':'▼ '+pct.toFixed(1)+'%';dc=pct>0?'up':'dn';}
+    const rc=w.rate>=80?'green':w.rate>=65?'amber':'red';
+    return `<div class="week-cell">
+      <div class="week-lbl">${w.lbl.replace('\n','<br>')}</div>
+      <div class="week-val kpi-val ${rc}">${w.rate.toFixed(0)}%</div>
+      <div style="font-size:11px;color:var(--muted)">${fmt(w.comp)} of ${fmt(w.req)}</div>
+      ${delta?`<div class="week-delta delta-${dc}">${delta}</div>`:'<div class="week-delta delta-flat">baseline</div>'}
+    </div>`;
+  }).join('');
+}
+
+/* ─── INSIGHTS ─── */
+function renderInsights(rides){
+  const area=document.getElementById('insightArea');
+  const S=_S;
+  const ins=[];
+
+  // Revenue day analysis
+  const bd={};rides.forEach(r=>{const d=r['request_made_at']?.slice(0,10);if(!d)return;if(!bd[d])bd[d]={rev:0,n:0};bd[d].n++;bd[d].rev+=num(r['user_fare']);});
+  const dates=Object.keys(bd).sort();
+  if(dates.length>1){
+    const best=dates.slice().sort((a,b)=>bd[b].rev-bd[a].rev)[0];
+    ins.push({t:'g',icon:'💰',title:'Best revenue day',val:_currency.sym+fmt(bd[best].rev),sub:best+' · '+bd[best].n+' rides · '+_currency.sym+fmt(bd[best].rev/bd[best].n)+' avg fare'});
+  }
+
+  // Demand vs supply gap
+  if(S.totalReq>0){
+    const gap=S.totalReq-S.totalComp;
+    const gapPct=(gap/S.totalReq*100).toFixed(1);
+    ins.push({t:parseFloat(gapPct)>30?'r':'a',icon:'🚫',title:'Unserved demand',val:fmt(gap)+' requests lost',sub:gapPct+'% of total requests never completed — direct revenue leak'});
+  }
+
+  // Wait time insight
+  if(S.avgWait!==null){
+    const t=S.avgWait<=8?'g':S.avgWait<=12?'a':'r';
+    ins.push({t,icon:'⏱',title:'Avg user wait time',val:S.avgWait.toFixed(1)+' min',sub:S.avgWait>12?'High wait = main driver of missed rides. Need more drivers at peak hours.':'Wait time healthy. Monitor during peak hours.'});
+  }
+
+  // Driver vs user cancel split
+  if(S.totalDCan+S.totalUCan>0){
+    const dcp=Math.round(S.totalDCan/(S.totalDCan+S.totalUCan)*100);
+    ins.push({t:dcp>60?'a':'b',icon:'✕',title:'Cancel breakdown',val:dcp+'% driver / '+(100-dcp)+'% user',sub:`${fmt(S.totalDCan)} driver-initiated · ${fmt(S.totalUCan)} user-initiated. ${dcp>60?'Driver behaviour is the main cancel driver.':'User-side cancels dominate — app UX or wait time issue.'}`});
+  }
+
+  // User cancelled request (before reaching driver)
+  if(S.totalUCanReq>0&&S.totalReq>0){
+    ins.push({t:S.totalUCanReq/S.totalReq>0.1?'r':'a',icon:'👤',title:'Pre-dispatch cancels',val:fmt(S.totalUCanReq)+' requests',sub:`${(S.totalUCanReq/S.totalReq*100).toFixed(1)}% cancelled before reaching any driver — ETA shown was too high`});
+  }
+
+  // Timed out
+  if(S.totalTimedOut>0){
+    ins.push({t:'a',icon:'🔔',title:'Timed-out requests',val:fmt(S.totalTimedOut),sub:`Driver screen rang full duration but driver didn't accept. Incentive or app issue.`});
+  }
+
+  // Short ride economics
+  if(S.shortRides>0){
+    ins.push({t:'b',icon:'📍',title:'Short rides (<3 km)',val:S.shortRides+' rides ('+Math.round(S.shortRides/S.rides*100)+'%)',sub:'High overhead vs fare. Consider minimum fare floor for short trips.'});
+  }
+
+  // Long rides
+  if(S.longRides>0){
+    ins.push({t:'g',icon:'🛣',title:'Long rides (>10 km)',val:S.longRides+' rides',sub:'High-value rides · avg fare significantly above mean. Protect this segment.'});
+  }
+
+  // Unrated rides
+  if(S.unratedCount>S.rides*0.2){
+    ins.push({t:'t',icon:'⭐',title:'Unrated rides',val:S.unratedCount+' rides ('+Math.round(S.unratedCount/S.rides*100)+'%)',sub:'Over 20% of rides have no rating. Reduces driver quality visibility.'});
+  }
+
+  // Peak hour
+  if(S.peakLbl){
+    ins.push({t:'p',icon:'🔥',title:'Peak demand hour',val:S.peakLbl+' · '+S.hm[S.peakH]+' rides',sub:'Focus driver incentives here to maximise fulfilment rate'});
+  }
+
+  // Repeat rate
+  if(S.totalUsers>0){
+    const t=S.repeatRate>=40?'g':S.repeatRate>=25?'a':'r';
+    ins.push({t,icon:'🔄',title:'Repeat rider rate',val:S.repeatRate.toFixed(1)+'%',sub:S.repeatRate<25?'Low — most users are not returning. Loyalty/promo opportunity.':S.repeatRate>=40?'Strong retention. Keep quality high.':'Moderate — room to grow with targeted retention campaigns.'});
+  }
+
+  if(!ins.length){area.style.display='none';return;}
+  area.style.display='block';
+  document.getElementById('insightGrid').innerHTML=ins.map(i=>`
+    <div class="ins ${i.t}">
+      <div class="ins-icon">${i.icon||''}</div>
+      <div class="ins-title">${i.title}</div>
+      <div class="ins-val">${i.val}</div>
+      <div class="ins-sub">${i.sub}</div>
+    </div>`).join('');
+}
+
+/* ─── DRIVERS ─── */
 function renderDrivers(rides){
   const dm={};
   rides.forEach(r=>{
     const id=r['e.driver_id'];if(!id)return;
-    if(!dm[id])dm[id]={name:r['driver_name'],veh:r['vehicle_name']||r['vehicle_no'],n:0,dist:0,rev:0,rat:[]};
-    dm[id].n++;dm[id].dist+=parseFloat(r['distance_covered'])||0;dm[id].rev+=parseFloat(r['user_fare'])||0;
-    const rt=parseFloat(r['rating_given_to_driver']);if(rt>0)dm[id].rat.push(rt);
+    if(!dm[id])dm[id]={name:r['driver_name'],veh:r['vehicle_name']||r['vehicle_no'],n:0,dist:0,rev:0,rat:[],waits:[]};
+    dm[id].n++;dm[id].dist+=num(r['distance_covered']);dm[id].rev+=num(r['user_fare']);
+    const rt=r['rating_given_to_driver'];if(rt&&rt!=='-'&&rt!=='')dm[id].rat.push(parseFloat(rt));
+    const w=tdiffMin(r['request_made_at'],r['pickup_time']);if(w!==null&&w>=0&&w<60)dm[id].waits.push(w);
   });
-  const sorted=Object.values(dm).sort((a,b)=>b.n-a.n).slice(0,15);
-  document.getElementById('driverBody').innerHTML=sorted.map(d=>{
+  const dp={};
+  driverPerfRows.forEach(r=>{
+    dp[r['driver_id']]={
+      onlineHours:parseFloat(r['online_hours'])||0,
+      totalReq:parseInt(r['total_requests'])||0,
+      completed:parseInt(r['completed_requests'])||0,
+      rejected:parseInt(r['request_rejected_by_driver'])||0,
+      dCancelled:parseInt(r['rides_cancelled_by_driver'])||0,
+      timedOut:parseInt(r['request_timed_out'])||0,
+      cashRev:parseFloat(r['cash_payment_received'])||0,
+    };
+  });
+  const hasPerfData=driverPerfRows.length>0;
+  let combined=[];
+  if(hasPerfData){
+    driverPerfRows.forEach(r=>{
+      const id=r['driver_id'];
+      const ride=dm[id]||{n:0,dist:0,rev:0,rat:[],waits:[],veh:''};
+      const p=dp[id];
+      combined.push({id,name:r['name'],veh:ride.veh,
+        onlineHours:p.onlineHours,totalReq:p.totalReq,completed:p.completed,
+        rejected:p.rejected,dCancelled:p.dCancelled,cashRev:p.cashRev,
+        rat:ride.rat,waits:ride.waits,
+        ridesPerHour:p.onlineHours>0?p.completed/p.onlineHours:0,
+        revPerHour:p.onlineHours>0?p.cashRev/p.onlineHours:0,
+        acceptRate:p.totalReq>0?p.completed/p.totalReq*100:0,
+        rejRate:p.totalReq>0?p.rejected/p.totalReq*100:0,
+      });
+    });
+    combined.sort((a,b)=>b.revPerHour-a.revPerHour);
+    const fleetOnline=driverPerfRows.reduce((s,r)=>s+(parseFloat(r['online_hours'])||0),0);
+    const fleetComp=driverPerfRows.reduce((s,r)=>s+(parseInt(r['completed_requests'])||0),0);
+    const fleetReq=driverPerfRows.reduce((s,r)=>s+(parseInt(r['total_requests'])||0),0);
+    const fleetRev=driverPerfRows.reduce((s,r)=>s+(parseFloat(r['cash_payment_received'])||0),0);
+    const fleetRej=driverPerfRows.reduce((s,r)=>s+(parseInt(r['request_rejected_by_driver'])||0),0);
+    const accPct=fleetReq?(fleetComp/fleetReq*100).toFixed(1)+'%':'—';
+    const accColor=fleetReq&&fleetComp/fleetReq>0.25?'#1D9E75':'#E24B4A';
+    document.getElementById('driverMeta').innerHTML=
+      `${driverPerfRows.length} drivers · <b>${fmt(fleetOnline)} hrs online</b> · ping-accept rate <b style="color:${accColor}">${accPct}</b> <span style="font-size:10px;color:var(--hint)">(pings ≠ user requests)</span> · sorted by revenue/hr`;
+    renderFleetInsights(combined);
+  } else {
+    combined=Object.entries(dm).map(([id,d])=>({
+      id,name:d.name,veh:d.veh,onlineHours:null,totalReq:null,completed:d.n,
+      rejected:null,dCancelled:null,cashRev:d.rev,rat:d.rat,waits:d.waits,
+      ridesPerHour:null,revPerHour:null,acceptRate:null,rejRate:null,
+    })).sort((a,b)=>b.cashRev-a.cashRev);
+    document.getElementById('driverMeta').innerHTML=
+      `top 10 of ${Object.keys(dm).length} drivers · <span style="color:var(--hint)">upload Driver Performance CSV for full analysis</span>`;
+  }
+  const top10=combined.slice(0,10);
+  document.getElementById('driverBody').innerHTML=top10.map((d,idx)=>{
     const ar=d.rat.length?d.rat.reduce((a,b)=>a+b,0)/d.rat.length:0;
+    const aw=d.waits.length?d.waits.reduce((a,b)=>a+b,0)/d.waits.length:null;
     const rc=ar>=4.5?'#1D9E75':ar>=4?'#BA7517':'#E24B4A';
-    return `<tr><td style="font-weight:500">${d.name||'—'}</td><td style="color:var(--muted)">${d.veh||'—'}</td><td>${d.n}</td><td>${d.dist.toFixed(1)}</td><td>₹${Math.round(d.rev).toLocaleString()}</td><td>₹${d.n?Math.round(d.rev/d.n):0}</td><td><span class="rating-bar"><span class="rating-fill" style="width:${ar/5*100}%;background:${rc}"></span></span><span style="font-size:12px;color:${rc}">${ar?ar.toFixed(1):'—'}</span></td></tr>`;
+    let flag='<span class="badge badge-n">Active</span>';
+    if(hasPerfData){
+      const issues=[];
+      if(d.rejRate>15)issues.push('High rejection');
+      if(d.dCancelled>20)issues.push('High D-cancel');
+      if(d.ridesPerHour<0.5&&d.onlineHours>10)issues.push('Low efficiency');
+      if(ar>0&&ar<3.5&&d.rat.length>=3)issues.push('Low rating');
+      if(issues.length>=2)flag=`<span class="badge badge-r">${issues[0]}</span>`;
+      else if(issues.length===1)flag=`<span class="badge badge-a">${issues[0]}</span>`;
+      else if(d.revPerHour>2000&&d.acceptRate>25)flag=`<span class="badge badge-g">Top performer</span>`;
+    } else {
+      if(ar>=4.5&&d.completed>=10)flag=`<span class="badge badge-g">Top</span>`;
+      else if(ar<3.5&&d.rat.length>=5)flag=`<span class="badge badge-r">Needs attention</span>`;
+    }
+    return `<tr>
+      <td style="color:var(--hint);font-size:11px;text-align:center">${idx+1}</td>
+      <td style="font-weight:500">${d.name||'—'}<div style="font-size:10px;color:var(--muted)">${d.veh||''}</div></td>
+      <td>${fmt(d.completed)}</td>
+      <td>${d.onlineHours!==null?d.onlineHours.toFixed(1):'—'}</td>
+      <td style="font-weight:500;color:${d.ridesPerHour!==null?(d.ridesPerHour>=1?'#1D9E75':d.ridesPerHour>=0.6?'#BA7517':'#E24B4A'):'var(--muted)'}">${d.ridesPerHour!==null?d.ridesPerHour.toFixed(2):'—'}</td>
+      <td>${_currency.sym}${fmt(d.cashRev)}</td>
+      <td style="font-weight:500;color:${d.revPerHour!==null?(d.revPerHour>=2000?'#1D9E75':d.revPerHour>=1000?'#BA7517':'#E24B4A'):'var(--muted)'}">${d.revPerHour!==null?_currency.sym+fmt(d.revPerHour):'—'}</td>
+      <td style="color:var(--muted)">${d.totalReq!==null?fmt(d.totalReq):'—'}</td>
+      <td style="color:${d.acceptRate!==null?(d.acceptRate>=30?'#1D9E75':d.acceptRate>=15?'#BA7517':'#E24B4A'):'var(--muted)'}" title="Completed ÷ pings received">${d.acceptRate!==null?d.acceptRate.toFixed(1)+'%':'—'}</td>
+      <td style="color:${d.rejRate!==null?(d.rejRate>15?'#E24B4A':d.rejRate>5?'#BA7517':'#1D9E75'):'var(--muted)'}" title="Pings deliberately rejected">${d.rejRate!==null?d.rejRate.toFixed(1)+'%':'—'}</td>
+      <td>${d.dCancelled!==null?d.dCancelled:'—'}</td>
+      <td>${aw!==null?aw.toFixed(1)+' min':'—'}</td>
+      <td><span class="rbar"><span class="rfill" style="width:${ar/5*100}%;background:${rc}"></span></span><span style="font-size:12px;color:${rc}">${ar?ar.toFixed(1):'—'}</span></td>
+      <td>${flag}</td>
+    </tr>`;
   }).join('');
 }
 
+/* ─── FLEET INSIGHTS ─── */
+function renderFleetInsights(drivers){
+  if(!driverPerfRows.length)return;
+  const totalOnline=drivers.reduce((s,d)=>s+d.onlineHours,0);
+  const totalComp=drivers.reduce((s,d)=>s+d.completed,0);
+  const totalReq=drivers.reduce((s,d)=>s+d.totalReq,0);
+  const totalRev=drivers.reduce((s,d)=>s+d.cashRev,0);
+  const totalRej=drivers.reduce((s,d)=>s+(d.rejected||0),0);
+  const fleetRPH=totalOnline>0?totalComp/totalOnline:0;
+  const fleetRevPH=totalOnline>0?totalRev/totalOnline:0;
+  const highRej=drivers.filter(d=>d.rejRate>15&&d.totalReq>20).sort((a,b)=>b.rejRate-a.rejRate);
+  const ghost=drivers.filter(d=>d.onlineHours>20&&d.ridesPerHour<0.3).sort((a,b)=>b.onlineHours-a.onlineHours);
+  const stars=drivers.filter(d=>d.revPerHour>=2000&&d.acceptRate>=25);
+  const extra=[];
+  // Fleet efficiency and ping-accept rate removed — not operator-facing
+  if(totalRej>0)extra.push({t:totalRej/totalReq>0.06?'r':'a',icon:'✕',title:'Fleet rejections',val:fmt(totalRej)+' pings rejected by drivers',sub:`${(totalRej/totalReq*100).toFixed(1)}% of driver pings rejected — contributes to missed rides when no other driver accepts either`});
+  if(highRej.length)extra.push({t:'r',icon:'🚫',title:`${highRej.length} high-rejection driver${highRej.length>1?'s':''}`,val:highRej[0].name.split(' ')[0]+(highRej.length>1?` +${highRej.length-1} others`:''),sub:`Rejecting >15% of pings: ${highRej.slice(0,2).map(d=>d.name.split(' ')[0]+' ('+d.rejRate.toFixed(0)+'%)').join(', ')} — review incentives or penalties`});
+  if(ghost.length)extra.push({t:'a',icon:'👻',title:`${ghost.length} ghost driver${ghost.length>1?'s':''}`,val:'Online but barely riding',sub:`${ghost.slice(0,2).map(d=>d.name.split(' ')[0]+' ('+d.onlineHours.toFixed(0)+'h, '+d.ridesPerHour.toFixed(1)+'/hr)').join(', ')} — taking up supply slots without serving demand`});
+  if(stars.length)extra.push({t:'g',icon:'⭐',title:`${stars.length} star driver${stars.length>1?'s':''}`,val:`₹${fmt(stars[0].revPerHour)}/hr · ${stars[0].acceptRate.toFixed(0)}% acceptance`,sub:stars.slice(0,3).map(d=>d.name.split(' ')[0]).join(', ')+' — study and replicate their behaviour'});
+  const grid=document.getElementById('insightGrid');
+  const area=document.getElementById('insightArea');
+  extra.forEach(i=>{
+    const div=document.createElement('div');
+    div.className=`ins ${i.t}`;
+    div.innerHTML=`<div class="ins-title">${i.title}</div><div class="ins-val">${i.val}</div><div class="ins-sub">${i.sub}</div>`;
+    grid.appendChild(div);
+  });
+  if(area.style.display==='none')area.style.display='block';
+}
+
+
+/* ─── ZONES ─── */
 function renderZones(rides){
   const zm={};
+  const stripSuffix=/,?\s*(India|Angola|Kenya|Nigeria|Ghana|Tanzania|Uganda|Zimbabwe|Zambia|Haryana|Delhi|Maharashtra|Karnataka|Tamil Nadu|Gujarat|Rajasthan|Uttar Pradesh|Punjab|West Bengal|Madhya Pradesh|Telangana|Andhra Pradesh|Odisha|Kerala|Bihar|Jharkhand|Chhattisgarh|Uttarakhand|Himachal Pradesh|Goa|Assam|Chandigarh)(\s*-?\s*\d{4,6})?/gi;
   rides.forEach(r=>{
-    const addr = (r['pickup_address']||'').trim();
-    if(!addr) return;
-    // Remove trailing generic parts: country, state/UT names, 6-digit pincodes
-    const genericSuffix = /,?\s*(India|Haryana|Delhi|Maharashtra|Karnataka|Tamil Nadu|Gujarat|Rajasthan|Uttar Pradesh|Punjab|West Bengal|Madhya Pradesh|Telangana|Andhra Pradesh|Odisha|Kerala|Bihar|Jharkhand|Chhattisgarh|Uttarakhand|Himachal Pradesh|Goa|Assam|Manipur|Meghalaya|Mizoram|Nagaland|Sikkim|Tripura|Arunachal Pradesh|Chandigarh|Jammu & Kashmir|Ladakh|NCT of Delhi)(\s*-?\s*\d{6})?/gi;
-    let zone = addr.replace(genericSuffix, '').replace(/,\s*\d{6}/g,'').replace(/,\s*$/,'').trim();
-    if(!zone) zone = addr.split(',')[0].trim();
-    if(zone) zm[zone]=(zm[zone]||0)+1;
+    const addr=(r['pickup_address']||'').trim();if(!addr)return;
+    let zone=addr.replace(stripSuffix,'').replace(/,\s*\d{4,6}/g,'').replace(/,\s*$/,'').trim();
+    if(!zone)zone=addr.split(',')[0].trim();
+    if(zone&&zone.length>2)zm[zone]=(zm[zone]||0)+1;
   });
   const sorted=Object.entries(zm).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const max=sorted[0]?.[1]||1;
-  document.getElementById('zoneList').innerHTML=sorted.map(([z,c],idx)=>`
+  const max=sorted[0]?.[1]||1;const total=sorted.reduce((s,[,c])=>s+c,0);
+  document.getElementById('zoneList').innerHTML=sorted.map(([z,c],i)=>`
     <div class="zone-row">
       <div class="zone-meta">
-        <span style="color:var(--text);font-size:12px;flex:1;padding-right:8px;line-height:1.4">
-          <span style="color:var(--hint);font-size:10px;margin-right:4px">${idx+1}.</span>${z}
-        </span>
-        <span style="color:var(--muted);font-weight:500;flex-shrink:0">${c}</span>
+        <span style="font-size:12px;flex:1;line-height:1.4;padding-right:8px"><span style="color:var(--hint);font-size:10px;margin-right:3px">${i+1}.</span>${z}</span>
+        <span style="font-size:11px;color:var(--muted);flex-shrink:0">${c} · ${Math.round(c/total*100)}%</span>
       </div>
-      <div class="zone-track"><div class="zone-fill" style="width:${Math.round(c/max*100)}%"></div></div>
-    </div>
-  `).join('');
+      <div class="zone-track"><div class="zone-fill" style="width:${Math.round(c/max*100)}%;background:${i<3?'#1D9E75':'#378ADD'}"></div></div>
+    </div>`).join('');
 }
 
+/* ─── DATE RANGE ─── */
+function renderDateRange(rides){
+  const dates=rides.map(r=>r['request_made_at']?.slice(0,10)).filter(Boolean).sort();
+  if(dates.length)document.getElementById('dateRange').textContent=dates[0]+' → '+dates[dates.length-1];
+}
+
+/* ─── AUTO FILL REPORT ─── */
+function autoFillReportFields(){
+  const S=_S;
+  const set=(id,val,fmt_fn=v=>v)=>{
+    const el=document.getElementById(id);if(!el)return;
+    if(val===null||val===undefined||val==='')return;
+    el.value=fmt_fn(val);el.classList.add('autofilled');
+  };
+  set('rRides',S.rides);
+  set('rRequests',S.totalReq||S.rides);
+  if(S.compRate!==null)set('rCompRate',S.compRate,v=>v.toFixed(1));
+  if(S.canRate!==null)set('rCanRate',S.canRate,v=>v.toFixed(1));
+  set('rMissed',S.totalMissed);
+  set('rTimedOut',S.totalTimedOut);
+  if(S.avgWait!==null)set('rWait',S.avgWait,v=>v.toFixed(1));
+  set('rAvgFare',Math.round(S.avgFare));
+  // Update currency note
+  document.getElementById('autoFillNote').dataset.currency=_currency.sym;
+  set('rRevenue',Math.round(S.totalRev));
+  set('rDrivers',S.drivers);
+  if(S.avgR)set('rRating',S.avgR,v=>v.toFixed(2));
+  if(S.totalUsers)set('rRepeat',S.repeatRate,v=>v.toFixed(1));
+  if(S.peakLbl)set('rPeakHour',S.peakLbl);
+
+  // Client name from city
+  const cities=[...new Set(rideRows.map(r=>r['city_name']).filter(Boolean))];
+  if(cities.length===1)document.getElementById('rClientName').placeholder=cities[0];
+
+  // ── Auto-fill Additional Context ──
+  // Key highlights — pick the top 2-3 positive data points
+  const hlPts=[];
+  if(S.compRate!==null&&S.compRate>=75)hlPts.push(`Completion rate of ${S.compRate.toFixed(1)}% across ${fmt(S.totalReq)} requests`);
+  if(S.avgR>=4.2)hlPts.push(`Strong driver quality — avg rating ${S.avgR.toFixed(2)}★ across ${S.rides-S.unratedCount} rated rides`);
+  if(S.totalRev>0)hlPts.push(`${fmt(S.rides)} rides completed generating ₹${fmt(S.totalRev)} in revenue (avg ₹${fmt(S.avgFare)} per ride)`);
+  if(S.avgWait!==null&&S.avgWait<=8)hlPts.push(`User wait time healthy at ${S.avgWait.toFixed(1)} min average`);
+  if(S.drivers>0&&S.rides>0)hlPts.push(`${S.drivers} active drivers averaging ${(S.rides/S.drivers).toFixed(1)} rides each`);
+  if(S.totalUsers&&S.repeatRate>=35)hlPts.push(`${S.repeatRate.toFixed(1)}% repeat rider rate — users returning regularly`);
+  if(S.peakLbl)hlPts.push(`Peak demand hour identified: ${S.peakLbl} — enables targeted driver deployment`);
+  if(hlPts.length>0)set('rHighlights', hlPts.join('\n'));
+
+  // Next steps — auto-suggest based on weak spots in data
+  const nsPts=[];
+  if(S.compRate!==null&&S.compRate<80)nsPts.push(`Increase active drivers during peak hour (${S.peakLbl||'identified from heatmap'}) to improve completion rate from ${S.compRate.toFixed(1)}%`);
+  if(S.avgWait!==null&&S.avgWait>10)nsPts.push(`Reduce avg user wait from ${S.avgWait.toFixed(1)} min — target ≤8 min through better driver placement or incentives at busy zones`);
+  if(S.canRate!==null&&S.canRate>15)nsPts.push(`Investigate cancellation rate of ${S.canRate.toFixed(1)}% — separate driver vs user root causes and address top offenders`);
+  if(S.totalTimedOut>10)nsPts.push(`Address ${S.totalTimedOut} timed-out requests — drivers not accepting pings, review incentive structure or app notification settings`);
+  if(S.totalMissed>0&&S.totalReq>0&&S.totalMissed/S.totalReq>0.1)nsPts.push(`Reduce missed rides (${(S.totalMissed/S.totalReq*100).toFixed(1)}% of requests) by ensuring driver availability during demand spikes`);
+  if(S.avgR>0&&S.avgR<4)nsPts.push(`Driver quality training needed — avg rating ${S.avgR.toFixed(2)}★ below 4.0 benchmark`);
+  if(S.totalUsers&&S.repeatRate<30)nsPts.push(`Launch retention initiative — only ${S.repeatRate.toFixed(1)}% repeat riders, consider loyalty rewards or re-engagement offers`);
+  if(S.unratedCount>S.rides*0.25)nsPts.push(`Improve rating collection — ${Math.round(S.unratedCount/S.rides*100)}% of rides unrated, push in-app prompt at ride end`);
+  // Market and acquisition
+  nsPts.push('Activate referral programme or local WhatsApp/social campaign to acquire new riders at low cost — target zones with high existing demand but low repeat rate');
+  // Always end with a monitoring step
+  nsPts.push(`Review updated dashboard next week to track progress on completion rate and wait time improvements`);
+  if(nsPts.length>0)set('rNextSteps', nsPts.slice(0,5).join('\n'));
+
+  document.getElementById('autoFillNote').textContent='✓ Auto-filled from your CSV data — edit before generating';
+}
+
+/* ─── AUTO SWOT ─── */
+function autoFillSWOT(){
+  if(!rideRows.length){alert('Upload ride data first.');return;}
+  const S=_S;const S_pts=[],W_pts=[],O_pts=[],T_pts=[];
+
+  if(S.compRate!==null){
+    if(S.compRate>=80)S_pts.push(`Completion rate of ${S.compRate.toFixed(1)}% — supply and demand are well matched`);
+    else W_pts.push(`Completion rate only ${S.compRate.toFixed(1)}% — ${fmt(S.totalReq-S.totalComp)} requests went unfulfilled, direct revenue loss`);
+  }
+  if(S.avgR>=4.2)S_pts.push(`Strong avg driver rating of ${S.avgR.toFixed(2)}★ across ${S.rides} rides`);
+  else if(S.avgR>0&&S.avgR<4)W_pts.push(`Driver rating averaging ${S.avgR.toFixed(2)}★ — below 4.0 benchmark, quality intervention needed`);
+  S_pts.push(`${fmt(S.rides)} completed rides generating ${_currency.sym}${fmt(S.totalRev)} in revenue`);
+  if(S.drivers>0)S_pts.push(`${S.drivers} active drivers, avg ${(S.rides/S.drivers).toFixed(1)} rides per driver`);
+  if(S.totalUsers&&S.repeatRate>=35)S_pts.push(`${S.repeatRate.toFixed(1)}% repeat rider rate — solid user retention`);
+
+  if(S.totalMissed>0&&S.totalReq>0)W_pts.push(`${(S.totalMissed/S.totalReq*100).toFixed(1)}% missed rides — users cancelling before driver accepts, avg wait ${S.avgWait!==null?S.avgWait.toFixed(1)+' min':'unknown'}`);
+  if(S.totalTimedOut>10)W_pts.push(`${S.totalTimedOut} timed-out requests — drivers ignoring assignment pings`);
+  if(S.totalUCanReq>0&&S.totalReq>0&&S.totalUCanReq/S.totalReq>0.08)W_pts.push(`${(S.totalUCanReq/S.totalReq*100).toFixed(1)}% of users cancelled before request reached a driver — ETA display too high`);
+  if(S.avgWait!==null&&S.avgWait>10)W_pts.push(`Avg user wait of ${S.avgWait.toFixed(1)} min is above 10 min target — driver supply gap during peak`);
+  if(S.totalUsers&&S.repeatRate<30)W_pts.push(`Only ${S.repeatRate.toFixed(1)}% repeat rider rate — majority of users not returning`);
+  if(S.unratedCount>S.rides*0.25)W_pts.push(`${Math.round(S.unratedCount/S.rides*100)}% of rides unrated — limits quality monitoring`);
+
+  if(S.peakLbl)O_pts.push(`Peak demand at ${S.peakLbl} — targeted driver incentives at this hour can significantly boost completion rate`);
+  if(S.totalReq>0)O_pts.push(`${fmt(S.totalReq-S.totalComp)} unserved requests = direct revenue opportunity — deploy more drivers in gap zones`);
+  if(S.longRides>0)O_pts.push(`${S.longRides} long rides (>10 km) at higher avg fare — promote airport/inter-city routes`);
+  if(S.totalUsers&&S.repeatRate<40)O_pts.push(`Repeat rider rate headroom — loyalty rewards or subscription plan could increase repeat bookings`);
+  O_pts.push('Corporate B2B accounts would add predictable ride volume with lower acquisition cost');
+  // Market trend & acquisition opportunities
+  O_pts.push('Digital-first user acquisition: WhatsApp referral programme or local social media campaigns can drive organic growth at near-zero cost in this market');
+  if(S.totalUsers&&S.repeatRate<40)O_pts.push('Subscription/pass model (e.g. 10 rides for fixed price) could convert one-time riders into regular users and improve revenue predictability');
+  O_pts.push('Local market trend: ride-hailing penetration in tier-2/3 cities is growing faster than metros — early driver network depth is the key differentiator to establish before competitors enter');
+
+  if(S.compRate!==null&&S.compRate<75)T_pts.push(`Completion rate of ${S.compRate.toFixed(1)}% risks user trust — if sustained, users will switch to competitors`);
+  if(S.totalDCan>S.totalUCan)T_pts.push(`Driver cancellations (${fmt(S.totalDCan)}) exceed user cancellations — driver reliability is a churn risk`);
+  T_pts.push('Competitor promotions in same zones could accelerate user attrition given current service gaps');
+  T_pts.push('Rising fuel costs are reducing driver earnings and increasing churn risk — consider dynamic pricing or fuel allowance to retain supply');
+  T_pts.push('App-based alternatives (auto-booking, bike taxis) are capturing short-trip demand in this market segment — consider adding vehicle types');
+  if(S.avgWait!==null&&S.avgWait>10)T_pts.push(`High wait times (${S.avgWait.toFixed(1)} min avg) are the most likely cause of user churn — fix before competitor exploits this`);
+
+  document.getElementById('rSwotS').value=S_pts.join('\n');
+  document.getElementById('rSwotW').value=W_pts.join('\n');
+  document.getElementById('rSwotO').value=O_pts.join('\n');
+  document.getElementById('rSwotT').value=T_pts.join('\n');
+  document.getElementById('swotNote').style.display='block';
+}
+
+/* ─── PDF ─── */
 async function exportDashPDF(){
-  const content = document.getElementById('dashContent');
-  if(!content || content.style.display==='none'){alert('Load data first.');return;}
-  if(!window.jspdf || !window.jspdf.jsPDF){alert('jsPDF not loaded. Reload the page.');return;}
+  const dashEl=document.getElementById('dashContent');
+  if(!dashEl||dashEl.style.display==='none'){alert('Load data first.');return;}
+  if(!window.jspdf?.jsPDF){alert('jsPDF not loaded. Reload.');return;}
+  const btn=document.getElementById('pdfBtn');
+  btn.textContent='Building PDF…';btn.disabled=true;
 
-  const btn = document.getElementById('pdfBtn');
-  btn.innerHTML = 'Generating PDF…';
-  btn.disabled = true;
+  try{
+    const {jsPDF}=window.jspdf;
+    const S=_S, cur=_currency.sym;
+    const city=document.querySelector('.op-btn.active')?.textContent.trim()||'All';
+    const dr=document.getElementById('dateRange').textContent;
+    const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+    const W=pdf.internal.pageSize.getWidth(),H=pdf.internal.pageSize.getHeight();
+    let y=0;
 
-  try {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-    const pdfW = pdf.internal.pageSize.getWidth();  // 297mm
-    const pdfH = pdf.internal.pageSize.getHeight(); // 210mm
-    const HEADER_H = 12;   // mm — green title bar
-    const MARGIN = 8;      // mm — left/right padding
-    const FOOTER_H = 6;    // mm — footer area
-    const CONTENT_W = pdfW - MARGIN * 2;
-    const PAGE_CONTENT_H = pdfH - HEADER_H - FOOTER_H; // usable height per page
+    // ── Colour palette ──
+    const GREEN=[29,92,62], TEAL=[13,148,136], BLUE=[29,58,138],
+          AMBER=[120,53,15], RED=[127,29,29], SLATE=[55,65,81],
+          WHITE=[255,255,255], LIGHTGRAY=[248,247,245], GRAY=[107,104,96],
+          DARKGRAY=[30,25,23];
 
-    const clientEl = document.querySelector('.op-btn.active');
-    const clientName = clientEl ? clientEl.textContent.trim() : 'All';
-    const dateStr = document.getElementById('dateRange').textContent;
+    const rgb=(arr)=>({r:arr[0],g:arr[1],b:arr[2]});
+    const setFill=arr=>pdf.setFillColor(arr[0],arr[1],arr[2]);
+    const setTxt=arr=>pdf.setTextColor(arr[0],arr[1],arr[2]);
+    const setDraw=arr=>pdf.setDrawColor(arr[0],arr[1],arr[2]);
 
-    // ── Helper: draw the green header on current page ──
-    function drawHeader(isFirst){
-      pdf.setFillColor(29, 92, 62);
-      pdf.rect(0, 0, pdfW, HEADER_H, 'F');
-      pdf.setTextColor(255, 255, 255);
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(10);
-      pdf.text('Jugnoo CSM — KPI Dashboard' + (isFirst ? '' : ' (continued)'), MARGIN, 8);
-      if(clientName && clientName !== 'All'){
-        pdf.setFontSize(9); pdf.setFont('helvetica','normal');
-        pdf.text(clientName, pdfW/2, 8, {align:'center'});
-      }
-      pdf.setFontSize(7.5); pdf.setFont('helvetica','normal');
-      if(dateStr) pdf.text(dateStr, pdfW - MARGIN, 8, {align:'right'});
+    function newPage(){
+      pdf.addPage();y=0;drawPageHeader();
+    }
+    function checkY(needed){if(y+needed>H-10)newPage();}
+
+    // ── Page header ──
+    function drawPageHeader(){
+      setFill(GREEN);pdf.rect(0,0,W,14,'F');
+      // Subtle diagonal stripe decoration
+      pdf.setGState && pdf.setGState(pdf.GState({opacity:0.08}));
+      setFill(WHITE);
+      for(let x=-5;x<W+20;x+=12){pdf.rect(x,0,6,14,'F');}
+      pdf.setGState && pdf.setGState(pdf.GState({opacity:1}));
+      setTxt(WHITE);
+      pdf.setFont('helvetica','bold');pdf.setFontSize(11);
+      pdf.text('Jugnoo CSM — KPI Dashboard',10,9.5);
+      pdf.setFont('helvetica','normal');pdf.setFontSize(8);
+      if(city&&city!=='All')pdf.text(city,W/2,9.5,{align:'center'});
+      if(dr)pdf.text(dr,W-10,9.5,{align:'right'});
+      y=18;
     }
 
-    // ── Helper: draw footer on current page ──
-    function drawFooter(){
-      pdf.setTextColor(170,170,170);
-      pdf.setFontSize(6.5);
-      pdf.setFont('helvetica','normal');
-      pdf.text('Generated by Jugnoo CSM Tool — jugnoocsm.netlify.app  •  ' + new Date().toLocaleDateString('en-IN'), pdfW/2, pdfH - 2, {align:'center'});
+    // ── Rounded rect helper ──
+    function rrect(x,iy,w,h,r,fill){
+      pdf.setFillColor(fill[0],fill[1],fill[2]);
+      pdf.roundedRect(x,iy,w,h,r,r,'F');
     }
 
-    // ── Helper: capture one DOM element as high-res image ──
-    async function captureEl(el, scale=2.2){
-      const c = await html2canvas(el, {
-        scale,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-        windowWidth: 980
+    // ── KPI cards — native jsPDF drawing ──
+    function drawKPIs(){
+      const cardH=32, cardW=(W-20)/5, gap=2.5, startX=10;
+      const cards=[
+        {label:'COMPLETION RATE',
+         val:S.compRate!==null?S.compRate.toFixed(1)+'%':'—',
+         sub:S.totalReq?fmt(S.totalComp)+'/'+fmt(S.totalReq)+' req':'rides only',
+         sub2:S.compRate!==null?(S.compRate>=85?'✓ Healthy':S.compRate>=70?'⚠ Needs work':'✗ Critical'):'',
+         col:S.compRate===null?SLATE:S.compRate>=85?GREEN:S.compRate>=70?AMBER:RED},
+        {label:'RIDES & REVENUE',
+         val:fmt(S.rides||0),
+         sub:cur+fmt(S.totalRev)+' revenue',
+         sub2:cur+fmt(S.avgFare)+' avg per ride',
+         col:BLUE},
+        {label:'AVG USER WAIT',
+         val:S.avgWait!==null?S.avgWait.toFixed(1)+' min':'—',
+         sub:'Request → pickup',
+         sub2:S.avgWait!==null?(S.avgWait<=8?'✓ On target (≤8 min)':S.avgWait<=12?'⚠ Acceptable':'✗ Too high'):'No time data',
+         col:S.avgWait===null?SLATE:S.avgWait<=8?[6,95,70]:S.avgWait<=12?[120,53,15]:[127,29,29]},
+        {label:'AVG DRIVER RATING',
+         val:S.avgR?S.avgR.toFixed(2)+'★':'—',
+         sub:(S.rides-(S.unratedCount||0))+' rated rides',
+         sub2:S.avgR>=4.5?'✓ Excellent':S.avgR>=4?'⚠ Monitor':S.avgR>0?'✗ Act now':'No ratings',
+         col:S.avgR>=4.5?[30,58,138]:S.avgR>=4?[113,63,18]:[127,29,29]},
+        {label:'CANCELLATION RATE',
+         val:S.canRate!==null?S.canRate.toFixed(1)+'%':'—',
+         sub:S.totalDCan+' driver · '+S.totalUCan+' user',
+         sub2:S.canRate!==null?(S.canRate<=10?'✓ Well controlled':S.canRate<=20?'⚠ Monitor':'✗ Investigate'):'No bucket data',
+         col:S.canRate===null?SLATE:S.canRate<=10?[13,116,116]:S.canRate<=20?[120,69,14]:[127,29,29]},
+      ];
+
+      cards.forEach((c,i)=>{
+        const cx=startX+i*(cardW+gap);
+        // Card background gradient effect (two rects)
+        const dark=c.col.map(v=>Math.max(0,v-25));
+        rrect(cx,y,cardW,cardH,3,dark);
+        rrect(cx+cardW*0.35,y,cardW*0.65,cardH,3,c.col);
+        // Label
+        setTxt([255,255,255]);
+        pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
+        pdf.text(c.label,cx+3,y+6,{maxWidth:cardW-6});
+        // Value — big
+        pdf.setFont('helvetica','bold');pdf.setFontSize(16);
+        pdf.text(c.val,cx+3,y+17,{maxWidth:cardW-6});
+        // Sub lines
+        pdf.setFont('helvetica','normal');pdf.setFontSize(6.8);
+        pdf.setTextColor(255,255,255,0.8);
+        pdf.text(c.sub,cx+3,y+22,{maxWidth:cardW-6});
+        // Verdict pill
+        pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
+        pdf.setFillColor(255,255,255);pdf.setFillColor(255,255,255);
+        pdf.setGState&&pdf.setGState(pdf.GState({opacity:0.25}));
+        pdf.roundedRect(cx+3,y+25,cardW-6,5,1.5,1.5,'F');
+        pdf.setGState&&pdf.setGState(pdf.GState({opacity:1}));
+        setTxt(WHITE);
+        pdf.text(c.sub2,cx+cardW/2,y+28.2,{align:'center',maxWidth:cardW-8});
       });
-      return c;  // returns canvas
+      y+=cardH+6;
     }
 
-    // ── Helper: add a canvas image to PDF, auto page-break if needed ──
-    // yPos is current Y cursor in mm from top. Returns new yPos.
-    let yPos = HEADER_H + 3;
-    let pageNum = 1;
-    drawHeader(true);
+    // ── Alert banners ──
+    function drawAlerts(){
+      const alertEl=document.getElementById('alertArea');
+      if(!alertEl||!alertEl.children.length)return;
+      Array.from(alertEl.children).forEach(a=>{
+        const isRed=a.classList.contains('alert-danger');
+        const isWarn=a.classList.contains('alert-warn');
+        const col=isRed?[254,242,242]:isWarn?[255,251,235]:[240,253,250];
+        const borderCol=isRed?[248,113,113]:isWarn?[251,191,36]:[110,231,183];
+        checkY(10);
+        pdf.setFillColor(col[0],col[1],col[2]);
+        pdf.roundedRect(10,y,W-20,9,2,2,'F');
+        pdf.setFillColor(borderCol[0],borderCol[1],borderCol[2]);
+        pdf.rect(10,y,2,9,'F');
+        const icon=a.querySelector('.alert-icon')?.textContent||'';
+        const title=a.querySelector('strong')?.textContent||'';
+        const sub=a.querySelector('span')?.textContent||'';
+        setTxt(isRed?RED:isWarn?AMBER:[6,95,70]);
+        pdf.setFont('helvetica','bold');pdf.setFontSize(8);
+        pdf.text(icon+' '+title,14,y+5.8);
+        setTxt(GRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(7);
+        pdf.text(sub,14,y+8.5,{maxWidth:W-28});
+        y+=10;
+      });
+      y+=2;
+    }
 
-    async function addSection(el, opts={}){
-      if(!el || el.style.display==='none') return;
-      const scale = opts.scale || 2.2;
-      const gap = opts.gap !== undefined ? opts.gap : 4; // mm gap after section
+    // ── Section heading ──
+    function heading(txt){
+      checkY(10);
+      setTxt(GRAY);pdf.setFont('helvetica','bold');pdf.setFontSize(7.5);
+      pdf.text(txt.toUpperCase(),10,y);
+      setDraw([228,226,220]);pdf.setLineWidth(.3);
+      pdf.line(10+pdf.getTextWidth(txt.toUpperCase())+3,y-0.5,W-10,y-0.5);
+      y+=5;
+    }
 
-      const c = await captureEl(el, scale);
-      const imgH_mm = (c.height / c.width) * CONTENT_W;
-
-      // If this section won't fit on remaining page space, start new page
-      // (but always allow if it's taller than a full page — just let it flow)
-      const remainingOnPage = pdfH - FOOTER_H - yPos;
-      if(yPos > HEADER_H + 3 && imgH_mm > remainingOnPage + 2){
-        drawFooter();
-        pdf.addPage();
-        pageNum++;
-        drawHeader(false);
-        yPos = HEADER_H + 3;
+    // ── Canvas chart capture ──
+    async function addChart(canvasId,label,fullWidth=false){
+      const el=document.getElementById(canvasId);
+      if(!el)return;
+      const cardEl=el.closest('.chart-card');
+      const w=fullWidth?W-20:(W-23)/2;
+      const c=await html2canvas(cardEl||el,{scale:3,backgroundColor:'#ffffff',logging:false,windowWidth:980});
+      const imgH=(c.height/c.width)*w;
+      checkY(imgH+2);
+      if(!fullWidth&&_pdfX===undefined) _pdfX=10;
+      const x=fullWidth?10:_pdfX;
+      pdf.addImage(c.toDataURL('image/png'),'PNG',x,y,w,imgH,undefined,'FAST');
+      if(fullWidth){y+=imgH+4;_pdfX=undefined;}
+      else{
+        if(_pdfX===10){_pdfX=10+w+3;_pairH=imgH;}
+        else{y+=Math.max(imgH,_pairH||0)+4;_pdfX=undefined;_pairH=0;}
       }
+    }
+    let _pdfX,_pairH;
+    function flushPair(){if(_pdfX!==undefined&&_pdfX>10){y+=(_pairH||0)+4;_pdfX=undefined;_pairH=0;}}
 
-      // If section is taller than a full page, scale it down to fit
-      let drawW = CONTENT_W;
-      let drawH = imgH_mm;
-      if(drawH > PAGE_CONTENT_H){
-        const shrink = PAGE_CONTENT_H / drawH;
-        drawH = PAGE_CONTENT_H;
-        drawW = CONTENT_W * shrink;
-      }
-
-      const imgData = c.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', MARGIN, yPos, drawW, drawH, undefined, 'FAST');
-      yPos += drawH + gap;
+    // ── Insight cards ──
+    async function drawInsights(){
+      const insEl=document.getElementById('insightGrid');
+      if(!insEl||!insEl.children.length)return;
+      heading('Operational Insights');
+      const cards=Array.from(insEl.children);
+      const cw=(W-20-cards.length*2)/Math.min(cards.length,4);
+      const rowW=(W-20)/Math.min(cards.length,4);
+      let row=0,col=0;
+      const rowH=20;
+      checkY((Math.ceil(cards.length/4))*rowH+4);
+      cards.forEach((card,idx)=>{
+        col=idx%4;row=Math.floor(idx/4);
+        const cx=10+col*rowW;const cy=y+row*rowH;
+        const isG=card.classList.contains('g'),isR=card.classList.contains('r'),isA=card.classList.contains('a');
+        const bg=isG?[240,253,250]:isR?[254,242,242]:isA?[255,251,235]:[239,246,255];
+        const bc=isG?[6,95,70]:isR?[153,27,27]:isA?[146,64,14]:[29,78,216];
+        pdf.setFillColor(bg[0],bg[1],bg[2]);
+        pdf.roundedRect(cx,cy,rowW-2,rowH-2,2,2,'F');
+        pdf.setFillColor(bc[0],bc[1],bc[2]);
+        pdf.rect(cx,cy,1.5,rowH-2,'F');
+        const title=card.querySelector('.ins-title')?.textContent||'';
+        const val=card.querySelector('.ins-val')?.textContent||'';
+        const sub=card.querySelector('.ins-sub')?.textContent||'';
+        pdf.setTextColor(bc[0],bc[1],bc[2]);pdf.setFont('helvetica','bold');pdf.setFontSize(6);
+        pdf.text(title,cx+4,cy+4.5,{maxWidth:rowW-8});
+        setTxt(DARKGRAY);pdf.setFont('helvetica','bold');pdf.setFontSize(8.5);
+        pdf.text(val,cx+4,cy+10,{maxWidth:rowW-8});
+        setTxt(GRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);
+        pdf.text(sub,cx+4,cy+14.5,{maxWidth:rowW-8});
+      });
+      y+=(Math.ceil(cards.length/4))*rowH+6;
     }
 
-    // ── Define sections in order ──
-    // KPI grid
-    await addSection(document.getElementById('kpiGrid'), {gap:5});
-
-    // Insights panel (if visible)
-    const insPanel = document.getElementById('insightsPanel');
-    if(insPanel && insPanel.style.display !== 'none'){
-      await addSection(insPanel, {gap:5});
+    // ── Driver table ──
+    async function drawDriverTable(){
+      const tbody=document.getElementById('driverBody');
+      if(!tbody||!tbody.children.length)return;
+      heading('Driver Performance — Top 10');
+      const rows=Array.from(tbody.querySelectorAll('tr'));
+      const cols=['#','Driver','Rides','Online hrs','Rides/hr','Revenue','Rev/hr','Reject %','D-Cancel','Rating','Flag'];
+      const colW=[8,42,14,16,14,22,20,16,16,16,26];
+      const startX=10;const rowH=6.5;
+      // Header row
+      checkY(rows.length*rowH+12);
+      setFill(DARKGRAY);pdf.rect(startX,y,W-20,7,'F');
+      setTxt(WHITE);pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
+      let cx=startX+1;
+      cols.forEach((c,i)=>{pdf.text(c,cx,y+4.8);cx+=colW[i];});
+      y+=7;
+      rows.forEach((tr,ri)=>{
+        const tds=Array.from(tr.querySelectorAll('td'));
+        if(!tds.length)return;
+        const bg=ri%2===0?LIGHTGRAY:WHITE;
+        setFill(bg);pdf.rect(startX,y,W-20,rowH,'F');
+        setTxt(DARKGRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);
+        cx=startX+1;
+        tds.forEach((td,ti)=>{
+          const txt=(td.textContent||'').trim().replace(/\s+/g,' ').slice(0,22);
+          if(ti===1){pdf.setFont('helvetica','bold');}else{pdf.setFont('helvetica','normal');}
+          pdf.text(txt,cx,y+4.3,{maxWidth:colW[ti]-2});
+          cx+=colW[ti];
+        });
+        y+=rowH;
+      });
+      y+=5;
     }
 
-    // Collect chart cards from the charts-grid only
-    const visibleCards = Array.from(content.querySelectorAll('.charts-grid .chart-card')).filter(el=>el.offsetParent!==null);
-
-    // First card is always full-width trend
-    if(visibleCards.length > 0){
-      await addSection(visibleCards[0], {gap:4});
+    // ── Zone bars ──
+    function drawZones(){
+      const zoneEl=document.getElementById('zoneList');
+      if(!zoneEl||!zoneEl.children.length)return;
+      heading('Top Pickup Zones');
+      const zones=Array.from(zoneEl.querySelectorAll('.zone-row')).slice(0,10);
+      const barW=W-90;
+      zones.forEach((z,i)=>{
+        checkY(9);
+        const meta=z.querySelector('.zone-meta');
+        const fill=z.querySelector('.zone-fill');
+        const label=meta?.querySelector('span:first-child')?.textContent?.replace(/^\d+\.\s*/,'').trim()||'';
+        const count=meta?.querySelector('span:last-child')?.textContent||'';
+        const pct=parseFloat(fill?.style?.width)||0;
+        // Row bg
+        setFill(i%2===0?LIGHTGRAY:WHITE);pdf.rect(10,y,W-20,8,'F');
+        // Index
+        setTxt(GRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);
+        pdf.text(String(i+1),12,y+5.2);
+        // Label
+        setTxt(DARKGRAY);pdf.setFont('helvetica','normal');pdf.setFontSize(7);
+        pdf.text(label,18,y+5.2,{maxWidth:barW-10});
+        // Count
+        pdf.setFont('helvetica','bold');
+        pdf.text(count,W-12,y+5.2,{align:'right'});
+        // Bar
+        const barY=y+6.2;
+        setFill([228,226,220]);pdf.rect(18,barY,barW,1.5,'F');
+        const barColor=i<3?GREEN:BLUE;
+        setFill(barColor);pdf.rect(18,barY,barW*pct/100,1.5,'F');
+        y+=8;
+      });
+      y+=4;
     }
 
-    // Remaining cards: pair them side by side
-    const rest = visibleCards.slice(1);
-    for(let i=0; i < rest.length; i += 2){
-      const left = rest[i], right = rest[i+1];
-      if(!right){
-        await addSection(left, {gap:4});
-      } else {
-        const [cl, cr] = await Promise.all([captureEl(left, 2.2), captureEl(right, 2.2)]);
-        const halfW = (CONTENT_W - 3) / 2;
-        const lH = (cl.height/cl.width)*halfW;
-        const rH = (cr.height/cr.width)*halfW;
-        const rowH = Math.max(lH, rH);
-        const remainingOnPage = pdfH - FOOTER_H - yPos;
-        if(yPos > HEADER_H + 3 && rowH > remainingOnPage + 2){
-          drawFooter(); pdf.addPage(); pageNum++; drawHeader(false); yPos = HEADER_H + 3;
+    // ── Weekly cohort ──
+    function drawWeekly(){
+      const wEl=document.getElementById('weeklyCard');
+      if(!wEl||wEl.style.display==='none')return;
+      heading('Week-over-Week Performance');
+      const cells=Array.from(wEl.querySelectorAll('.week-cell'));
+      if(!cells.length)return;
+      const cw=(W-22)/cells.length;
+      checkY(28);
+      cells.forEach((c,i)=>{
+        const lbl=c.querySelector('.week-lbl')?.innerHTML?.replace('<br>','\n')||'';
+        const val=c.querySelector('.week-val')?.textContent||'';
+        const sub=c.querySelectorAll('div')[2]?.textContent||'';
+        const delta=c.querySelector('.week-delta')?.textContent||'';
+        const isUp=delta.startsWith('▲');const isDn=delta.startsWith('▼');
+        const cx=10+i*(cw+2);
+        const col=i===cells.length-1?GREEN:SLATE;
+        rrect(cx,y,cw,22,3,col);
+        setTxt(WHITE);
+        pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);
+        pdf.text(lbl.split('\n')[0],cx+3,y+5,{maxWidth:cw-6});
+        if(lbl.split('\n')[1])pdf.text(lbl.split('\n')[1],cx+3,y+9,{maxWidth:cw-6});
+        pdf.setFontSize(14);pdf.setFont('helvetica','bold');
+        pdf.text(val,cx+cw/2,y+16,{align:'center'});
+        pdf.setFontSize(6.5);pdf.setFont('helvetica','normal');
+        pdf.text(sub,cx+cw/2,y+19.5,{align:'center',maxWidth:cw-4});
+        if(delta){
+          setTxt(isUp?[134,239,172]:isDn?[252,165,165]:WHITE);
+          pdf.setFontSize(7);pdf.setFont('helvetica','bold');
+          pdf.text(delta,cx+cw/2,y+25,{align:'center'});
         }
-        pdf.addImage(cl.toDataURL('image/png'),'PNG', MARGIN, yPos, halfW, lH, undefined,'FAST');
-        pdf.addImage(cr.toDataURL('image/png'),'PNG', MARGIN+halfW+3, yPos, halfW, rH, undefined,'FAST');
-        yPos += rowH + 4;
-      }
+      });
+      y+=30;
     }
 
-    // Hourly heatmap (standalone card outside charts-grid)
-    const hourlyCard = document.getElementById('hourlyCard');
-    if(hourlyCard && hourlyCard.style.display !== 'none'){
-      await addSection(hourlyCard, {gap:4});
+    // ═══════════ BUILD PDF ═══════════
+    drawPageHeader();
+    drawAlerts();
+    drawKPIs();
+    drawWeekly();
+
+    // Charts — capture at high scale
+    const trendCard=document.getElementById('dayTrendCard');
+    if(trendCard&&trendCard.style.display!=='none'){
+      heading('Daily Performance Trend');
+      await addChart('trendChart',null,true);
     }
 
-    // Driver table
-    await addSection(document.getElementById('driverCard'), {gap:4, scale:1.8});
+    flushPair();
+    heading('Ride Outcomes & Revenue');
+    await addChart('pieChart',null,false);
+    await addChart('revChart',null,false);
+    flushPair();
+    await addChart('dualChart',null,false);
+    const supplyEl=document.getElementById('supplyCard');
+    if(supplyEl&&supplyEl.style.display!=='none') await addChart('supplyChart',null,false);
+    flushPair();
 
-    // Pickup zones
-    await addSection(document.getElementById('zoneCard'), {gap:4, scale:1.8});
+    const hCard=document.getElementById('hourlyCard');
+    if(hCard&&hCard.style.display!=='none'){
+      heading('Hourly Demand Heatmap');
+      const hc=await html2canvas(hCard,{scale:3,backgroundColor:'#ffffff',logging:false,windowWidth:980});
+      const hw=W-20,hh=(hc.height/hc.width)*hw;
+      checkY(hh+2);
+      pdf.addImage(hc.toDataURL('image/png'),'PNG',10,y,hw,hh,undefined,'FAST');
+      y+=hh+5;
+    }
 
-    drawFooter();
+    await drawInsights();
+    await drawDriverTable();
+    drawZones();
 
-    const fname = 'jugnoo-kpi-' + clientName.replace(/\s+/g,'-').toLowerCase() + '-' + new Date().toISOString().slice(0,10) + '.pdf';
-    pdf.save(fname);
+    // Footer
+    setTxt([180,178,175]);pdf.setFont('helvetica','normal');pdf.setFontSize(7);
+    pdf.text('Jugnoo CSM Tool · jugnoocsm.netlify.app · Generated '+new Date().toLocaleDateString('en-IN'),W/2,H-4,{align:'center'});
+    setFill(GREEN);pdf.rect(0,H-1.5,W,1.5,'F');
 
-  } catch(e){
-    alert('PDF export failed: ' + e.message + '\n\nTip: Try filtering to a single city first.');
-    console.error(e);
-  } finally {
-    btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF report';
-    btn.disabled = false;
+    pdf.save('jugnoo-dashboard-'+city.replace(/\s+/g,'-').toLowerCase()+'-'+new Date().toISOString().slice(0,10)+'.pdf');
+
+  }catch(e){alert('PDF failed: '+e.message);console.error(e);}
+  finally{
+    btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF';
+    btn.disabled=false;
   }
 }
 
-/* ─── REPORT GENERATOR ─── */
-window.addEventListener('load',()=>{
-  document.getElementById('month').value=new Date().toISOString().slice(0,7);
-});
-
-
-
-function updateBadge(){
-  const prev=parseFloat(document.getElementById('prevRides').value);
-  const curr=parseFloat(document.getElementById('rides').value);
-  const b=document.getElementById('growthBadge');
-  if(!prev||!curr){b.className='growth-badge badge-flat';b.textContent='— enter both months';return;}
-  const pct=((curr-prev)/prev*100).toFixed(1);
-  if(pct>0){b.className='growth-badge badge-up';b.textContent='▲ +'+pct+'% growth';}
-  else if(pct<0){b.className='growth-badge badge-down';b.textContent='▼ '+pct+'% decline';}
-  else{b.className='growth-badge badge-flat';b.textContent='→ flat (0%)';}
-}
-
-function gv(id){return document.getElementById(id).value.trim();}
 
 async function generateReport(){
-  document.getElementById('errorBox').classList.remove('show');
-  
-  const clientName=gv('clientName'),month=gv('month'),rides=gv('rides');
-  if(!clientName||!month||!rides){showErr('Please fill in client name, month, and this month\'s rides.');return;}
-  const csm=gv('csm')||'Your CSM';
-  const monthLabel=new Date(month+'-02').toLocaleString('default',{month:'long',year:'numeric'});
-  const prev=gv('prevRides'),curr=rides;
-  let growth='',growthDesc='';
+  document.getElementById('errBox').classList.remove('show');
+  const client=gv('rClientName'),month=gv('rMonth');
+  if(!client||!month){showErr('Fill in client name and report month.');return;}
+  const csm=gv('rCsm')||'Your CSM';
+  const ml=new Date(month+'-02').toLocaleString('default',{month:'long',year:'numeric'});
+  const prev=gv('rPrevRides'),curr=gv('rRides');
+  let growth='',growthDesc='flat';
   if(prev&&curr){
     const p=((parseFloat(curr)-parseFloat(prev))/parseFloat(prev)*100).toFixed(1);
-    growth=`${parseFloat(p)>0?'+':''}${p}% MoM (${parseInt(prev).toLocaleString()} → ${parseInt(curr).toLocaleString()} rides)`;
+    growth=`${parseFloat(p)>0?'+':''}${p}% MoM`;
     growthDesc=parseFloat(p)>5?'strong growth':parseFloat(p)>0?'modest growth':parseFloat(p)<-5?'significant decline':'slight decline';
   }
-  const open=gv('openIssues')||'0',res=gv('resolvedIssues')||'0';
-  const tot=parseInt(res)+parseInt(open);
-  const resRate=tot>0?Math.round(parseInt(res)/tot*100)+'%':null;
-  const toneMap={
-    professional:'Formal and professional. Data-driven, concise executive tone.',
-    friendly:'Warm, encouraging, and personal. Like a trusted advisor checking in.',
-    concise:'Very concise. Senior executive audience. Under 180 words total.'
+  const toneMap={professional:'Formal, data-driven, executive tone.',friendly:'Warm, advisory, personal — trusted partner tone.',concise:'Very concise, <180 words, senior executive audience.'};
+  const m={
+    requests:gv('rRequests'),rides:curr,comp:gv('rCompRate'),can:gv('rCanRate'),
+    missed:gv('rMissed'),tOut:gv('rTimedOut'),wait:gv('rWait'),
+    fare:gv('rAvgFare'),rev:gv('rRevenue'),drivers:gv('rDrivers'),
+    rating:gv('rRating'),repeat:gv('rRepeat'),peak:gv('rPeakHour'),
+    open:gv('rOpenIssues')||'0',resolved:gv('rResolvedIssues')||'0'
   };
+  const prompt=`You are ${csm}, Customer Success Manager at Jugnoo (ride-hailing SaaS). Write a monthly client health report email for operator: ${client}.
 
-  const cancelRateVal=gv('cancelRate');
-  const compRateVal=gv('completionRate');
-  const revenueVal=gv('totalRevenue');
-  const avgFareVal=gv('avgFare');
-  const avgRatingVal=gv('avgRating');
-  const driverVal=gv('activeDrivers');
+PERIOD: ${ml}
+TONE: ${toneMap[gv('rTone')]}
 
-  // Build operational health summary for AI
-  const ops=[];
-  if(compRateVal) ops.push(`Completion rate: ${parseFloat(compRateVal).toFixed(1)}%${parseFloat(compRateVal)<75?' (below target — needs attention)':parseFloat(compRateVal)>=85?' (healthy)':''}`);
-  if(cancelRateVal) ops.push(`Cancellation rate: ${parseFloat(cancelRateVal).toFixed(1)}%${parseFloat(cancelRateVal)>20?' (high — key action area)':parseFloat(cancelRateVal)<=10?' (well controlled)':''}`);
-  if(avgRatingVal) ops.push(`Average driver rating: ${parseFloat(avgRatingVal).toFixed(1)}/5${parseFloat(avgRatingVal)<4?' (below benchmark — driver quality concern)':''}`);
-  if(revenueVal) ops.push(`Total revenue: ₹${parseInt(revenueVal).toLocaleString()}`);
-  if(avgFareVal) ops.push(`Avg fare per ride: ₹${parseInt(avgFareVal).toLocaleString()}`);
-  if(driverVal) ops.push(`Active drivers: ${parseInt(driverVal).toLocaleString()}${rides&&driverVal?` (${(parseInt(rides)/parseInt(driverVal)).toFixed(1)} rides/driver)`:''}` );
+PERFORMANCE DATA (all auto-computed from ClickHouse exports):
+- Total requests: ${m.requests}
+- Completed rides: ${m.rides}${growth?' · '+growth+' ('+growthDesc+')':''}
+${m.comp?`- Completion rate: ${m.comp}% ${parseFloat(m.comp)<75?'(CRITICAL — below 75% threshold)':parseFloat(m.comp)>=85?'(healthy)':'(below target)'}`:''} 
+${m.can?`- Cancellation rate: ${m.can}% ${parseFloat(m.can)>20?'(high — action needed)':parseFloat(m.can)<=10?'(controlled)':''}`:''} 
+${m.missed?`- Missed rides: ${m.missed} (user bailed before driver accepted)`:''} 
+${m.tOut?`- Timed out: ${m.tOut} (driver screen rang but not accepted)`:''} 
+${m.wait?`- Avg user wait time: ${m.wait} min (request to driver arrival)`:''} 
+${m.fare?`- Avg fare: ₹${m.fare} per ride`:''} 
+${m.rev?`- Total revenue: ₹${parseInt(m.rev).toLocaleString()}`:''} 
+${m.drivers?`- Active drivers: ${m.drivers}${m.rides&&m.drivers?' ('+( parseInt(m.rides)/parseInt(m.drivers)).toFixed(1)+' rides/driver)':''}`:''} 
+${m.rating?`- Avg driver rating: ${m.rating}/5`:''} 
+${m.repeat?`- Repeat rider rate: ${m.repeat}% ${parseFloat(m.repeat)<25?'(low — retention risk)':parseFloat(m.repeat)>=40?'(strong)':'(moderate)'}`:''} 
+${m.peak?`- Peak demand hour: ${m.peak}`:''} 
+- Support: ${m.resolved} resolved / ${m.open} open
 
-  const prompt=`You are ${csm}, a Customer Success Manager at Jugnoo (ride-hailing SaaS). Write a monthly client health report email for ${clientName}.
+SWOT:
+${gv('rSwotS')?'S: '+gv('rSwotS'):''}
+${gv('rSwotW')?'W: '+gv('rSwotW'):''}
+${gv('rSwotO')?'O: '+gv('rSwotO'):''}
+${gv('rSwotT')?'T: '+gv('rSwotT'):''}
+${gv('rHighlights')?'\nWINS: '+gv('rHighlights'):''}
+${gv('rNextSteps')?'\nNEXT STEPS: '+gv('rNextSteps'):''}
 
-PERIOD: ${monthLabel}
-TONE: ${toneMap[gv('tone')]}
+WRITE THIS EMAIL — structure exactly as:
+1. Subject: [specific, data-driven, include a key number]
+2. Greeting (1 line)
+3. Performance summary (specific numbers, what changed, growth if available)
+4. Operational insight (THIS IS THE MOST IMPORTANT PARAGRAPH — be a consultant, not just a reporter. Explain WHAT the numbers mean operationally. E.g. if completion is 62%, say X requests were lost, costing approximately ₹Y in revenue. If wait time is high, connect it to the missed rides. If timed-out is high, say what action the driver team needs. Be specific and actionable.)
+5. Repeat rider / retention note (if data available)
+6. SWOT summary (2 sentences max, strategic)
+7. Support update (1 sentence)
+8. Next steps (numbered, 3 items, specific with an action and owner where possible)
+9. Sign-off: ${csm}
 
-RIDE PERFORMANCE:
-- This month: ${parseInt(curr).toLocaleString()} completed rides
-${growth?'- Growth vs last month: '+growth+' — '+growthDesc:''}
-${ops.length?ops.join('\n'):''}
-- Support issues: ${res} resolved / ${open} open${resRate?' ('+resRate+' resolution rate)':''}
-
-SWOT CONTEXT:
-${gv('swotS')?'Strengths: '+gv('swotS'):''}
-${gv('swotW')?'Weaknesses: '+gv('swotW'):''}
-${gv('swotO')?'Opportunities: '+gv('swotO'):''}
-${gv('swotT')?'Threats/Risks: '+gv('swotT'):''}
-
-${gv('highlights')?'KEY WINS THIS MONTH:\n'+gv('highlights'):''}
-${gv('nextSteps')?'PLANNED NEXT STEPS:\n'+gv('nextSteps'):''}
-
-INSTRUCTIONS:
-1. Start with: Subject: [write a specific subject line reflecting ${growthDesc||'this month'} performance for ${clientName}]
-2. Open with a brief 1-sentence greeting acknowledging the month.
-3. Performance paragraph: Summarize rides, growth, completion/cancel rates, revenue if provided. Be specific with numbers.
-4. Operational insight paragraph: Draw 1-2 actionable insights from the data (e.g. what the cancellation rate means operationally, driver supply vs demand, revenue per driver efficiency). This is the most valuable paragraph — be specific and consultative.
-5. SWOT insight: 2 sentences distilling the key strategic point from the SWOT.
-6. Issues update: 1 sentence.
-7. Next steps: brief list of 2-3 concrete actions.
-8. Close with name: ${csm}
-
-Plain text only. No markdown. No bullet symbols (use dashes or numbers). Clean paragraphs. Ready to paste into email.`;
+Plain text. No markdown. No asterisks. No bullet symbols. Use numbered lists for next steps. Ready to paste into email client.`;
 
   document.getElementById('genBtn').disabled=true;
   document.getElementById('loading').classList.add('show');
-  document.getElementById('outputCard').classList.remove('show');
-  document.getElementById('copyBtn').classList.remove('show');
-
+  document.getElementById('outCard').classList.remove('show');
+  document.getElementById('copyBtn').style.display='none';
   try{
-    const res2=await fetch(`/.netlify/functions/gemini`,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:.65,maxOutputTokens:1400}})
-    });
-    const data=await res2.json();
-    if(data.error){showErr('Gemini error: '+(data.error.message||data.error||'Unknown error. Check your GEMINI_API_KEY in Netlify environment variables.'));return;}
+    const res=await fetch('/.netlify/functions/gemini',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:.6,maxOutputTokens:1500}})});
+    const data=await res.json();
+    if(data.error){showErr('Gemini: '+(data.error.message||'Check GEMINI_API_KEY in Netlify env vars'));return;}
     const text=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
-    if(!text){showErr('No response from Gemini. Try again.');return;}
-    document.getElementById('outputBody').textContent=text;
-    document.getElementById('outputCard').classList.add('show');
-    document.getElementById('copyBtn').classList.add('show');
-    document.getElementById('outputCard').scrollIntoView({behavior:'smooth',block:'start'});
-  }catch(err){showErr('Could not reach the server. Make sure the site is deployed with netlify.toml and the function exists. Detail: '+err.message);}
+    if(!text){showErr('Empty response. Try again.');return;}
+    document.getElementById('outBody').textContent=text;
+    document.getElementById('outCard').classList.add('show');
+    document.getElementById('copyBtn').style.display='inline-flex';
+    document.getElementById('outCard').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){showErr('Cannot reach server. Must be deployed on Netlify. '+e.message);}
   finally{document.getElementById('genBtn').disabled=false;document.getElementById('loading').classList.remove('show');}
 }
 
-function showErr(msg){const b=document.getElementById('errorBox');b.textContent=msg;b.classList.add('show');}
 
+/* ══════════════════════════════════════
+   ZONE INTELLIGENCE
+══════════════════════════════════════ */
+let zoneRows=[], _map=null, _heatLayer=null, _markerLayer=null, _activeMapMode='pickup';
+
+function loadZoneCSV(input){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    zoneRows=parseCSV(e.target.result);
+    const el=document.getElementById('dropZone');
+    el.classList.add('loaded');
+    el.querySelector('.upload-label').innerHTML=`<b class="ok">✓ ${zoneRows.length} zones loaded</b><br><span style="font-size:11px">${file.name}</span>`;
+    document.getElementById('emptyZone').style.display='none';
+    document.getElementById('zoneContent').style.display='block';
+    renderZoneIntel();
+  };
+  r.readAsText(file);
+}
+
+function switchMap(mode, btn){
+  _activeMapMode=mode;
+  document.querySelectorAll('.map-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMap();
+}
+
+
+/* ─── CANVAS HEATMAP (no plugin needed) ─── */
+function drawCanvasHeat(pts, mode){
+  if(!pts.length) return null;
+  // Create a Leaflet canvas overlay
+  const CanvasHeat = L.Layer.extend({
+    initialize(points, options){ this._pts=points; this._mode=options.mode||'demand'; },
+    onAdd(map){
+      this._map=map;
+      this._canvas=document.createElement('canvas');
+      this._canvas.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:500';
+      map.getPanes().overlayPane.appendChild(this._canvas);
+      map.on('moveend zoomend resize', this._redraw, this);
+      this._redraw();
+    },
+    onRemove(map){
+      map.getPanes().overlayPane.removeChild(this._canvas);
+      map.off('moveend zoomend resize', this._redraw, this);
+    },
+    _redraw(){
+      const map=this._map;
+      const size=map.getSize();
+      const canvas=this._canvas;
+      canvas.width=size.x; canvas.height=size.y;
+      const bounds=map.getBounds();
+      const topLeft=map.latLngToContainerPoint(bounds.getNorthWest());
+      canvas.style.left=topLeft.x+'px'; canvas.style.top=topLeft.y+'px';
+      const ctx=canvas.getContext('2d');
+      ctx.clearRect(0,0,size.x,size.y);
+      const pts=this._pts;
+      const vals=pts.map(p=>p.val);
+      const maxVal=Math.max(...vals)||1;
+      const r=Math.max(18, Math.min(35, size.x/30));
+      // Draw gaussian blobs
+      pts.forEach(p=>{
+        const cp=map.latLngToContainerPoint([p.lat,p.lng]);
+        const x=cp.x, y=cp.y;
+        if(x<-r||x>size.x+r||y<-r||y>size.y+r) return;
+        const intensity=p.val/maxVal;
+        const grad=ctx.createRadialGradient(x,y,0,x,y,r);
+        const alpha=Math.min(0.7, 0.2+intensity*0.5);
+        if(this._mode==='demand'){
+          grad.addColorStop(0,`rgba(220,38,38,${alpha})`);
+          grad.addColorStop(0.4,`rgba(251,146,60,${alpha*0.7})`);
+          grad.addColorStop(1,'rgba(59,130,246,0)');
+        } else if(this._mode==='missed'){
+          grad.addColorStop(0,`rgba(185,28,28,${alpha})`);
+          grad.addColorStop(0.4,`rgba(249,115,22,${alpha*0.7})`);
+          grad.addColorStop(1,'rgba(219,234,254,0)');
+        } else {
+          grad.addColorStop(0,`rgba(109,40,217,${alpha})`);
+          grad.addColorStop(0.4,`rgba(124,58,237,${alpha*0.6})`);
+          grad.addColorStop(1,'rgba(219,234,254,0)');
+        }
+        ctx.beginPath();
+        ctx.fillStyle=grad;
+        ctx.arc(x,y,r,0,Math.PI*2);
+        ctx.fill();
+      });
+    }
+  });
+  const layer = new CanvasHeat(pts, {mode});
+  layer.addTo(_map);
+  return layer;
+}
+
+function renderZoneIntel(){
+  detectZoneCurrency();
+  renderMap();
+  renderZoneTable();
+  renderClusters();
+}
+
+function detectZoneCurrency(){
+  // Detect from pickup_address country in zone CSV
+  const sample=(zoneRows[0]?.pickup_address||'').toLowerCase();
+  let cur={sym:'₹',code:'INR',name:'Indian Rupee'};
+  if(sample.includes('angola')) cur={sym:'Kz',code:'AOA',name:'Angolan Kwanza'};
+  else if(sample.includes('kenya')) cur={sym:'KSh',code:'KES'};
+  else if(sample.includes('nigeria')) cur={sym:'₦',code:'NGN'};
+  else if(sample.includes('india')||sample.includes('punjab')) cur={sym:'₹',code:'INR'};
+  // Only override global currency if ride CSV hasn't set it
+  if(rideRows.length===0) _currency=cur;
+  // Show city badge
+  const parts=(zoneRows[0]?.pickup_address||'').split(',').map(p=>p.trim()).filter(Boolean);
+  const city=parts.length>=3?parts[parts.length-3]:'';
+  if(city) document.getElementById('mapCityBadge').textContent=city+' · '+_currency.name;
+}
+
+function renderMap(){
+  if(!zoneRows.length)return;
+  // Init map on first call
+  if(!_map){
+    const lats=zoneRows.map(r=>parseFloat(r['lat'])).filter(v=>!isNaN(v));
+    const lngs=zoneRows.map(r=>parseFloat(r['lng'])).filter(v=>!isNaN(v));
+    const centerLat=lats.reduce((a,b)=>a+b,0)/lats.length;
+    const centerLng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
+    _map=L.map('mapContainer').setView([centerLat,centerLng],12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      attribution:'© <a href="https://openstreetmap.org">OSM</a>',maxZoom:18
+    }).addTo(_map);
+  }
+  // Clear existing layers
+  if(_heatLayer){
+    if(_heatLayer._map){_map.removeLayer(_heatLayer);}
+    else if(_heatLayer.parentNode){_heatLayer.parentNode.removeChild(_heatLayer);}
+    _heatLayer=null;
+  }
+  if(_markerLayer){_map.removeLayer(_markerLayer);_markerLayer=null;}
+
+  const legendEl=document.getElementById('mapLegendArea');
+
+  if(_activeMapMode==='pickup'){
+    // Demand heatmap — intensity = total_requests
+    const pts=zoneRows.map(r=>({lat:parseFloat(r['lat']),lng:parseFloat(r['lng']),val:parseInt(r['total_requests'])||1})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
+    _heatLayer=drawCanvasHeat(pts,'demand');
+    legendEl.innerHTML='<span><span class="map-legend-dot" style="background:#3B82F6"></span>Low demand</span><span><span class="map-legend-dot" style="background:#F59E0B"></span>Medium</span><span><span class="map-legend-dot" style="background:#EF4444"></span>High demand</span><span style="margin-left:auto;color:var(--hint)">Intensity = total ride requests from that location</span>';
+  }
+  else if(_activeMapMode==='supply'){
+    // Supply gap — show markers sized by gap, colored red/amber
+    _markerLayer=L.layerGroup();
+    const sorted=zoneRows.filter(r=>parseFloat(r['supply_gap_pct'])>0).sort((a,b)=>parseFloat(b['supply_gap_pct'])-parseFloat(a['supply_gap_pct']));
+    sorted.forEach(r=>{
+      const lat=parseFloat(r['lat']),lng=parseFloat(r['lng']);
+      if(isNaN(lat)||isNaN(lng))return;
+      const gap=parseFloat(r['supply_gap_pct']);
+      const req=parseInt(r['total_requests'])||1;
+      const color=gap>=80?'#DC2626':gap>=50?'#EA580C':'#D97706';
+      const radius=Math.max(6,Math.min(20,req*2));
+      L.circleMarker([lat,lng],{radius,color,fillColor:color,fillOpacity:0.7,weight:1})
+       .bindPopup(`<b>${(r['pickup_address']||'').split(',')[0]}</b><br>Supply gap: <b>${gap}%</b><br>Requests: ${req} · Completed: ${r['completed']} · Missed: ${r['missed_no_driver']}`)
+       .addTo(_markerLayer);
+    });
+    _markerLayer.addTo(_map);
+    legendEl.innerHTML='<span><span class="map-legend-dot" style="background:#D97706"></span>Gap 0–50%</span><span><span class="map-legend-dot" style="background:#EA580C"></span>Gap 50–80%</span><span><span class="map-legend-dot" style="background:#DC2626"></span>Gap >80%</span><span style="margin-left:auto;color:var(--hint)">Circle size = request volume · Click for details</span>';
+  }
+  else if(_activeMapMode==='missed'){
+    // Missed rides heatmap
+    const pts=zoneRows.map(r=>({lat:parseFloat(r['lat']),lng:parseFloat(r['lng']),val:parseInt(r['missed_no_driver'])||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
+    _heatLayer=drawCanvasHeat(pts,'missed');
+    legendEl.innerHTML='<span><span class="map-legend-dot" style="background:#DBEAFE"></span>Few missed</span><span><span class="map-legend-dot" style="background:#F97316"></span>Some missed</span><span><span class="map-legend-dot" style="background:#B91C1C"></span>Many missed</span><span style="margin-left:auto;color:var(--hint)">User cancelled before driver accepted — ETA too high here</span>';
+  }
+  else if(_activeMapMode==='timed'){
+    // Timed-out heatmap
+    const pts=zoneRows.map(r=>({lat:parseFloat(r['lat']),lng:parseFloat(r['lng']),val:parseInt(r['timed_out'])||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
+    if(pts.length===0){
+      legendEl.innerHTML='<span style="color:var(--hint)">No timed-out rides in this dataset</span>';
+      return;
+    }
+    _heatLayer=drawCanvasHeat(pts,'timed');
+    legendEl.innerHTML='<span><span class="map-legend-dot" style="background:#DBEAFE"></span>Few timed out</span><span><span class="map-legend-dot" style="background:#7C3AED"></span>Some</span><span><span class="map-legend-dot" style="background:#1E1B4B"></span>Many timed out</span><span style="margin-left:auto;color:var(--hint)">Driver screen rang full duration but driver ignored — incentive issue</span>';
+  }
+
+  setTimeout(()=>_map.invalidateSize(),100);
+}
+
+function renderZoneTable(){
+  // Top 15 unserved zones by missed_no_driver + timed_out
+  const sorted=zoneRows.slice().sort((a,b)=>(parseInt(b['missed_no_driver'])||0)+(parseInt(b['timed_out'])||0)-((parseInt(a['missed_no_driver'])||0)+(parseInt(a['timed_out'])||0))).slice(0,15);
+  document.getElementById('zoneTableBody').innerHTML=sorted.map(r=>{
+    const gap=parseFloat(r['supply_gap_pct'])||0;
+    const missed=parseInt(r['missed_no_driver'])||0;
+    const tout=parseInt(r['timed_out'])||0;
+    const req=parseInt(r['total_requests'])||0;
+    const addr=(r['pickup_address']||'').split(',').slice(0,3).join(', ');
+    const gapBadge=gap>=80?'badge-r':gap>=40?'badge-a':'badge-g';
+    const action=missed>tout?'Add driver supply':'Driver incentive needed';
+    return `<tr>
+      <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${r['pickup_address']}">${addr}</td>
+      <td>${req}</td>
+      <td>${r['completed']||0}</td>
+      <td style="color:${missed>0?'#DC2626':'var(--muted)'};font-weight:${missed>0?'500':'400'}">${missed}</td>
+      <td style="color:${tout>0?'#7C3AED':'var(--muted)'}">${tout}</td>
+      <td><span class="badge ${gapBadge}">${gap.toFixed(0)}%</span></td>
+      <td style="font-size:11px;color:var(--muted)">${action}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderClusters(){
+  // Simple grid-based clustering — group points within ~0.02 degree (~2km)
+  const CELL=0.025;
+  const grid={};
+  zoneRows.forEach(r=>{
+    const lat=parseFloat(r['lat']),lng=parseFloat(r['lng']);
+    if(isNaN(lat)||isNaN(lng))return;
+    const key=`${Math.round(lat/CELL)},${Math.round(lng/CELL)}`;
+    if(!grid[key])grid[key]={lats:[],lngs:[],req:0,missed:0,tOut:0,addrs:[]};
+    grid[key].lats.push(lat);grid[key].lngs.push(lng);
+    grid[key].req+=parseInt(r['total_requests'])||0;
+    grid[key].missed+=parseInt(r['missed_no_driver'])||0;
+    grid[key].tOut+=parseInt(r['timed_out'])||0;
+    grid[key].addrs.push((r['pickup_address']||'').split(',')[0].trim());
+  });
+
+  const clusters=Object.values(grid)
+    .filter(c=>c.req>=3)
+    .map(c=>{
+      const clat=c.lats.reduce((a,b)=>a+b,0)/c.lats.length;
+      const clng=c.lngs.reduce((a,b)=>a+b,0)/c.lngs.length;
+      // Use most common address prefix as cluster name
+      const nameCount={};c.addrs.forEach(a=>{if(a.length>2)nameCount[a]=(nameCount[a]||0)+1;});
+      const name=Object.entries(nameCount).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Zone';
+      return {name,req:c.req,missed:c.missed,tOut:c.tOut,clat,clng};
+    })
+    .sort((a,b)=>b.req-a.req)
+    .slice(0,12);
+
+  document.getElementById('clusterList').innerHTML=clusters.map(c=>{
+    const health=c.missed/c.req;
+    const hc=health>0.5?'var(--danger)':health>0.2?'var(--warn)':'var(--accent-text)';
+    return `<div class="cluster-card" onclick="if(_map)_map.setView([${c.clat},${c.clng}],15)" style="cursor:pointer">
+      <div class="cluster-name">${c.name}</div>
+      <div class="cluster-meta">${c.req} requests · <span style="color:${hc}">${c.missed} missed (${c.req>0?Math.round(c.missed/c.req*100):0}%)</span></div>
+      <div class="cluster-meta" style="margin-top:2px">${c.tOut>0?c.tOut+' timed out · ':''}<span style="color:var(--hint);font-size:10px">Click to zoom map</span></div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════
+   EXPORT STANDALONE ZONE REPORT HTML
+══════════════════════════════════════ */
+function exportZoneHTML(){
+  if(!zoneRows.length){alert('Upload zone CSV first.');return;}
+  const btn=document.getElementById('exportZoneBtn');
+  btn.textContent='Building report…';btn.disabled=true;
+
+  try{
+    const city=document.getElementById('mapCityBadge').textContent.split('·')[0].trim()||'Zone Report';
+    const dateStr=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+    const cur=_currency.sym;
+
+    // Serialise zone data
+    const zoneJSON=JSON.stringify(zoneRows);
+
+    // Pre-compute cluster data
+    const CELL=0.025;
+    const grid={};
+    zoneRows.forEach(r=>{
+      const lat=parseFloat(r['lat']),lng=parseFloat(r['lng']);
+      if(isNaN(lat)||isNaN(lng))return;
+      const key=`${Math.round(lat/CELL)},${Math.round(lng/CELL)}`;
+      if(!grid[key])grid[key]={lats:[],lngs:[],req:0,missed:0,tOut:0,addrs:[]};
+      grid[key].lats.push(lat);grid[key].lngs.push(lng);
+      grid[key].req+=parseInt(r['total_requests'])||0;
+      grid[key].missed+=parseInt(r['missed_no_driver'])||0;
+      grid[key].tOut+=parseInt(r['timed_out'])||0;
+      grid[key].addrs.push((r['pickup_address']||'').split(',')[0].trim());
+    });
+    const clusters=Object.values(grid).filter(c=>c.req>=3).map(c=>{
+      const clat=c.lats.reduce((a,b)=>a+b,0)/c.lats.length;
+      const clng=c.lngs.reduce((a,b)=>a+b,0)/c.lngs.length;
+      const nc={};c.addrs.forEach(a=>{if(a.length>2)nc[a]=(nc[a]||0)+1;});
+      const name=Object.entries(nc).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Zone';
+      return {name,req:c.req,missed:c.missed,tOut:c.tOut,clat,clng};
+    }).sort((a,b)=>b.req-a.req).slice(0,12);
+
+    // Top unserved zones
+    const topZones=zoneRows.slice().sort((a,b)=>(parseInt(b['missed_no_driver'])||0)+(parseInt(b['timed_out'])||0)-((parseInt(a['missed_no_driver'])||0)+(parseInt(a['timed_out'])||0))).slice(0,15);
+
+    // Summary stats
+    const totalReq=zoneRows.reduce((s,r)=>s+(parseInt(r['total_requests'])||0),0);
+    const totalComp=zoneRows.reduce((s,r)=>s+(parseInt(r['completed'])||0),0);
+    const totalMissed=zoneRows.reduce((s,r)=>s+(parseInt(r['missed_no_driver'])||0),0);
+    const totalTOut=zoneRows.reduce((s,r)=>s+(parseInt(r['timed_out'])||0),0);
+    const compRate=totalReq?(totalComp/totalReq*100).toFixed(1):0;
+    const missRate=totalReq?(totalMissed/totalReq*100).toFixed(1):0;
+
+    const lats=zoneRows.map(r=>parseFloat(r['lat'])).filter(v=>!isNaN(v));
+    const lngs=zoneRows.map(r=>parseFloat(r['lng'])).filter(v=>!isNaN(v));
+    const centerLat=lats.reduce((a,b)=>a+b,0)/lats.length;
+    const centerLng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
+
+    const tableRows=topZones.map((r,i)=>{
+      const gap=parseFloat(r['supply_gap_pct'])||0;
+      const missed=parseInt(r['missed_no_driver'])||0;
+      const tout=parseInt(r['timed_out'])||0;
+      const addr=(r['pickup_address']||'').split(',').slice(0,3).join(', ');
+      const gapColor=gap>=80?'#DC2626':gap>=40?'#D97706':'#16A34A';
+      const action=missed>tout?'Add driver supply':'Driver incentive needed';
+      return `<tr>
+        <td style="font-weight:500;padding:8px 10px;border-bottom:1px solid #f0f0f0;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${r['pickup_address']||''}">${i+1}. ${addr}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center">${r['total_requests']||0}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:#16A34A;font-weight:500">${r['completed']||0}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:${missed>0?'#DC2626':'#666'};font-weight:${missed>0?'600':'400'}">${missed}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center;color:${tout>0?'#7C3AED':'#666'}">${tout}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center"><span style="background:${gap>=80?'#FEE2E2':gap>=40?'#FEF3C7':'#D1FAE5'};color:${gapColor};padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600">${gap.toFixed(0)}%</span></td>
+        <td style="padding:8px 10px;border-bottom:1px solid #f0f0f0;font-size:11px;color:#888">${action}</td>
+      </tr>`;
+    }).join('');
+
+    const clusterCards=clusters.map(c=>{
+      const health=c.req>0?c.missed/c.req:0;
+      const hc=health>0.5?'#DC2626':health>0.2?'#D97706':'#16A34A';
+      return `<div onclick="if(window._cmap)window._cmap.setView([${c.clat},${c.clng}],15)" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;cursor:pointer;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px">${c.name}</div>
+        <div style="font-size:11px;color:#6b7280">${c.req} requests · <span style="color:${hc};font-weight:500">${c.missed} missed (${c.req>0?Math.round(c.missed/c.req*100):0}%)</span></div>
+        ${c.tOut>0?`<div style="font-size:11px;color:#7C3AED">${c.tOut} timed out</div>`:''}
+        <div style="font-size:10px;color:#9ca3af;margin-top:3px">Click to zoom map</div>
+      </div>`;
+    }).join('');
+
+    // Inline the canvas heatmap drawing code for the exported file
+    const canvasHeatCode = `
+    const CanvasHeat = L.Layer.extend({
+      initialize(points, options){ this._pts=points; this._mode=options.mode||'demand'; },
+      onAdd(map){
+        this._map=map;
+        this._canvas=document.createElement('canvas');
+        this._canvas.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:500';
+        map.getPanes().overlayPane.appendChild(this._canvas);
+        map.on('moveend zoomend resize', this._redraw, this);
+        this._redraw();
+      },
+      onRemove(map){
+        map.getPanes().overlayPane.removeChild(this._canvas);
+        map.off('moveend zoomend resize', this._redraw, this);
+      },
+      _redraw(){
+        const map=this._map;
+        const size=map.getSize();
+        const canvas=this._canvas;
+        canvas.width=size.x; canvas.height=size.y;
+        const bounds=map.getBounds();
+        const topLeft=map.latLngToContainerPoint(bounds.getNorthWest());
+        canvas.style.left=topLeft.x+'px'; canvas.style.top=topLeft.y+'px';
+        const ctx=canvas.getContext('2d');
+        ctx.clearRect(0,0,size.x,size.y);
+        const pts=this._pts;
+        const vals=pts.map(p=>p.val);
+        const maxVal=Math.max(...vals)||1;
+        const r=Math.max(18,Math.min(35,size.x/30));
+        pts.forEach(p=>{
+          const cp=map.latLngToContainerPoint([p.lat,p.lng]);
+          const x=cp.x,y=cp.y;
+          if(x<-r||x>size.x+r||y<-r||y>size.y+r)return;
+          const intensity=p.val/maxVal;
+          const grad=ctx.createRadialGradient(x,y,0,x,y,r);
+          const alpha=Math.min(0.7,0.2+intensity*0.5);
+          if(this._mode==='demand'){
+            grad.addColorStop(0,'rgba(220,38,38,'+alpha+')');
+            grad.addColorStop(0.4,'rgba(251,146,60,'+(alpha*0.7)+')');
+            grad.addColorStop(1,'rgba(59,130,246,0)');
+          } else if(this._mode==='missed'){
+            grad.addColorStop(0,'rgba(185,28,28,'+alpha+')');
+            grad.addColorStop(0.4,'rgba(249,115,22,'+(alpha*0.7)+')');
+            grad.addColorStop(1,'rgba(219,234,254,0)');
+          } else {
+            grad.addColorStop(0,'rgba(109,40,217,'+alpha+')');
+            grad.addColorStop(0.4,'rgba(124,58,237,'+(alpha*0.6)+')');
+            grad.addColorStop(1,'rgba(219,234,254,0)');
+          }
+          ctx.beginPath();
+          ctx.fillStyle=grad;
+          ctx.arc(x,y,r,0,Math.PI*2);
+          ctx.fill();
+        });
+      }
+    });
+    function drawHeat(pts,mode){const l=new CanvasHeat(pts,{mode});l.addTo(window._cmap);return l;}
+    `;
+
+    const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Zone Intelligence — ${city} — ${dateStr}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<\x73cript src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"><\/script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F7F6F3;color:#1A1917;font-size:14px}
+.header{background:#1D5C3E;color:#fff;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header h1{font-size:16px;font-weight:600}
+.header-meta{font-size:12px;opacity:.8}
+.body{max-width:1000px;margin:0 auto;padding:1.5rem}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.kpi{background:#fff;border:1px solid #E4E2DC;border-radius:8px;padding:1rem 1.1rem}
+.kpi-label{font-size:11px;color:#6B6860;margin-bottom:3px}
+.kpi-val{font-size:22px;font-weight:500}
+.kpi-sub{font-size:11px;color:#9B9890;margin-top:3px}
+.section{background:#fff;border:1px solid #E4E2DC;border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:1.2rem}
+.section-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6860;margin-bottom:10px}
+.map-toggle{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.map-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid #C8C5BC;background:#fff;color:#6B6860}
+.map-btn.active{background:#1A1917;color:#fff;border-color:#1A1917}
+#map{height:460px;border-radius:8px;overflow:hidden;border:1px solid #E4E2DC}
+.legend{display:flex;gap:12px;font-size:11px;color:#6B6860;flex-wrap:wrap;margin-top:8px;align-items:center}
+.ldot{width:11px;height:11px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:3px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{font-size:11px;font-weight:500;color:#6B6860;text-align:left;padding:6px 10px;border-bottom:1px solid #E4E2DC}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.footer{text-align:center;font-size:11px;color:#9B9890;padding:2rem;margin-top:1rem}
+.badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;display:inline-block}
+@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="header-meta" style="margin-bottom:3px;opacity:.7">Jugnoo CSM Tool · Zone Intelligence Report</div>
+    <h1>${city} — Supply &amp; Demand Analysis</h1>
+  </div>
+  <div class="header-meta">${dateStr}</div>
+</div>
+
+<div class="body">
+
+  <!-- KPI summary -->
+  <div class="kpi-row" style="margin-top:1.2rem">
+    <div class="kpi" style="border-left:3px solid ${parseFloat(compRate)>=80?'#1D9E75':parseFloat(compRate)>=65?'#D97706':'#DC2626'}">
+      <div class="kpi-label">Completion rate</div>
+      <div class="kpi-val" style="color:${parseFloat(compRate)>=80?'#1D9E75':parseFloat(compRate)>=65?'#D97706':'#DC2626'}">${compRate}%</div>
+      <div class="kpi-sub">${totalComp.toLocaleString()} of ${totalReq.toLocaleString()} requests</div>
+    </div>
+    <div class="kpi" style="border-left:3px solid #E4E2DC">
+      <div class="kpi-label">Total requests</div>
+      <div class="kpi-val">${totalReq.toLocaleString()}</div>
+      <div class="kpi-sub">across ${zoneRows.length} locations</div>
+    </div>
+    <div class="kpi" style="border-left:3px solid ${parseFloat(missRate)>15?'#DC2626':'#D97706'}">
+      <div class="kpi-label">Missed rides</div>
+      <div class="kpi-val" style="color:${parseFloat(missRate)>15?'#DC2626':'#D97706'}">${totalMissed.toLocaleString()}</div>
+      <div class="kpi-sub">${missRate}% — user bailed before driver accepted</div>
+    </div>
+    <div class="kpi" style="border-left:3px solid #7C3AED">
+      <div class="kpi-label">Timed out</div>
+      <div class="kpi-val" style="color:#7C3AED">${totalTOut.toLocaleString()}</div>
+      <div class="kpi-sub">driver ignored ping</div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="section">
+    <div class="section-title">Interactive demand map</div>
+    <div class="map-toggle">
+      <button class="map-btn active" onclick="switchView('demand',this)">🔴 Demand heatmap</button>
+      <button class="map-btn" onclick="switchView('supply',this)">⚠ Supply gap zones</button>
+      <button class="map-btn" onclick="switchView('missed',this)">📍 Missed clusters</button>
+      <button class="map-btn" onclick="switchView('timed',this)">⏱ Timed-out clusters</button>
+    </div>
+    <div id="legendArea" class="legend"></div>
+    <div id="map"></div>
+  </div>
+
+  <!-- Zone table -->
+  <div class="section">
+    <div class="section-title">Top unserved zones — driver deployment targets</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Zone</th><th>Requests</th><th>Completed</th><th>Missed</th><th>Timed out</th><th>Supply gap</th><th>Recommended action</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Clusters -->
+  <div class="section">
+    <div class="section-title">Auto-detected demand clusters — click to zoom</div>
+    <div class="cluster-grid">${clusterCards}</div>
+  </div>
+
+  <div class="footer">
+    Generated by Jugnoo CSM Tool · jugnoocsm.netlify.app · ${dateStr}<br>
+    <span style="font-size:10px">This report is confidential and intended for operator use only</span>
+  </div>
+</div>
+
+<\x73cript>
+const ZONE_DATA=${zoneJSON};
+let _cmap=null,_activeView='demand',_heatLayer=null,_markerLayer=null;
+
+window.addEventListener('load',function(){
+  const lats=ZONE_DATA.map(r=>parseFloat(r.lat)).filter(v=>!isNaN(v));
+  const lngs=ZONE_DATA.map(r=>parseFloat(r.lng)).filter(v=>!isNaN(v));
+  const cLat=lats.reduce((a,b)=>a+b,0)/lats.length;
+  const cLng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
+  _cmap=L.map('map').setView([cLat,cLng],12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>',maxZoom:18
+  }).addTo(_cmap);
+  ${canvasHeatCode}
+  window._drawHeat=drawHeat;
+  switchView('demand',document.querySelector('.map-btn.active'));
+});
+
+function switchView(mode,btn){
+  _activeView=mode;
+  document.querySelectorAll('.map-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(_heatLayer){
+    if(_heatLayer._map)_cmap.removeLayer(_heatLayer);
+    else if(_heatLayer.parentNode)_heatLayer.parentNode.removeChild(_heatLayer);
+    _heatLayer=null;
+  }
+  if(_markerLayer){_cmap.removeLayer(_markerLayer);_markerLayer=null;}
+  const leg=document.getElementById('legendArea');
+  if(mode==='demand'){
+    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.total_requests)||1})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
+    _heatLayer=window._drawHeat(pts,'demand');
+    leg.innerHTML='<span><span class="ldot" style="background:#3B82F6"></span>Low</span><span><span class="ldot" style="background:#F59E0B"></span>Medium</span><span><span class="ldot" style="background:#EF4444"></span>High demand</span><span style="margin-left:auto;color:#9ca3af">Intensity = total ride requests</span>';
+  } else if(mode==='supply'){
+    _markerLayer=L.layerGroup();
+    ZONE_DATA.filter(r=>parseFloat(r.supply_gap_pct)>0).sort((a,b)=>parseFloat(b.supply_gap_pct)-parseFloat(a.supply_gap_pct)).forEach(r=>{
+      const lat=parseFloat(r.lat),lng=parseFloat(r.lng),gap=parseFloat(r.supply_gap_pct),req=parseInt(r.total_requests)||1;
+      if(isNaN(lat)||isNaN(lng))return;
+      const color=gap>=80?'#DC2626':gap>=50?'#EA580C':'#D97706';
+      L.circleMarker([lat,lng],{radius:Math.max(5,Math.min(18,req*2)),color,fillColor:color,fillOpacity:.7,weight:1})
+       .bindPopup('<b>'+(r.pickup_address||'').split(',')[0]+'</b><br>Gap: <b>'+gap+'%</b><br>Requests: '+req+' · Missed: '+r.missed_no_driver)
+       .addTo(_markerLayer);
+    });
+    _markerLayer.addTo(_cmap);
+    leg.innerHTML='<span><span class="ldot" style="background:#D97706"></span>Gap 0–50%</span><span><span class="ldot" style="background:#EA580C"></span>50–80%</span><span><span class="ldot" style="background:#DC2626"></span>&gt;80%</span><span style="margin-left:auto;color:#9ca3af">Circle size = request volume · Click for details</span>';
+  } else if(mode==='missed'){
+    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.missed_no_driver)||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
+    _heatLayer=window._drawHeat(pts,'missed');
+    leg.innerHTML='<span><span class="ldot" style="background:#DBEAFE"></span>Few</span><span><span class="ldot" style="background:#F97316"></span>Some</span><span><span class="ldot" style="background:#B91C1C"></span>Many missed</span><span style="margin-left:auto;color:#9ca3af">User cancelled before driver accepted</span>';
+  } else {
+    const pts=ZONE_DATA.map(r=>({lat:parseFloat(r.lat),lng:parseFloat(r.lng),val:parseInt(r.timed_out)||0})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng)&&p.val>0);
+    if(!pts.length){leg.innerHTML='<span style="color:#9ca3af">No timed-out data</span>';return;}
+    _heatLayer=window._drawHeat(pts,'timed');
+    leg.innerHTML='<span><span class="ldot" style="background:#DBEAFE"></span>Few</span><span><span class="ldot" style="background:#7C3AED"></span>Some</span><span><span class="ldot" style="background:#1E1B4B"></span>Many timed out</span><span style="margin-left:auto;color:#9ca3af">Driver ignored ping</span>';
+  }
+  setTimeout(()=>_cmap.invalidateSize(),50);
+}
+<\/script>
+</body>
+</html>`;
+
+    // Trigger download
+    const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download='zone-report-'+city.replace(/\s+/g,'-').toLowerCase()+'-'+new Date().toISOString().slice(0,10)+'.html';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),5000);
+
+  } catch(e){
+    alert('Export failed: '+e.message);
+    console.error(e);
+  } finally {
+    btn.textContent='Export client report';
+    btn.disabled=false;
+    btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export client report';
+  }
+}
+
+function showErr(msg){const b=document.getElementById('errBox');b.textContent=msg;b.classList.add('show');}
 function copyReport(){
-  const text=document.getElementById('outputBody').textContent;
-  navigator.clipboard.writeText(text).then(()=>{
-    const b=document.getElementById('copyBtn');const s=document.querySelector('.copy-small');
-    b.textContent='✓ Copied!';if(s)s.textContent='Copied!';
-    setTimeout(()=>{b.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy email';if(s)s.textContent='Copy';},2000);
+  navigator.clipboard.writeText(document.getElementById('outBody').textContent).then(()=>{
+    const b=document.getElementById('copyBtn');b.textContent='✓ Copied';
+    setTimeout(()=>{b.textContent='Copy email';},2000);
   });
 }
 </script>

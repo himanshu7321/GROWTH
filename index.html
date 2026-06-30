@@ -2074,6 +2074,7 @@ ${gv('highlights')?'HIGHLIGHTS:\n'+gv('highlights'):''}
 ${gv('nextSteps')?'NEXT STEPS:\n'+gv('nextSteps'):''}
 
 Write complete email: Subject line (prefix "Subject: "), greeting, performance summary${hasMomData?' that explicitly compares this month to last month across rides, revenue, fare, drivers and cancellations where data is given — make it read like a genuine progress update, not a single-period report':''}, 2-3 sentence SWOT insight, issue update, highlights, next steps, closing with name: ${csm}.
+Keep the full email under 400 words — be concise and complete rather than exhaustive. Every section must finish properly; do not leave any sentence unfinished.
 Plain text only. No markdown. No bullet symbols. Clean paragraphs. Ready to paste into email.`;
 
   document.getElementById('genBtn').disabled=true;
@@ -2081,15 +2082,44 @@ Plain text only. No markdown. No bullet symbols. Clean paragraphs. Ready to past
   document.getElementById('outputCard').classList.remove('show');
   document.getElementById('copyBtn').classList.remove('show');
 
-  try{
+  // Token budget scales with how much MoM/SWOT/context data is actually present —
+  // the email genuinely gets longer as more fields are filled in, so a fixed low
+  // cap was silently truncating mid-sentence once enough sections were populated.
+  const promptLen=prompt.length;
+  let tokenBudget = promptLen>3500 ? 2200 : promptLen>2200 ? 1800 : 1400;
+
+  async function callGemini(maxTokens){
     const res2=await fetch(`/.netlify/functions/gemini`,{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:.7,maxOutputTokens:1200}})
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:.7,maxOutputTokens:maxTokens}})
     });
-    const data=await res2.json();
+    return res2.json();
+  }
+
+  try{
+    let data=await callGemini(tokenBudget);
     if(data.error){showErr('Gemini error: '+(data.error.message||data.error||'Unknown error. Check your GEMINI_API_KEY in Netlify environment variables.'));return;}
-    const text=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
+
+    let cand=data.candidates?.[0];
+    let text=cand?.content?.parts?.[0]?.text||'';
     if(!text){showErr('No response from Gemini. Try again.');return;}
+
+    // Gemini sets finishReason:"MAX_TOKENS" when output was cut off mid-generation —
+    // this is exactly what produced the half-finished email. Detect it and retry
+    // once with a higher cap before showing anything to the user.
+    if(cand?.finishReason==='MAX_TOKENS'){
+      const retryBudget=Math.min(tokenBudget+1200, 4096);
+      data=await callGemini(retryBudget);
+      cand=data.candidates?.[0];
+      const retryText=cand?.content?.parts?.[0]?.text||'';
+      if(retryText) text=retryText;
+      if(cand?.finishReason==='MAX_TOKENS'){
+        // Still truncated even at the higher cap — say so explicitly rather than
+        // silently showing a half-finished email as if it were complete.
+        text += '\n\n[⚠ This email was cut off by the AI response length limit even after one retry. Click Generate again, or shorten the Additional Context / SWOT fields and retry.]';
+      }
+    }
+
     document.getElementById('outputBody').textContent=text;
     document.getElementById('outputCard').classList.add('show');
     document.getElementById('copyBtn').classList.add('show');
